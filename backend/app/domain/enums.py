@@ -1,0 +1,37 @@
+from enum import Enum
+
+
+class PatientStatus(str, Enum):
+    REGISTERED = "REGISTERED"
+    ADMITTED = "ADMITTED"
+    TRANSFERRED = "TRANSFERRED"
+    DISCHARGED = "DISCHARGED"
+
+
+class BedStatus(str, Enum):
+    AVAILABLE = "AVAILABLE"
+    OCCUPIED = "OCCUPIED"
+    CLEANING = "CLEANING"
+    MAINTENANCE = "MAINTENANCE"
+
+
+class BedType(str, Enum):
+    GENERAL = "GENERAL"
+    ICU = "ICU"
+    EMERGENCY = "EMERGENCY"
+    PEDIATRIC = "PEDIATRIC"
+    SURGICAL = "SURGICAL"
+
+
+class FlowEventType(str, Enum):
+    ADMISSION = "ADMISSION"
+    TRANSFER = "TRANSFER"
+    DISCHARGE = "DISCHARGE"
+    BED_ASSIGNMENT = "BED_ASSIGNMENT"
+    BED_RELEASE = "BED_RELEASE"
+
+
+class CapacityAlertLevel(str, Enum):
+    NORMAL = "NORMAL"
+    HIGH_UTILIZATION = "HIGH_UTILIZATION"
+    CRITICAL_CAPACITY = "CRITICAL_CAPACITY"
