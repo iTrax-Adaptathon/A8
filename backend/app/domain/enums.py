@@ -23,12 +23,121 @@ class BedType(str, Enum):
     SURGICAL = "SURGICAL"
 
 
+class TheatreStatus(str, Enum):
+    AVAILABLE = "AVAILABLE"
+    IN_USE = "IN_USE"
+    CLEANING = "CLEANING"
+    UNAVAILABLE = "UNAVAILABLE"
+
+
+class TheatreSlotStatus(str, Enum):
+    AVAILABLE = "AVAILABLE"
+    BOOKED = "BOOKED"
+    COMPLETED = "COMPLETED"
+    CANCELLED = "CANCELLED"
+
+
+class SurgeryStatus(str, Enum):
+    WAITING = "WAITING"
+    SCHEDULED = "SCHEDULED"
+    IN_PROGRESS = "IN_PROGRESS"
+    COMPLETED = "COMPLETED"
+    CANCELLED = "CANCELLED"
+
+
+class StaffRole(str, Enum):
+    SURGEON = "SURGEON"
+    ANAESTHETIST = "ANAESTHETIST"
+    DOCTOR = "DOCTOR"
+    NURSE = "NURSE"
+    PORTER = "PORTER"
+
+
+class StaffStatus(str, Enum):
+    AVAILABLE = "AVAILABLE"  # on shift and free to be assigned
+    ASSIGNED = "ASSIGNED"  # has exactly one ACTIVE assignment
+    OFF_DUTY = "OFF_DUTY"  # not working
+
+
+class StaffAssignmentType(str, Enum):
+    SURGERY = "SURGERY"
+    PATIENT = "PATIENT"
+
+
+class StaffAssignmentStatus(str, Enum):
+    ACTIVE = "ACTIVE"
+    RELEASED = "RELEASED"
+
+
+class WaitlistResourceType(str, Enum):
+    BED = "BED"
+    THEATRE = "THEATRE"
+    STAFF = "STAFF"
+
+
+class WaitlistStatus(str, Enum):
+    WAITING = "WAITING"
+    FULFILLED = "FULFILLED"
+    CANCELLED = "CANCELLED"
+
+
+class ResourceType(str, Enum):
+    """Resource kinds referenced by audit events and realtime messages."""
+
+    PATIENT = "PATIENT"
+    BED = "BED"
+    DEPARTMENT = "DEPARTMENT"
+    THEATRE = "THEATRE"
+    THEATRE_SLOT = "THEATRE_SLOT"
+    SURGERY = "SURGERY"
+    STAFF = "STAFF"
+    STAFF_ASSIGNMENT = "STAFF_ASSIGNMENT"
+    WAITLIST_ENTRY = "WAITLIST_ENTRY"
+
+
+class EventSource(str, Enum):
+    MANUAL = "MANUAL"  # explicit API call
+    AUTO_MATCH = "AUTO_MATCH"  # deterministic auto-assignment after a release
+    SYSTEM = "SYSTEM"
+    SEED = "SEED"
+
+
 class FlowEventType(str, Enum):
+    # Inherited patient-flow events
     ADMISSION = "ADMISSION"
     TRANSFER = "TRANSFER"
     DISCHARGE = "DISCHARGE"
     BED_ASSIGNMENT = "BED_ASSIGNMENT"
     BED_RELEASE = "BED_RELEASE"
+    # Generic resource lifecycle
+    RESOURCE_CREATED = "RESOURCE_CREATED"
+    RESOURCE_DEACTIVATED = "RESOURCE_DEACTIVATED"
+    # Beds
+    BED_STATUS_CHANGE = "BED_STATUS_CHANGE"
+    # Theatres / slots
+    THEATRE_STATUS_CHANGE = "THEATRE_STATUS_CHANGE"
+    THEATRE_SLOT_CREATED = "THEATRE_SLOT_CREATED"
+    THEATRE_SLOT_BOOKED = "THEATRE_SLOT_BOOKED"
+    THEATRE_SLOT_RELEASED = "THEATRE_SLOT_RELEASED"
+    THEATRE_SLOT_CANCELLED = "THEATRE_SLOT_CANCELLED"
+    THEATRE_SLOT_COMPLETED = "THEATRE_SLOT_COMPLETED"
+    # Surgeries
+    SURGERY_CREATED = "SURGERY_CREATED"
+    SURGERY_SCHEDULED = "SURGERY_SCHEDULED"
+    SURGERY_UNSCHEDULED = "SURGERY_UNSCHEDULED"
+    SURGERY_STARTED = "SURGERY_STARTED"
+    SURGERY_COMPLETED = "SURGERY_COMPLETED"
+    SURGERY_CANCELLED = "SURGERY_CANCELLED"
+    # Staff
+    STAFF_STATUS_CHANGE = "STAFF_STATUS_CHANGE"
+    STAFF_ASSIGNED = "STAFF_ASSIGNED"
+    STAFF_RELEASED = "STAFF_RELEASED"
+    # Waitlist / matching
+    WAITLIST_ADDED = "WAITLIST_ADDED"
+    WAITLIST_REMOVED = "WAITLIST_REMOVED"
+    WAITLIST_FULFILLED = "WAITLIST_FULFILLED"
+    MATCH_IDENTIFIED = "MATCH_IDENTIFIED"
+    ASSIGNMENT_REJECTED = "ASSIGNMENT_REJECTED"
 
 
 class CapacityAlertLevel(str, Enum):

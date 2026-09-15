@@ -6,6 +6,12 @@ from app.application.capacity_intelligence_service import (
     HospitalCapacityMetrics,
     DepartmentUtilizationMetrics,
 )
+from app.application.audit_service import AuditService
+from app.application.theatre_service import TheatreService
+from app.application.surgery_service import SurgeryService
+from app.application.staff_service import StaffService
+from app.application.waitlist_service import WaitlistService
+from app.application.matching_service import MatchingService
 
 __all__ = [
     "PatientService",
@@ -14,4 +20,10 @@ __all__ = [
     "CapacityIntelligenceService",
     "HospitalCapacityMetrics",
     "DepartmentUtilizationMetrics",
+    "AuditService",
+    "TheatreService",
+    "SurgeryService",
+    "StaffService",
+    "WaitlistService",
+    "MatchingService",
 ]

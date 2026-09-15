@@ -31,11 +31,11 @@ def test_full_patient_flow_workflow(client, db_session):
         "notes": "Admitted to ER",
     })
     assert admit_res.status_code == 200
-    assert admit_res.json()["current_status"] == "ADMITTED"
+    assert admit_res.json()["currentStatus"] == "ADMITTED"
 
     # Check capacity after admission
     cap1 = client.get("/api/v1/capacity").json()
-    assert cap1["occupied_beds"] == 1
+    assert cap1["occupiedBeds"] == 1
 
     # 4. Transfer Patient to ICU
     transfer_res = client.post(f"/api/v1/patients/{patient_id}/transfer", json={
@@ -44,15 +44,15 @@ def test_full_patient_flow_workflow(client, db_session):
         "notes": "Transferred to ICU",
     })
     assert transfer_res.status_code == 200
-    assert transfer_res.json()["current_status"] == "TRANSFERRED"
-    assert transfer_res.json()["current_department_id"] == icu_dept.id
+    assert transfer_res.json()["currentStatus"] == "TRANSFERRED"
+    assert transfer_res.json()["currentDepartmentId"] == icu_dept.id
 
     # Verify ER Bed was set to CLEANING upon transfer
     er_bed_updated = client.get(f"/api/v1/beds/{er_bed.id}").json()
     assert er_bed_updated["status"] == "CLEANING"
 
     # 5. Check Flow Events Log
-    events_res = client.get(f"/api/v1/flow-events?patient_id={patient_id}")
+    events_res = client.get(f"/api/v1/flow-events?patientId={patient_id}")
     assert events_res.status_code == 200
     events = events_res.json()
     assert len(events) >= 2  # ADMISSION and TRANSFER
@@ -62,8 +62,10 @@ def test_full_patient_flow_workflow(client, db_session):
         "notes": "Discharged from ICU",
     })
     assert discharge_res.status_code == 200
-    assert discharge_res.json()["current_status"] == "DISCHARGED"
+    assert discharge_res.json()["currentStatus"] == "DISCHARGED"
 
-    # Verify ICU bed was released back to AVAILABLE
+    # Verify ICU bed was released into the cleaning workflow (OCCUPIED -> CLEANING),
+    # never straight to AVAILABLE
     icu_bed_updated = client.get(f"/api/v1/beds/{icu_bed.id}").json()
-    assert icu_bed_updated["status"] == "AVAILABLE"
+    assert icu_bed_updated["status"] == "CLEANING"
+    assert icu_bed_updated["currentPatientId"] is None

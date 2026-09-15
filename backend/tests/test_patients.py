@@ -9,9 +9,9 @@ def test_create_and_get_patient(client):
     assert res.status_code == 201
     data = res.json()
     assert data["name"] == "Test Patient"
-    assert data["current_status"] == "REGISTERED"
+    assert data["currentStatus"] == "REGISTERED"
 
     patient_id = data["id"]
     get_res = client.get(f"/api/v1/patients/{patient_id}")
     assert get_res.status_code == 200
-    assert get_res.json()["medical_record_number"] == "MRN-TEST-1"
+    assert get_res.json()["medicalRecordNumber"] == "MRN-TEST-1"

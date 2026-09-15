@@ -1,19 +1,19 @@
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import Field
+from app.api.schemas.base import CamelModel
 
 
-class DepartmentCreateSchema(BaseModel):
-    name: str = Field(..., json_schema_extra={"example": "Intensive Care Unit"})
-    code: str = Field(..., json_schema_extra={"example": "ICU"})
+class DepartmentCreateSchema(CamelModel):
+    name: str = Field(..., min_length=1, json_schema_extra={"example": "Intensive Care Unit"})
+    code: str = Field(..., min_length=1, json_schema_extra={"example": "ICU"})
 
 
-class DepartmentResponseSchema(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
-
+class DepartmentResponseSchema(CamelModel):
     id: int
     name: str
     code: str
     total_beds: int
     occupied_beds: int
+    is_active: bool = True
     created_at: Optional[datetime] = None

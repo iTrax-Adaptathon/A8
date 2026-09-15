@@ -54,9 +54,28 @@ export const CapacityOverview: React.FC = () => {
   if (!capacity) return null;
 
   const totalWaiting =
-    capacity.queues.waitingForBeds +
-    capacity.queues.waitingForTheatres +
-    capacity.queues.waitingForStaff;
+    (capacity.queues?.waitingForBeds ?? 0) +
+    (capacity.queues?.waitingForTheatres ?? 0) +
+    (capacity.queues?.waitingForStaff ?? 0);
+
+  const occupancy = capacity.overallOccupancyPercentage ?? 0;
+  const alertLevel = capacity.overallAlertLevel || 'NORMAL';
+  const criticalDepts = capacity.criticalCapacityDepartments || [];
+  const highUtilDepts = capacity.highUtilizationDepartments || [];
+  const beds = capacity.beds || { total: 0, available: 0, occupied: 0, cleaning: 0, maintenance: 0 };
+  const theatres = capacity.theatres || {
+    total: 0,
+    available: 0,
+    inUse: 0,
+    cleaning: 0,
+    unavailable: 0,
+    bookedSlots: 0,
+    availableSlots: 0,
+    nextAvailableSlot: null,
+  };
+  const staff = capacity.staff || { total: 0, available: 0, assigned: 0, offDuty: 0 };
+  const queues = capacity.queues || { waitingForBeds: 0, waitingForTheatres: 0, waitingForStaff: 0 };
+  const deptMetrics = capacity.departmentMetrics || [];
 
   return (
     <div className="flex flex-col gap-lg">
@@ -66,15 +85,15 @@ export const CapacityOverview: React.FC = () => {
         style={{
           padding: 'var(--space-md) var(--space-lg)',
           backgroundColor:
-            capacity.overallAlertLevel === 'CRITICAL_CAPACITY'
+            alertLevel === 'CRITICAL_CAPACITY'
               ? 'var(--color-error-bg)'
-              : capacity.overallAlertLevel === 'HIGH_UTILIZATION'
+              : alertLevel === 'HIGH_UTILIZATION'
               ? '#fef3c7'
               : 'var(--surface-container-low)',
           borderColor:
-            capacity.overallAlertLevel === 'CRITICAL_CAPACITY'
+            alertLevel === 'CRITICAL_CAPACITY'
               ? '#fca5a5'
-              : capacity.overallAlertLevel === 'HIGH_UTILIZATION'
+              : alertLevel === 'HIGH_UTILIZATION'
               ? '#fde68a'
               : 'var(--outline-variant)',
         }}
@@ -86,9 +105,9 @@ export const CapacityOverview: React.FC = () => {
               height: '40px',
               borderRadius: 'var(--radius-md)',
               backgroundColor:
-                capacity.overallAlertLevel === 'CRITICAL_CAPACITY'
+                alertLevel === 'CRITICAL_CAPACITY'
                   ? 'var(--color-error)'
-                  : capacity.overallAlertLevel === 'HIGH_UTILIZATION'
+                  : alertLevel === 'HIGH_UTILIZATION'
                   ? 'var(--color-cleaning)'
                   : 'var(--color-available)',
               color: '#ffffff',
@@ -98,29 +117,29 @@ export const CapacityOverview: React.FC = () => {
             }}
           >
             <span className="material-symbols-outlined" style={{ fontSize: '24px' }}>
-              {capacity.overallAlertLevel === 'NORMAL' ? 'check_circle' : 'warning'}
+              {alertLevel === 'NORMAL' ? 'check_circle' : 'warning'}
             </span>
           </div>
 
           <div>
             <div className="flex items-center gap-sm">
               <span className="text-headline-sm" style={{ fontWeight: 700 }}>
-                OVERALL CAPACITY STATUS: {capacity.overallAlertLevel.replace('_', ' ')}
+                OVERALL CAPACITY STATUS: {alertLevel.replace('_', ' ')}
               </span>
-              <StatusBadge status={capacity.overallAlertLevel} />
+              <StatusBadge status={alertLevel} />
             </div>
             <p className="text-body-md" style={{ color: 'var(--on-surface-variant)', marginTop: '2px' }}>
               Hospital Occupancy is at{' '}
-              <strong>{capacity.overallOccupancyPercentage.toFixed(1)}%</strong> ({capacity.occupiedBeds} of{' '}
-              {capacity.totalBeds} operational beds occupied).
-              {capacity.criticalCapacityDepartments.length > 0 && (
+              <strong>{occupancy.toFixed(1)}%</strong> ({capacity.occupiedBeds ?? 0} of{' '}
+              {capacity.totalBeds ?? 0} operational beds occupied).
+              {criticalDepts.length > 0 && (
                 <span style={{ color: 'var(--color-error)', fontWeight: 600, marginLeft: '6px' }}>
-                  Critical capacity in: {capacity.criticalCapacityDepartments.join(', ')}.
+                  Critical capacity in: {criticalDepts.join(', ')}.
                 </span>
               )}
-              {capacity.highUtilizationDepartments.length > 0 && (
+              {highUtilDepts.length > 0 && (
                 <span style={{ color: '#b45309', fontWeight: 600, marginLeft: '6px' }}>
-                  High utilization in: {capacity.highUtilizationDepartments.join(', ')}.
+                  High utilization in: {highUtilDepts.join(', ')}.
                 </span>
               )}
             </p>
@@ -147,63 +166,63 @@ export const CapacityOverview: React.FC = () => {
       >
         <KpiTile
           label="Hospital Occupancy"
-          value={`${capacity.overallOccupancyPercentage.toFixed(1)}%`}
-          subtext={`${capacity.occupiedBeds}/${capacity.totalBeds} beds`}
+          value={`${occupancy.toFixed(1)}%`}
+          subtext={`${capacity.occupiedBeds ?? 0}/${capacity.totalBeds ?? 0} beds`}
           icon="show_chart"
           variant={
-            capacity.overallOccupancyPercentage >= 90
+            occupancy >= 90
               ? 'danger'
-              : capacity.overallOccupancyPercentage >= 80
+              : occupancy >= 80
               ? 'warning'
               : 'primary'
           }
         />
         <KpiTile
           label="Available Beds"
-          value={capacity.beds.available}
+          value={beds.available}
           subtext="Ready for admission"
           icon="check_circle"
           variant="default"
         />
         <KpiTile
           label="Occupied Beds"
-          value={capacity.beds.occupied}
+          value={beds.occupied}
           subtext="Admitted patients"
           icon="airline_seat_flat"
           variant="secondary"
         />
         <KpiTile
           label="Cleaning In-Progress"
-          value={capacity.beds.cleaning}
+          value={beds.cleaning}
           subtext="Turnaround queue"
           icon="autorenew"
           variant="warning"
         />
         <KpiTile
           label="Maintenance / Out"
-          value={capacity.beds.maintenance}
+          value={beds.maintenance}
           subtext="Temporarily offline"
           icon="build"
           variant="default"
         />
         <KpiTile
           label="Theatres Available"
-          value={`${capacity.theatres.available} / ${capacity.theatres.total}`}
-          subtext={`${capacity.theatres.bookedSlots} slots booked`}
+          value={`${theatres.available} / ${theatres.total}`}
+          subtext={`${theatres.bookedSlots} slots booked`}
           icon="medical_services"
           variant="secondary"
         />
         <KpiTile
           label="Staff on Shift"
-          value={`${capacity.staff.assigned} / ${capacity.staff.total - capacity.staff.offDuty}`}
-          subtext={`${capacity.staff.available} available to assign`}
+          value={`${staff.assigned} / ${Math.max(0, staff.total - staff.offDuty)}`}
+          subtext={`${staff.available} available to assign`}
           icon="badge"
           variant="default"
         />
         <KpiTile
           label="Waitlist Queue"
           value={totalWaiting}
-          subtext={`${capacity.queues.waitingForBeds} bed, ${capacity.queues.waitingForTheatres} theatre`}
+          subtext={`${queues.waitingForBeds} bed, ${queues.waitingForTheatres} theatre`}
           icon="hourglass_empty"
           variant={totalWaiting > 0 ? 'warning' : 'default'}
         />
@@ -238,7 +257,7 @@ export const CapacityOverview: React.FC = () => {
             gap: 'var(--space-lg)',
           }}
         >
-          {capacity.departmentMetrics.map((dept) => (
+          {deptMetrics.map((dept) => (
             <DepartmentCard
               key={dept.departmentId}
               dept={dept}

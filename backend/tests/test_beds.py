@@ -15,7 +15,7 @@ def test_bed_management(client, db_session):
     create_res = client.post("/api/v1/beds", json=bed_payload)
     assert create_res.status_code == 201
     bed_data = create_res.json()
-    assert bed_data["bed_number"] == "ER-01"
+    assert bed_data["bedNumber"] == "ER-01"
 
     avail_res = client.get("/api/v1/beds/available")
     assert avail_res.status_code == 200
