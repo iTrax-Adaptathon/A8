@@ -1,0 +1,907 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>FlowCare - Resource Availability</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-primary-fixed": "#001d31",
+            "on-background": "#0b1c30",
+            "inverse-primary": "#93ccff",
+            "tertiary": "#545c72",
+            "on-tertiary-fixed": "#131b2e",
+            "tertiary-container": "#6c748b",
+            "secondary-fixed-dim": "#b4c5ff",
+            "tertiary-fixed-dim": "#bec6e0",
+            "surface-variant": "#e8eef6",
+            "on-primary": "#ffffff",
+            "tertiary-fixed": "#dae2fd",
+            "surface-container-lowest": "#ffffff",
+            "surface-tint": "#006398",
+            "on-error": "#ffffff",
+            "inverse-surface": "#213145",
+            "on-secondary-fixed-variant": "#003ea8",
+            "on-tertiary-fixed-variant": "#3f465c",
+            "primary-container": "#007bb9",
+            "error": "#b3261e",
+            "on-primary-container": "#fdfcff",
+            "surface-container-low": "#f4f7fb",
+            "primary-fixed-dim": "#93ccff",
+            "on-primary-fixed-variant": "#004b73",
+            "surface": "#f8fafd",
+            "on-surface": "#0f172a",
+            "secondary-fixed": "#dbe1ff",
+            "on-secondary-container": "#fefcff",
+            "surface-container": "#eaf0f8",
+            "outline-variant": "#cbd5e1",
+            "on-tertiary-container": "#fefcff",
+            "on-tertiary": "#ffffff",
+            "inverse-on-surface": "#eaf1ff",
+            "surface-bright": "#f8fafd",
+            "surface-dim": "#e2e8f0",
+            "outline": "#64748b",
+            "on-secondary": "#ffffff",
+            "secondary": "#0284c7",
+            "error-container": "#fee2e2",
+            "primary": "#006194",
+            "on-surface-variant": "#475569",
+            "primary-fixed": "#cce5ff",
+            "surface-container-highest": "#e2e8f0",
+            "secondary-container": "#0369a1",
+            "on-error-container": "#991b1b",
+            "surface-container-high": "#edf3fa",
+            "on-secondary-fixed": "#00174b",
+            "background": "#f8fafd"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.375rem",
+            "xl": "0.5rem",
+            "full": "9999px"
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-[#f8fafd] text-[#0f172a] font-sans antialiased selection:bg-primary/15 selection:text-primary">
+<!-- TOP APP HEADER & NAVIGATION -->
+<header class="fixed top-0 w-full z-40 bg-white border-b border-slate-200/90 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+<div class="h-14 px-6 flex items-center justify-between">
+<div class="flex items-center gap-6">
+<!-- Brand -->
+<div class="flex items-center gap-2.5">
+<img alt="FlowCare Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Wx4P6PAYpp5mdNFOnTdMLoqA61V2RjuY6mz7XKgcX2YDhSLD_c9OzDs1vkFtm9ajFk09Fef0Xevs7LLE828qx8uL3qp87Ktsgp5A0o08KOO1LEn7IA-ggNMsYNbDCmgHcUOPlagTDOzii9k8M6a2TzQx9uGGxhtqVJcARZb_a7Lc792d3q3zxocvZiEQZdgMdPx9mhUGdrqQ5VeLiwTGRMkTVRfKIqPg1Lf29QLhFevYxNYgt1NLV4aR4">
+<div class="flex flex-col">
+<span class="text-base font-bold text-slate-900 tracking-tight leading-none">FlowCare</span>
+<span class="text-[10px] font-medium text-slate-500 uppercase tracking-wider">Clinical Ops</span>
+</div>
+</div>
+<div class="h-4 w-px bg-slate-200"></div>
+<!-- Campus selector -->
+<div class="flex items-center gap-1.5 text-xs text-slate-700 bg-slate-100/80 px-2.5 py-1 rounded-md border border-slate-200/60 font-medium">
+<span class="material-symbols-outlined text-primary text-[17px]">domain</span>
+<span class="">St. Jude Central Campus</span>
+<span class="text-slate-400">·</span>
+<span class="text-slate-500 font-normal">All Wings</span>
+<span class="material-symbols-outlined text-slate-400 text-[15px] ml-0.5">expand_more</span>
+</div>
+<!-- Shift indicator -->
+<div class="hidden md:flex items-center gap-1.5 text-xs text-slate-600">
+<span class="material-symbols-outlined text-slate-400 text-[16px]">schedule</span>
+<span class="">Day Shift (07:00 – 19:00)</span>
+</div>
+</div>
+<!-- User profile & status -->
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2"><span class="inline-block w-2 h-2 rounded-full bg-emerald-500 ring-4 ring-emerald-100"></span><span class="text-xs font-semibold text-slate-600">Live Updates</span></div>
+<div class="h-4 w-px bg-slate-200"></div>
+<div class="flex items-center gap-2.5">
+<div class="text-right">
+<div class="text-xs font-semibold text-slate-800 leading-tight">Sarah Jenkins, RN</div>
+<div class="text-[11px] text-slate-500 leading-tight">Charge Ops Coordinator</div>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary/10 text-primary border border-primary/20 flex items-center justify-center font-semibold text-xs">
+            SJ
+          </div>
+</div>
+</div>
+</div>
+<!-- MAIN NAV TABS BAR -->
+<div class="h-11 px-6 flex items-center justify-between border-t border-slate-100 bg-white">
+<nav class="flex items-center gap-1 h-full">
+<a class="px-3.5 py-1 text-xs font-medium text-slate-600 hover:text-slate-900 rounded transition-colors" href="#">
+          Capacity Overview
+        </a>
+<a aria-current="page" class="px-3.5 py-1 text-xs font-semibold text-primary bg-primary/10 rounded transition-colors" href="#">
+          Resources
+        </a>
+<a class="px-3.5 py-1 text-xs font-medium text-slate-600 hover:text-slate-900 rounded transition-colors" href="#">
+          Patient Flow
+        </a>
+<a class="px-3.5 py-1 text-xs font-medium text-slate-600 hover:text-slate-900 rounded transition-colors" href="#">
+          Audit History
+        </a>
+</nav>
+<!-- Clean Key Hospital Metrics -->
+<div class="flex items-center gap-4 text-xs">
+
+<span class="text-slate-300">|</span>
+<div class="flex items-center gap-1.5">
+<span class="text-slate-500">Waiting:</span>
+<span class="font-semibold text-rose-600">14 patients</span>
+</div>
+<span class="text-slate-300">|</span>
+<div class="flex items-center gap-1.5">
+<span class="text-slate-500">Theatres:</span>
+<span class="font-semibold text-emerald-600">3 free</span>
+</div>
+</div>
+</div>
+</header>
+<!-- MAIN VIEW CONTAINER -->
+<main class="w-full pt-28 px-6 pb-12 max-w-[1720px] mx-auto min-h-screen">
+<!-- PAGE TITLE & SUMMARY COUNTER -->
+<section class="mt-4 mb-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h1 class="text-xl font-bold text-slate-900 tracking-tight">Resource Availability</h1>
+<p class="text-xs text-slate-500 mt-0.5">Real-time clinical occupancy, bed turnarounds, and staff allocations.</p>
+</div>
+<!-- Clean Summary Counter -->
+<div class="inline-flex items-center gap-2 bg-white px-3.5 py-1.5 rounded-lg border border-slate-200 text-xs shadow-sm">
+<span class="font-bold text-slate-900">480</span>
+<span class="text-slate-500">Total Beds</span>
+<span class="text-slate-300">·</span>
+<span class="font-bold text-emerald-700">38</span>
+<span class="text-slate-500">Available</span>
+<span class="text-slate-300">·</span>
+<span class="font-bold text-primary">402</span>
+<span class="text-slate-500">Occupied</span>
+<span class="text-slate-300">·</span>
+<span class="font-bold text-amber-700">28</span>
+<span class="text-slate-500">Cleaning</span>
+<span class="text-slate-300">·</span>
+<span class="font-bold text-rose-700">12</span>
+<span class="text-slate-500">Maintenance</span>
+</div>
+</section>
+<!-- FILTER TOOLBAR & SUB-TABS -->
+<section class="bg-white p-2.5 rounded-xl border border-slate-200 shadow-sm mb-6 flex flex-wrap items-center justify-between gap-3">
+<!-- Sub-Tabs: [Beds] (Active), [Theatres], [Staff] -->
+<div class="flex items-center gap-1 bg-slate-100 p-1 rounded-lg">
+<button class="px-3 py-1 rounded-md text-xs font-semibold bg-white text-primary shadow-sm flex items-center gap-1.5 transition-all" id="tab-beds" onclick="switchResourceTab('beds')">
+<span class="material-symbols-outlined text-[16px]">single_bed</span>
+          Beds
+          <span class="ml-0.5 px-1.5 py-0.2 rounded-full text-[10px] bg-primary/10 text-primary font-bold">480</span>
+</button>
+<button class="px-3 py-1 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition-all flex items-center gap-1.5" id="tab-theatres" onclick="switchResourceTab('theatres')">
+<span class="material-symbols-outlined text-[16px]">medical_services</span>
+          Theatres
+          <span class="ml-0.5 px-1.5 py-0.2 rounded-full text-[10px] bg-slate-200 text-slate-700 font-bold">8</span>
+</button>
+<button class="px-3 py-1 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition-all flex items-center gap-1.5" id="tab-staff" onclick="switchResourceTab('staff')">
+<span class="material-symbols-outlined text-[16px]">badge</span>
+          Staff
+          <span class="ml-0.5 px-1.5 py-0.2 rounded-full text-[10px] bg-slate-200 text-slate-700 font-bold">86</span>
+</button>
+</div>
+<!-- Filter Controls -->
+<div class="flex flex-wrap items-center gap-2.5">
+<!-- Department Dropdown -->
+<div class="relative">
+<select class="text-xs bg-slate-50 border border-slate-200 text-slate-700 rounded-lg py-1.5 pl-3 pr-8 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none cursor-pointer font-medium">
+<option selected="" value="cardio">Cardiology - Ward 3B</option>
+<option value="icu">ICU Wing Alpha</option>
+<option value="er">Emergency Resus Bay</option>
+<option value="all">All Departments</option>
+</select>
+</div>
+<!-- Status Dropdown -->
+<div class="relative">
+<select class="text-xs bg-slate-50 border border-slate-200 text-slate-700 rounded-lg py-1.5 pl-3 pr-8 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none cursor-pointer font-medium">
+<option selected="" value="all">All Statuses</option>
+<option value="available">Available (38)</option>
+<option value="occupied">Occupied (402)</option>
+<option value="cleaning">Cleaning (28)</option>
+<option value="maintenance">Maintenance (12)</option>
+</select>
+</div>
+<!-- Search Input -->
+<div class="relative">
+<span class="material-symbols-outlined text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2 text-[17px]">search</span>
+<input class="text-xs bg-slate-50 border border-slate-200 text-slate-800 rounded-lg py-1.5 pl-8 pr-3 w-52 focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none transition-all placeholder:text-slate-400" placeholder="Search bed or MRN..." type="text">
+</div>
+</div>
+</section>
+<!-- CONTENT LAYOUT: MASTER CANVAS + RIGHT DRAWER -->
+<div class="flex flex-col lg:flex-row gap-6 items-start">
+<!-- LEFT MASTER BED CANVAS -->
+<div class="flex-1 w-full flex flex-col gap-6" id="view-beds"><!-- GROUP 1: CARDIOLOGY WARD 3B -->
+<section class="flex flex-col gap-3">
+<div class="flex items-center justify-between px-3.5 py-2.5 bg-slate-100/80 rounded-xl border border-slate-200/70">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[19px]">cardiology</span>
+<h2 class="text-xs font-bold text-slate-800 tracking-tight">Cardiology — Ward 3B</h2>
+<span class="text-[11px] text-slate-500 font-medium">(Step-Down Unit · 6/8 Beds Occupied)</span>
+</div>
+<div class="text-[11px] text-slate-600 font-medium">
+Attending: <span class="text-slate-900 font-semibold">Dr. Bell</span> · Nurse Ratio: 1:3
+</div>
+</div>
+<!-- Bed Tiles Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+<!-- C-301 Occupied -->
+<div class="bg-white rounded-xl p-3.5 border border-slate-200 hover:border-slate-300 hover:shadow-sm transition-all flex flex-col justify-between h-36 cursor-pointer group" onclick="selectBed('C-301', 'Cardiology (Ward 3B)', 'Occupied', 'David Miller', 'MRN-90214', 'Admitted 2d ago', 'Telemetry Calibrated', 'Dr. Bell')">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-base font-bold text-slate-900 group-hover:text-primary">C-301</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700">Occupied</span>
+</div>
+<div class="mt-2.5">
+<div class="text-xs font-semibold text-slate-800">David Miller</div>
+<div class="text-[11px] text-slate-500 mt-0.5">MRN-90214</div>
+</div>
+</div>
+<div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+<span class="">Admitted 2d ago</span>
+<span class="text-primary font-medium">Telemetry</span>
+</div>
+</div>
+<!-- C-302 Available (Active Highlighted) -->
+<div class="bg-white rounded-xl p-3.5 border-2 border-primary shadow-sm flex flex-col justify-between h-36 cursor-pointer group" id="bed-tile-C-302" onclick="selectBed('C-302', 'Cardiology (Ward 3B)', 'Available', 'Ready for Assignment', 'VACANT', 'Sanitized 13:40 by Env Ops', 'Telemetry Calibrated', 'Unassigned')">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-base font-bold text-slate-900">C-302</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">Available</span>
+</div>
+<div class="mt-2.5">
+<div class="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-700">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+Sanitized 13:40
+</div>
+<div class="text-[11px] text-slate-500 mt-0.5">Single Negative Pressure</div>
+</div>
+</div>
+<div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+<span class="text-[11px] text-emerald-700 font-medium">Ready</span>
+<button class="px-2.5 py-1 rounded text-xs font-semibold bg-primary text-white hover:bg-primary-container transition-colors shadow-xs" onclick="event.stopPropagation(); selectBed('C-302', 'Cardiology (Ward 3B)', 'Available', 'Ready for Assignment', 'VACANT', 'Sanitized 13:40 by Env Ops', 'Telemetry Calibrated', 'Unassigned')">
+Assign Patient
+</button>
+</div>
+</div>
+<!-- C-303 Cleaning -->
+<div class="bg-white rounded-xl p-3.5 border border-slate-200 hover:border-slate-300 hover:shadow-sm transition-all flex flex-col justify-between h-36 cursor-pointer group" onclick="selectBed('C-303', 'Cardiology (Ward 3B)', 'Cleaning', 'Terminal Decontamination', 'N/A', 'Housekeeping in progress', 'Standard Ward', 'Housekeeping')">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-base font-bold text-slate-900 group-hover:text-primary">C-303</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-50 text-amber-700 border border-amber-200/60">Cleaning</span>
+</div>
+<div class="mt-2.5">
+<div class="text-xs font-medium text-slate-800">Housekeeping active</div>
+<div class="text-[11px] text-slate-500 mt-0.5">Est. 12m remaining</div>
+</div>
+</div>
+<div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+<span class="text-[11px] text-slate-400">Turnaround</span>
+<button class="px-2 py-0.5 rounded text-[11px] font-medium text-amber-800 bg-amber-100/70 hover:bg-amber-200 transition-colors" onclick="event.stopPropagation(); markBedReady('C-303')">
+Mark Ready
+</button>
+</div>
+</div>
+<!-- C-304 Occupied -->
+<div class="bg-white rounded-xl p-3.5 border border-slate-200 hover:border-slate-300 hover:shadow-sm transition-all flex flex-col justify-between h-36 cursor-pointer group" onclick="selectBed('C-304', 'Cardiology (Ward 3B)', 'Occupied', 'Elena Rostova', 'MRN-84729', 'Post-Angioplasty observation', 'Telemetry Monitored', 'Dr. Patel')">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-base font-bold text-slate-900 group-hover:text-primary">C-304</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700">Occupied</span>
+</div>
+<div class="mt-2.5">
+<div class="text-xs font-semibold text-slate-800">Elena Rostova</div>
+<div class="text-[11px] text-slate-500 mt-0.5">MRN-84729</div>
+</div>
+</div>
+<div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+<span class="">Admitted 4h ago</span>
+<span class="text-primary font-medium">Post-Angio</span>
+</div>
+</div>
+<!-- C-305 Maintenance -->
+<div class="bg-white rounded-xl p-3.5 border border-rose-200/60 bg-rose-50/50 hover:shadow-sm transition-all flex flex-col justify-between h-36 cursor-pointer group" onclick="selectBed('C-305', 'Cardiology (Ward 3B)', 'Maintenance', 'Out of Service', 'WO-4481', 'O2 Regulator Alert', 'Standard Ward', 'Biomed')">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-base font-bold text-slate-900 group-hover:text-primary">C-305</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-rose-50 text-rose-700 border border-rose-200/60">Maintenance</span>
+</div>
+<div class="mt-2.5">
+<div class="text-xs font-medium text-rose-800">O2 Regulator Alert</div>
+<div class="text-[11px] text-slate-500 mt-0.5">Biomed en route</div>
+</div>
+</div>
+<div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+<span class="">WO #8829</span>
+<span class="text-rose-600 font-medium">Under Repair</span>
+</div>
+</div>
+<!-- C-306 Available -->
+<div class="bg-white rounded-xl p-3.5 border border-slate-200 hover:border-slate-300 hover:shadow-sm transition-all flex flex-col justify-between h-36 cursor-pointer group" onclick="selectBed('C-306', 'Cardiology (Ward 3B)', 'Available', 'Ready for Assignment', 'VACANT', 'Sanitized 11:10 by Env Ops', 'Standard Bed', 'Unassigned')">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-base font-bold text-slate-900 group-hover:text-primary">C-306</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">Available</span>
+</div>
+<div class="mt-2.5">
+<div class="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-700">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+Sanitized 11:10
+</div>
+<div class="text-[11px] text-slate-500 mt-0.5">Standard Ward Bed</div>
+</div>
+</div>
+<div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+<span class="text-[11px] text-emerald-700 font-medium">Ready</span>
+<button class="px-2.5 py-1 rounded text-xs font-semibold bg-primary text-white hover:bg-primary-container transition-colors shadow-xs" onclick="event.stopPropagation(); selectBed('C-306', 'Cardiology (Ward 3B)', 'Available', 'Ready for Assignment', 'VACANT', 'Sanitized 11:10 by Env Ops', 'Standard Bed', 'Unassigned')">
+Assign Patient
+</button>
+</div>
+</div>
+<!-- C-307 Occupied -->
+<div class="bg-white rounded-xl p-3.5 border border-slate-200 hover:border-slate-300 hover:shadow-sm transition-all flex flex-col justify-between h-36 cursor-pointer group" onclick="selectBed('C-307', 'Cardiology (Ward 3B)', 'Occupied', 'Arthur Pendelton', 'MRN-55412', 'Post-CHF monitoring', 'Telemetry Monitored', 'Dr. Higgins')">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-base font-bold text-slate-900 group-hover:text-primary">C-307</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700">Occupied</span>
+</div>
+<div class="mt-2.5">
+<div class="text-xs font-semibold text-slate-800">Arthur Pendelton</div>
+<div class="text-[11px] text-slate-500 mt-0.5">MRN-55412</div>
+</div>
+</div>
+<div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+<span class="">Admitted 1d ago</span>
+<span class="text-slate-700 font-medium">Post-CHF Check</span>
+</div>
+</div>
+<!-- C-308 Occupied -->
+<div class="bg-white rounded-xl p-3.5 border border-slate-200 hover:border-slate-300 hover:shadow-sm transition-all flex flex-col justify-between h-36 cursor-pointer group" onclick="selectBed('C-308', 'Cardiology (Ward 3B)', 'Occupied', 'Clara Higgins', 'MRN-99321', 'Arrhythmia Watch', 'Standard Ward', 'Dr. Bell')">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-base font-bold text-slate-900 group-hover:text-primary">C-308</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700">Occupied</span>
+</div>
+<div class="mt-2.5">
+<div class="text-xs font-semibold text-slate-800">Clara Higgins</div>
+<div class="text-[11px] text-slate-500 mt-0.5">MRN-99321</div>
+</div>
+</div>
+<div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+<span class="">Admitted 3d ago</span>
+<span class="text-slate-700 font-medium">Arrhythmia Watch</span>
+</div>
+</div>
+</div>
+</section>
+<!-- GROUP 2: INTENSIVE CARE UNIT -->
+<section class="flex flex-col gap-3">
+<div class="flex items-center justify-between px-3.5 py-2.5 bg-slate-100/80 rounded-xl border border-slate-200/70">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[19px]">monitor_heart</span>
+<h2 class="text-xs font-bold text-slate-800 tracking-tight">Intensive Care Unit (ICU Wing Alpha)</h2>
+<span class="text-[11px] text-slate-500 font-medium">(7/8 Beds Occupied · 7/8 Ventilators Active)</span>
+</div>
+<div class="text-[11px] text-slate-600 font-medium">
+Ratio: <span class="text-slate-900 font-semibold">1:1 / 1:2</span> · Charge RN: S. Blake
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+<!-- ICU-01 Occupied -->
+<div class="bg-white rounded-xl p-3.5 border border-slate-200 hover:border-slate-300 hover:shadow-sm transition-all flex flex-col justify-between h-36 cursor-pointer group" onclick="selectBed('ICU-01', 'ICU Wing Alpha', 'Occupied', 'Jonathan Vance', 'MRN-10023', 'Puritan Bennett Vent Active', 'Ventilator Online', 'Dr. Vance')">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-base font-bold text-slate-900 group-hover:text-primary">ICU-01</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700">Occupied</span>
+</div>
+<div class="mt-2.5">
+<div class="text-xs font-semibold text-slate-800">Jonathan Vance</div>
+<div class="text-[11px] text-slate-500 mt-0.5">MRN-10023</div>
+</div>
+</div>
+<div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+<span class="">Vent: PB 980</span>
+<span class="text-primary font-medium">RN: S. Blake (1:1)</span>
+</div>
+</div>
+<!-- ICU-02 Occupied -->
+<div class="bg-white rounded-xl p-3.5 border border-slate-200 hover:border-slate-300 hover:shadow-sm transition-all flex flex-col justify-between h-36 cursor-pointer group" onclick="selectBed('ICU-02', 'ICU Wing Alpha', 'Occupied', 'Beatrice Gomez', 'MRN-33120', 'Hamilton G5 Vent Active', 'Ventilator Online', 'Dr. Vance')">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-base font-bold text-slate-900 group-hover:text-primary">ICU-02</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700">Occupied</span>
+</div>
+<div class="mt-2.5">
+<div class="text-xs font-semibold text-slate-800">Beatrice Gomez</div>
+<div class="text-[11px] text-slate-500 mt-0.5">MRN-33120</div>
+</div>
+</div>
+<div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+<span class="">Vent: Hamilton G5</span>
+<span class="text-slate-700 font-medium">RN: S. Blake (1:2)</span>
+</div>
+</div>
+<!-- ICU-03 Available -->
+<div class="bg-white rounded-xl p-3.5 border border-slate-200 hover:border-slate-300 hover:shadow-sm transition-all flex flex-col justify-between h-36 cursor-pointer group" onclick="selectBed('ICU-03', 'ICU Wing Alpha', 'Available', 'Ready for Assignment', 'VACANT', 'Isolation Positive Pressure', 'Ventilator Calibrated', 'Unassigned')">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-base font-bold text-slate-900 group-hover:text-primary">ICU-03</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">Available</span>
+</div>
+<div class="mt-2.5">
+<div class="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-700">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+Ventilator Ready
+</div>
+<div class="text-[11px] text-slate-500 mt-0.5">Isolation Positive Pres.</div>
+</div>
+</div>
+<div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+<span class="text-[11px] text-emerald-700 font-medium">Ready</span>
+<button class="px-2.5 py-1 rounded text-xs font-semibold bg-primary text-white hover:bg-primary-container transition-colors shadow-xs" onclick="event.stopPropagation(); selectBed('ICU-03', 'ICU Wing Alpha', 'Available', 'Ready for Assignment', 'VACANT', 'Isolation Positive Pressure', 'Ventilator Calibrated', 'Unassigned')">
+Assign Patient
+</button>
+</div>
+</div>
+<!-- ICU-04 Occupied -->
+<div class="bg-white rounded-xl p-3.5 border border-slate-200 hover:border-slate-300 hover:shadow-sm transition-all flex flex-col justify-between h-36 cursor-pointer group" onclick="selectBed('ICU-04', 'ICU Wing Alpha', 'Occupied', 'Liam Chen', 'MRN-77812', 'Servo-u Vent Active', 'Ventilator Online', 'Dr. Zhao')">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-base font-bold text-slate-900 group-hover:text-primary">ICU-04</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700">Occupied</span>
+</div>
+<div class="mt-2.5">
+<div class="text-xs font-semibold text-slate-800">Liam Chen</div>
+<div class="text-[11px] text-slate-500 mt-0.5">MRN-77812</div>
+</div>
+</div>
+<div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+<span class="">Vent: Servo-u</span>
+<span class="text-rose-600 font-medium">Acuity 5 (1:1)</span>
+</div>
+</div>
+</div>
+</section>
+<!-- GROUP 3: EMERGENCY RESUS BAY -->
+<section class="flex flex-col gap-3">
+<div class="flex items-center justify-between px-3.5 py-2.5 bg-slate-100/80 rounded-xl border border-slate-200/70">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-rose-600 text-[19px]">emergency</span>
+<h2 class="text-xs font-bold text-slate-800 tracking-tight">Emergency Resus Bay (ER Core)</h2>
+<span class="text-[11px] text-slate-500 font-medium">(5/6 Occupied · 2 Inbound Ambulances)</span>
+</div>
+<div class="text-[11px] text-rose-600 font-semibold flex items-center gap-1">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-rose-600 animate-pulse"></span>
+Level 1 Trauma Alert
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+<!-- ER-01 -->
+<div class="bg-white rounded-xl p-3.5 border border-slate-200 hover:border-slate-300 hover:shadow-sm transition-all flex flex-col justify-between h-36 cursor-pointer group" onclick="selectBed('ER-01', 'ER Core (Trauma A)', 'Occupied', 'Code Trauma #12', 'MVA Ingest', 'Trauma Team Alpha Active', 'Full Resus Suite', 'Dr. Reynolds')">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-base font-bold text-slate-900 group-hover:text-primary">ER-01 (Trauma A)</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-rose-50 text-rose-700 border border-rose-200/60">Active Trauma</span>
+</div>
+<div class="mt-2.5">
+<div class="text-xs font-semibold text-slate-800">Trauma Team Alpha</div>
+<div class="text-[11px] text-slate-500 mt-0.5">MVA Ingest · Stabilizing</div>
+</div>
+</div>
+<div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+<span class="">Lead: Dr. Reynolds</span>
+<span class="text-slate-700 font-mono">T+00:32</span>
+</div>
+</div>
+<!-- ER-02 Available -->
+<div class="bg-white rounded-xl p-3.5 border border-slate-200 hover:border-slate-300 hover:shadow-sm transition-all flex flex-col justify-between h-36 cursor-pointer group" onclick="selectBed('ER-02', 'ER Core (Trauma B)', 'Available', 'Resus Ready', 'STANDBY', 'Flight Life 101 Inbound', 'Full Resus Suite', 'Team Bravo')">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-base font-bold text-slate-900 group-hover:text-primary">ER-02 (Trauma B)</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">Available</span>
+</div>
+<div class="mt-2.5">
+<div class="text-xs font-medium text-emerald-800">Flight Life 101 Inbound</div>
+<div class="text-[11px] text-slate-500 mt-0.5">ETA: 8 minutes</div>
+</div>
+</div>
+<div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+<span class="text-[11px] text-emerald-700 font-medium">Standby</span>
+<button class="px-2.5 py-1 rounded text-xs font-semibold bg-primary text-white hover:bg-primary-container transition-colors shadow-xs" onclick="event.stopPropagation(); selectBed('ER-02', 'ER Core (Trauma B)', 'Available', 'Resus Ready', 'STANDBY', 'Flight Life 101 Inbound', 'Full Resus Suite', 'Team Bravo')">
+Assign Patient
+</button>
+</div>
+</div>
+<!-- ER-03 Occupied -->
+<div class="bg-white rounded-xl p-3.5 border border-slate-200 hover:border-slate-300 hover:shadow-sm transition-all flex flex-col justify-between h-36 cursor-pointer group" onclick="selectBed('ER-03', 'ER Core (Cardiac)', 'Occupied', 'Cath Lab Prep', 'STEMI Protocol', 'STEMI Protocol', 'Defib &amp; Pacer', 'Dr. Higgins')">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-base font-bold text-slate-900 group-hover:text-primary">ER-03 (Cardiac)</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700">Occupied</span>
+</div>
+<div class="mt-2.5">
+<div class="text-xs font-semibold text-slate-800">STEMI Protocol</div>
+<div class="text-[11px] text-rose-600 font-medium mt-0.5">Transfer requested → C-302</div>
+</div>
+</div>
+<div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+<span class="">Cath Lab Prep</span>
+<span class="text-rose-600 font-bold">Priority 1</span>
+</div>
+</div>
+</div>
+</section></div>
+<!-- RIGHT RESOURCE DETAIL DRAWER (Clean, unburdened, action-focused) -->
+<aside class="w-full lg:w-96 bg-white rounded-xl border border-slate-200 shadow-sm p-5 flex flex-col gap-4 sticky top-32" id="resource-drawer"><!-- Drawer Header -->
+<div class="flex items-start justify-between border-b border-slate-100 pb-3.5">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">meeting_room</span>
+<h3 class="text-sm font-bold text-slate-900" id="drawer-title">Bed C-302</h3>
+</div>
+<p class="text-xs text-slate-500 mt-0.5" id="drawer-subtitle">Cardiology — Ward 3B</p>
+</div>
+<button class="text-slate-400 hover:text-slate-600 p-1" onclick="resetDrawerToDefault()" title="Reset Selection">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+</button>
+</div>
+<!-- Status Badge -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200/60 text-emerald-800 text-xs font-semibold" id="drawer-status-badge">
+<span class="material-symbols-outlined text-[16px] text-emerald-600">verified</span>
+<span class="">Available — Sanitized &amp; Inspected</span>
+</div>
+<!-- Key Details Grid -->
+<div class="grid grid-cols-2 gap-2.5 bg-slate-50/80 p-3 rounded-xl border border-slate-100 text-xs">
+<div>
+<span class="block text-[10px] uppercase font-semibold text-slate-400 tracking-wider">Room Type</span>
+<span class="font-medium text-slate-800" id="drawer-room-type">Single Negative Pres.</span>
+</div>
+<div>
+<span class="block text-[10px] uppercase font-semibold text-slate-400 tracking-wider">Equipment</span>
+<span class="font-medium text-primary" id="drawer-equipment">Telemetry Calibrated</span>
+</div>
+<div>
+<span class="block text-[10px] uppercase font-semibold text-slate-400 tracking-wider">Nurse Ratio</span>
+<span class="font-medium text-slate-800">1:3 Floor Standard</span>
+</div>
+<div>
+<span class="block text-[10px] uppercase font-semibold text-slate-400 tracking-wider">Last Sanitized</span>
+<span class="font-medium text-slate-800">Env Ops (13:40)</span>
+</div>
+</div>
+<!-- Section: Assign Patient from Waitlist -->
+<div class="flex flex-col gap-3 pt-1 border-t border-slate-100">
+<div class="flex items-center justify-between mt-1">
+<span class="text-xs font-bold text-slate-900 uppercase tracking-wider">Assign Patient from Waitlist</span>
+<span class="text-[10px] font-bold text-rose-600 bg-rose-50 border border-rose-200/60 px-1.5 py-0.5 rounded">Priority 1</span>
+</div>
+<!-- Select Patient Dropdown -->
+<div class="flex flex-col gap-1">
+<label class="text-[11px] font-medium text-slate-600">Select Waiting Patient</label>
+<select class="text-xs bg-white border border-slate-200 text-slate-900 rounded-lg p-2 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none cursor-pointer" id="patient-select">
+<option value="P-882104">Marcus Brody (MRN-882104) — Urgent Post-Cath</option>
+<option value="P-940212">Helena Zhang (MRN-940212) — Unstable Angina</option>
+<option value="P-711209">Thomas O'Connor (MRN-711209) — Arrhythmia Hold</option>
+</select>
+</div>
+<!-- Ordering Physician -->
+<div class="flex flex-col gap-1">
+<label class="text-[11px] font-medium text-slate-600">Attending Physician</label>
+<input class="text-xs bg-slate-50 border border-slate-200 text-slate-700 rounded-lg p-2 cursor-not-allowed" id="ordering-physician" readonly="" type="text" value="Dr. Katherine Bell">
+</div>
+<!-- Clinical Notes -->
+<div class="flex flex-col gap-1">
+<label class="text-[11px] font-medium text-slate-600">Handover / Clinical Notes</label>
+<textarea class="text-xs bg-white border border-slate-200 text-slate-900 rounded-lg p-2 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none placeholder:text-slate-400 resize-none" id="assignment-notes" rows="2">Post-catheterization continuous telemetry monitoring required. C-302 verified available.</textarea>
+</div>
+<!-- Primary Action Button -->
+<button class="w-full mt-1 bg-primary text-white py-2.5 px-3 rounded-lg text-xs font-bold hover:bg-primary-container transition-all flex items-center justify-center gap-1.5 shadow-sm" id="btn-confirm-assignment" onclick="confirmFastApiBedAssignment()">
+<span class="material-symbols-outlined text-[17px]">how_to_reg</span>
+<span class="">Confirm Bed Assignment</span>
+</button>
+</div>
+<!-- Secondary Actions in subdued outline style -->
+<div class="border-t border-slate-100 pt-3 flex items-center justify-between gap-2">
+<button class="flex-1 py-2 px-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium text-[11px] flex items-center justify-center gap-1 transition-colors" onclick="dispatchBedStatus('cleaning')">
+<span class="material-symbols-outlined text-[15px] text-amber-600">cleaning_services</span>
+<span class="">Mark Cleaning</span>
+</button>
+<button class="flex-1 py-2 px-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium text-[11px] flex items-center justify-center gap-1 transition-colors" onclick="dispatchBedStatus('maintenance')">
+<span class="material-symbols-outlined text-[15px] text-rose-600">build</span>
+<span class="">Report Maintenance Issue</span>
+</button>
+</div>
+<!-- Capacity Indicator at bottom -->
+<div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100 flex items-center justify-between text-xs mt-1">
+<span class="text-slate-500 font-medium">Ward 3B Capacity:</span>
+<span class="font-bold text-slate-900">75% (6/8 Beds Occupied)</span>
+</div></aside>
+</div>
+<!-- THEATRES SUB-TAB VIEW (Hidden by default, switchable) -->
+<section class="hidden flex-col gap-4 w-full" id="view-theatres">
+<div class="flex items-center justify-between bg-white px-4 py-3 rounded-xl border border-slate-200 shadow-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">medical_services</span>
+<h2 class="text-sm font-bold text-slate-900">Surgical Suites &amp; Operating Theatres</h2>
+</div>
+<span class="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-md">3 Free / 8 Total Theatres</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
+<div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between h-40">
+<div>
+<div class="flex justify-between items-start">
+<span class="text-xs font-bold text-slate-900">OR-01 (Cardiac)</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700">In Surgery</span>
+</div>
+<p class="text-xs font-semibold text-slate-800 mt-2">CABG x 3 Anastomosis</p>
+<p class="text-[11px] text-slate-500 mt-0.5">Surgeon: Dr. Vance · Anaesth: Dr. Klein</p>
+</div>
+<div class="text-[11px] text-slate-500 pt-2 border-t border-slate-100 flex justify-between">
+<span class="">Scheduled: 13:00 – 16:30</span>
+<span class="text-primary font-medium">42m remaining</span>
+</div>
+</div>
+<div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between h-40">
+<div>
+<div class="flex justify-between items-start">
+<span class="text-xs font-bold text-slate-900">OR-02 (Ortho)</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">Ready / Vacant</span>
+</div>
+<p class="text-xs font-semibold text-slate-800 mt-2">Total Hip Arthroplasty</p>
+<p class="text-[11px] text-slate-500 mt-0.5">Surgeon: Dr. Alvarez · Room Sterilized</p>
+</div>
+<div class="pt-2 border-t border-slate-100 flex justify-between items-center text-[11px]">
+<span class="text-slate-500">Call at 14:45</span>
+<button class="text-xs font-semibold text-primary hover:underline">Summon Patient</button>
+</div>
+</div>
+<div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between h-40">
+<div>
+<div class="flex justify-between items-start">
+<span class="text-xs font-bold text-slate-900">OR-03 (Neuro)</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700">In Surgery</span>
+</div>
+<p class="text-xs font-semibold text-slate-800 mt-2">Craniotomy Decompression</p>
+<p class="text-[11px] text-slate-500 mt-0.5">Surgeon: Dr. Zhao · Neuromonitoring Active</p>
+</div>
+<div class="text-[11px] text-slate-500 pt-2 border-t border-slate-100 flex justify-between">
+<span class="">Scheduled: 11:30 – 17:00</span>
+<span class="text-primary font-medium">1h 45m remaining</span>
+</div>
+</div>
+<div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between h-40">
+<div>
+<div class="flex justify-between items-start">
+<span class="text-xs font-bold text-slate-900">OR-04 (General)</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-50 text-amber-700 border border-amber-200">Turnover Clean</span>
+</div>
+<p class="text-xs font-semibold text-slate-800 mt-2">Appendectomy Concluded</p>
+<p class="text-[11px] text-slate-500 mt-0.5">Air filtration &amp; surface wipe active</p>
+</div>
+<div class="text-[11px] text-slate-500 pt-2 border-t border-slate-100 flex justify-between">
+<span class="">Housekeeping Team 2</span>
+<span class="text-amber-700 font-medium">18m left</span>
+</div>
+</div>
+</div>
+</section>
+<!-- STAFF SUB-TAB VIEW (Hidden by default, switchable) -->
+<section class="hidden flex-col gap-4 w-full" id="view-staff">
+<div class="flex items-center justify-between bg-white px-4 py-3 rounded-xl border border-slate-200 shadow-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">badge</span>
+<h2 class="text-sm font-bold text-slate-900">Active Duty Clinical Staff Roster</h2>
+</div>
+<span class="text-xs font-semibold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-md">86 Active On-Shift · Day Shift (07:00 – 19:00)</span>
+</div>
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+<table class="w-full text-left border-collapse text-xs">
+<thead class="bg-slate-50 text-slate-600 uppercase font-semibold text-[11px] border-b border-slate-200">
+<tr>
+<th class="py-2.5 px-4">Staff Member</th>
+<th class="py-2.5 px-4">Role / Credential</th>
+<th class="py-2.5 px-4">Department Unit</th>
+<th class="py-2.5 px-4">Assigned Beds</th>
+<th class="py-2.5 px-4">Shift Schedule</th>
+<th class="py-2.5 px-4 text-right">Quick Contact</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-slate-800 font-normal">
+<tr class="hover:bg-slate-50/70 transition-colors">
+<td class="py-3 px-4 font-semibold text-slate-900 flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-[10px]">SJ</span>
+                Sarah Jenkins, RN
+              </td>
+<td class="py-3 px-4 text-slate-600">Charge Nurse / BSN</td>
+<td class="py-3 px-4 font-medium">Cardiology (Ward 3B)</td>
+<td class="py-3 px-4"><span class="bg-slate-100 px-2 py-0.5 rounded text-slate-700 font-medium">C-301, C-302</span></td>
+<td class="py-3 px-4 text-slate-500">07:00 – 19:00</td>
+<td class="py-3 px-4 text-right">
+<button class="text-xs font-semibold text-primary hover:underline">Page Voice</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/70 transition-colors">
+<td class="py-3 px-4 font-semibold text-slate-900 flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-[10px]">KB</span>
+                Dr. Katherine Bell
+              </td>
+<td class="py-3 px-4 text-slate-600">Attending Cardiologist, MD</td>
+<td class="py-3 px-4 font-medium">Cardiology &amp; Cath Lab</td>
+<td class="py-3 px-4"><span class="bg-slate-100 px-2 py-0.5 rounded text-slate-700 font-medium">Ward 3B Attending</span></td>
+<td class="py-3 px-4 text-slate-500">08:00 – 20:00</td>
+<td class="py-3 px-4 text-right">
+<button class="text-xs font-semibold text-primary hover:underline">Secure Text</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/70 transition-colors">
+<td class="py-3 px-4 font-semibold text-slate-900 flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center font-bold text-[10px]">SB</span>
+                Sarah Blake, RN CCRN
+              </td>
+<td class="py-3 px-4 text-slate-600">Intensivist Specialist</td>
+<td class="py-3 px-4 font-medium">ICU Wing Alpha</td>
+<td class="py-3 px-4"><span class="bg-slate-100 px-2 py-0.5 rounded text-slate-700 font-medium">ICU-01, ICU-02</span></td>
+<td class="py-3 px-4 text-slate-500">07:00 – 19:00</td>
+<td class="py-3 px-4 text-right">
+<button class="text-xs font-semibold text-primary hover:underline">Radio #4</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+<!-- CLEAN CALM FOOTER -->
+<footer class="w-full bg-white border-t border-slate-200 py-3.5 px-6">
+<div class="max-w-[1720px] mx-auto flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+<div class="flex items-center gap-2">
+<span class="">© 2024 FlowCare Clinical Operations</span>
+<span class="text-slate-300">·</span>
+<span class="">St. Jude Medical Center</span>
+<span class="text-slate-300">·</span>
+<span class="text-slate-400">HIPAA Compliant System</span>
+</div>
+<div class="flex items-center gap-3"><span class="inline-flex items-center gap-1 text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>System Online</span><span class="text-slate-300">·</span><span class="text-slate-400">Bed Management v2.4</span></div>
+</div>
+</footer>
+<!-- JAVASCRIPT: CLEAN STATE & FASTAPI ACTION MAPPINGS -->
+<script>
+    let currentSelectedBedId = 'C-302';
+
+    function switchResourceTab(tabName) {
+      const bedsView = document.getElementById('view-beds');
+      const theatresView = document.getElementById('view-theatres');
+      const staffView = document.getElementById('view-staff');
+      const drawer = document.getElementById('resource-drawer');
+
+      const tabBeds = document.getElementById('tab-beds');
+      const tabTheatres = document.getElementById('tab-theatres');
+      const tabStaff = document.getElementById('tab-staff');
+
+      bedsView.classList.add('hidden');
+      theatresView.classList.add('hidden');
+      staffView.classList.add('hidden');
+
+      // Reset button styles
+      [tabBeds, tabTheatres, tabStaff].forEach(btn => {
+        btn.className = "px-3 py-1 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition-all flex items-center gap-1.5";
+      });
+
+      if (tabName === 'beds') {
+        bedsView.classList.remove('hidden');
+        drawer.classList.remove('hidden');
+        tabBeds.className = "px-3 py-1 rounded-md text-xs font-semibold bg-white text-primary shadow-sm flex items-center gap-1.5 transition-all";
+      } else if (tabName === 'theatres') {
+        theatresView.classList.remove('hidden');
+        drawer.classList.add('hidden');
+        tabTheatres.className = "px-3 py-1 rounded-md text-xs font-semibold bg-white text-primary shadow-sm flex items-center gap-1.5 transition-all";
+      } else if (tabName === 'staff') {
+        staffView.classList.remove('hidden');
+        drawer.classList.add('hidden');
+        tabStaff.className = "px-3 py-1 rounded-md text-xs font-semibold bg-white text-primary shadow-sm flex items-center gap-1.5 transition-all";
+      }
+    }
+
+    function selectBed(bedId, department, status, patient, mrn, note, equipment, physician) {
+      currentSelectedBedId = bedId;
+      document.getElementById('drawer-title').innerText = 'Bed ' + bedId;
+      document.getElementById('drawer-subtitle').innerText = department;
+      document.getElementById('drawer-equipment').innerText = equipment;
+
+      const badge = document.getElementById('drawer-status-badge');
+      const btnConfirm = document.getElementById('btn-confirm-assignment');
+
+      if (status === 'Available') {
+        badge.className = "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200/60 text-emerald-800 text-xs font-semibold";
+        badge.innerHTML = '<span class="material-symbols-outlined text-[16px] text-emerald-600">verified</span><span>Available — Sanitized & Inspected</span>';
+        btnConfirm.disabled = false;
+        btnConfirm.className = "w-full mt-1 bg-primary text-white py-2.5 px-3 rounded-lg text-xs font-bold hover:bg-primary-container transition-all flex items-center justify-center gap-1.5 shadow-sm cursor-pointer";
+        btnConfirm.innerHTML = '<span class="material-symbols-outlined text-[17px]">how_to_reg</span><span>Confirm Bed Assignment</span>';
+      } else if (status === 'Occupied') {
+        badge.className = "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-slate-800 text-xs font-semibold";
+        badge.innerHTML = `<span class="material-symbols-outlined text-[16px] text-slate-600">person</span><span>Occupied by ${patient} (${mrn})</span>`;
+        btnConfirm.disabled = true;
+        btnConfirm.className = "w-full mt-1 bg-slate-100 text-slate-400 py-2.5 px-3 rounded-lg text-xs font-medium cursor-not-allowed flex items-center justify-center gap-1.5";
+        btnConfirm.innerHTML = '<span class="material-symbols-outlined text-[17px]">lock</span><span>Bed Currently Occupied</span>';
+      } else if (status === 'Cleaning') {
+        badge.className = "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 text-xs font-semibold";
+        badge.innerHTML = '<span class="material-symbols-outlined text-[16px] text-amber-600">cleaning_services</span><span>Housekeeping in progress</span>';
+        btnConfirm.disabled = true;
+        btnConfirm.className = "w-full mt-1 bg-slate-100 text-slate-400 py-2.5 px-3 rounded-lg text-xs font-medium cursor-not-allowed flex items-center justify-center gap-1.5";
+        btnConfirm.innerHTML = '<span class="material-symbols-outlined text-[17px]">lock</span><span>Awaiting Housekeeping Clearance</span>';
+      } else {
+        badge.className = "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-50 border border-rose-200 text-rose-800 text-xs font-semibold";
+        badge.innerHTML = '<span class="material-symbols-outlined text-[16px] text-rose-600">build</span><span>Maintenance Lockout</span>';
+        btnConfirm.disabled = true;
+        btnConfirm.className = "w-full mt-1 bg-slate-100 text-slate-400 py-2.5 px-3 rounded-lg text-xs font-medium cursor-not-allowed flex items-center justify-center gap-1.5";
+        btnConfirm.innerHTML = '<span class="material-symbols-outlined text-[17px]">lock</span><span>Maintenance In Progress</span>';
+      }
+    }
+
+    function resetDrawerToDefault() {
+      selectBed('C-302', 'Cardiology (Ward 3B)', 'Available', 'Ready for Assignment', 'VACANT', 'Sanitized 13:40 by Env Ops', 'Telemetry Calibrated', 'Dr. Katherine Bell');
+    }
+
+    function confirmFastApiBedAssignment() {
+      const patient = document.getElementById('patient-select').value;
+      const notes = document.getElementById('assignment-notes').value;
+      const bedId = currentSelectedBedId;
+      const btn = document.getElementById('btn-confirm-assignment');
+
+      btn.disabled = true;
+      btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[16px]">sync</span><span>Dispatching ADT Assignment...</span>';
+
+      // Simulates POST /api/v1/resources/beds/{bed_id}/assign
+      setTimeout(() => {
+        alert(`Bed ${bedId} successfully assigned to Marcus Brody (MRN-882104).\nFastAPI Endpoint: POST /api/v1/resources/beds/${bedId}/assign\nHL7 ADT Message Sent to Clinical Registry.`);
+        btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span><span>Assignment Confirmed</span>';
+        selectBed(bedId, 'Cardiology (Ward 3B)', 'Occupied', 'Marcus Brody', 'MRN-882104', 'Post-Cath Monitoring', 'Telemetry Calibrated', 'Dr. Katherine Bell');
+      }, 700);
+    }
+
+    function markBedReady(bedId) {
+      // Simulates POST /api/v1/resources/beds/{bed_id}/status {status: "available"}
+      alert(`Bed ${bedId} marked sanitized and ready for patient admission.\nFastAPI Endpoint: POST /api/v1/resources/beds/${bedId}/status`);
+      selectBed(bedId, 'Cardiology (Ward 3B)', 'Available', 'Ready for Assignment', 'VACANT', 'Sanitized just now', 'Standard Ward', 'Unassigned');
+    }
+
+    function dispatchBedStatus(newStatus) {
+      const bedId = currentSelectedBedId;
+      if (newStatus === 'cleaning') {
+        alert(`Housekeeping dispatched for Bed ${bedId}.\nFastAPI Endpoint: POST /api/v1/resources/beds/${bedId}/cleaning`);
+        selectBed(bedId, 'Cardiology (Ward 3B)', 'Cleaning', 'Turnaround', 'N/A', 'Housekeeping dispatched', 'Standard Ward', 'Housekeeping');
+      } else {
+        alert(`Maintenance ticket opened for Bed ${bedId}.\nFastAPI Endpoint: POST /api/v1/resources/beds/${bedId}/maintenance`);
+        selectBed(bedId, 'Cardiology (Ward 3B)', 'Maintenance', 'Out of Service', 'WO-NEW', 'Reported by Sarah Jenkins, RN', 'Standard Ward', 'Biomed');
+      }
+    }
+  </script>
+
+
+
+
+</body></html>

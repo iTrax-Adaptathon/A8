@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"tertiary-container":"#6c748b","secondary-container":"#316bf3","on-error":"#ffffff","secondary-fixed-dim":"#b4c5ff","outline-variant":"#bfc7d2","on-primary-fixed-variant":"#004b73","on-secondary-fixed":"#00174b","secondary-fixed":"#dbe1ff","error":"#ba1a1a","inverse-on-surface":"#eaf1ff","on-tertiary-fixed-variant":"#3f465c","tertiary":"#545c72","surface":"#f8f9ff","inverse-primary":"#93ccff","on-tertiary":"#ffffff","surface-bright":"#f8f9ff","surface-container-high":"#dce9ff","surface-container-lowest":"#ffffff","error-container":"#ffdad6","surface-container-low":"#eff4ff","on-secondary-container":"#fefcff","secondary":"#0051d5","outline":"#707881","on-secondary":"#ffffff","surface-dim":"#cbdbf5","primary":"#006194","inverse-surface":"#213145","on-primary-container":"#fdfcff","primary-fixed-dim":"#93ccff","on-background":"#0b1c30","surface-variant":"#d3e4fe","surface-container":"#e5eeff","tertiary-fixed-dim":"#bec6e0","on-surface":"#0b1c30","on-primary":"#ffffff","surface-tint":"#006398","on-tertiary-fixed":"#131b2e","primary-container":"#007bb9","on-surface-variant":"#3f4850","surface-container-highest":"#d3e4fe","background":"#f8f9ff","on-error-container":"#93000a","tertiary-fixed":"#dae2fd","on-secondary-fixed-variant":"#003ea8","on-tertiary-container":"#fefcff","primary-fixed":"#cce5ff","on-primary-fixed":"#001d31"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-xl":"1.5rem","space-md":"0.75rem","space-lg":"1rem","margin":"1.5rem","space-xs":"0.25rem","gutter-wall":"1.5rem","space-sm":"0.5rem","margin-mobile":"1rem","gutter":"1rem"},"fontFamily":{"label-md":["Inter"],"label-sm":["Inter"],"label-lg":["Inter"],"headline-sm":["Inter"],"body-md":["Inter"],"tabular-stat":["Inter"],"body-lg":["Inter"],"display-md":["Inter"],"display-lg":["Inter"],"headline-md":["Inter"],"body-sm":["Inter"],"headline-lg":["Inter"]},"fontSize":{"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"500"}],"headline-sm":["16px",{"lineHeight":"22px","letterSpacing":"-0.005em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"tabular-stat":["24px",{"lineHeight":"28px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-lg":["15px",{"lineHeight":"22px","fontWeight":"400"}],"display-md":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"600"}],"display-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-md":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-sm":["13px",{"lineHeight":"18px","fontWeight":"400"}],"headline-lg":["22px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"600"}]}}}};</script></head><body class="bg-surface text-on-surface font-body-md text-body-md"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-28 w-full px-space-xl flex flex-col justify-between py-space-xs"><div class="flex items-center justify-between w-full h-14 border-b border-surface-container"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><img alt="FlowCare Clinical Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Wx4P6PAYpp5mdNFOnTdMLoqA61V2RjuY6mz7XKgcX2YDhSLD_c9OzDs1vkFtm9ajFk09Fef0Xevs7LLE828qx8uL3qp87Ktsgp5A0o08KOO1LEn7IA-ggNMsYNbDCmgHcUOPlagTDOzii9k8M6a2TzQx9uGGxhtqVJcARZb_a7Lc792d3q3zxocvZiEQZdgMdPx9mhUGdrqQ5VeLiwTGRMkTVRfKIqPg1Lf29QLhFevYxNYgt1NLV4aR4"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface leading-none tracking-tight">FlowCare</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Clinical Ops</span></div></div><div class="h-6 w-px bg-surface-container-high"></div><div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-space-xs rounded-lg"><span class="material-symbols-outlined text-primary text-[18px]">domain</span><span class="font-label-lg text-label-lg text-on-surface font-semibold">St. Jude Central Campus - All Wings</span><span class="material-symbols-outlined text-on-surface-variant text-[16px]">expand_more</span></div><div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-space-xs rounded-lg"><span class="material-symbols-outlined text-secondary text-[16px]">schedule</span><span class="font-label-sm text-label-sm text-on-surface">Day Shift • 07:00 - 19:00</span></div><div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-space-xs rounded-lg font-mono"><span class="material-symbols-outlined text-tertiary text-[16px]">alarm</span><span class="font-label-sm text-label-sm text-on-surface-variant">14:28:40 UTC</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-space-xs rounded-full" title="WebSocket Capacity Channel: ws://127.0.0.1:8000/ws/capacity"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-container opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span></span><span class="font-label-sm text-label-sm font-bold text-secondary">LIVE</span><span class="font-label-sm text-label-sm text-outline">ws://.../ws/capacity</span></div><div class="h-6 w-px bg-surface-container-high"></div><div class="flex items-center gap-space-md"><div class="text-right"><div class="font-label-md text-label-md text-on-surface">Sarah Jenkins, RN</div><div class="font-label-sm text-label-sm text-on-surface-variant">Ops Coordinator</div></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div><div class="flex items-center justify-between w-full h-12"><nav class="flex items-center gap-space-sm" data-active-classes="bg-primary text-on-primary font-bold rounded-lg shadow-sm"><a aria-current="page" class="px-space-md py-space-xs transition-colors bg-primary text-on-primary font-bold rounded-lg shadow-sm" data-path="capacity-overview" href="#">Capacity Overview</a><a class="px-space-md py-space-xs rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="resources" href="#">Resources (Beds, Theatres, Staff)</a><a class="px-space-md py-space-xs rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="patient-flow" href="#">Patient Flow (Patients, Waitlist)</a><a class="px-space-md py-space-xs rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="audit-history" href="#">Audit History</a></nav><div class="flex items-center gap-space-lg bg-surface-container-low px-space-lg py-space-xs rounded-lg border border-surface-container-high"><div class="flex items-baseline gap-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Occupancy:</span><span class="font-tabular-stat text-headline-sm text-primary font-bold">84.2%</span></div><div class="h-4 w-px bg-outline-variant"></div><div class="flex items-baseline gap-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Waiting:</span><span class="font-tabular-stat text-headline-sm text-error font-bold">14</span></div><div class="h-4 w-px bg-outline-variant"></div><div class="flex items-baseline gap-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Theatres:</span><span class="font-tabular-stat text-headline-sm text-secondary font-bold">3 Free</span></div></div></div></div></header><main class="w-full pt-28 bg-surface px-space-xl min-h-[calc(100vh-4rem)]"><div class="flex flex-col w-full gap-space-lg pb-space-xl">
+<!-- 1. TOP ALERT / UTILIZATION BANNER -->
+<section class="w-full bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start md:items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-error flex items-center justify-center text-on-error flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]">warning</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-headline-sm text-headline-sm text-error">OVERALL SYSTEM STATUS: HIGH UTILIZATION (88.4%)</span>
+<span class="bg-error-container text-on-error-container font-label-sm text-label-sm px-space-sm py-0.5 rounded uppercase">Protocol Level 1 Active</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+          Acute Care & ICU running at 92% combined capacity. Clean turnaround queue running at average 18 mins. Rapid triage in effect.
+        </span>
+</div>
+</div>
+<div class="flex items-center gap-space-md flex-shrink-0 self-end md:self-auto">
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-label-sm text-outline uppercase">Telemetry Clock</span>
+<span class="font-tabular-stat text-headline-sm text-on-surface">14:28:40 UTC</span>
+</div>
+<button class="px-space-md py-space-xs bg-error text-on-error font-label-lg text-label-lg rounded shadow-sm hover:opacity-95 transition-opacity flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px]">broadcast_on_personal</span>
+        Escalate Protocol
+      </button>
+</div>
+</section>
+<!-- 2. HOSPITAL-WIDE CAPACITY SUMMARY (Grid of key metric KPI tiles) -->
+<section class="w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-space-md">
+<!-- Occupancy % -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Occupancy</span>
+<span class="material-symbols-outlined text-primary text-[18px]">vital_signs</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-tabular-stat text-display-md text-primary leading-tight">88.4%</div>
+<div class="flex items-center gap-space-xs mt-1">
+<span class="font-label-sm text-label-sm bg-error-container text-on-error-container px-1 rounded font-bold">+2.1%</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">vs 08:00</span>
+</div>
+</div>
+</div>
+<!-- Total Beds -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Total Beds</span>
+<span class="material-symbols-outlined text-outline text-[18px]">bed</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-tabular-stat text-display-md text-on-surface leading-tight">480</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">All Units Census</span>
+</div>
+</div>
+<!-- Available Beds (Green) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Available Beds</span>
+<span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-tabular-stat text-display-md text-primary leading-tight">38</div>
+<span class="font-body-sm text-body-sm text-primary font-medium">Ready for Intake</span>
+</div>
+</div>
+<!-- Occupied Beds (Standard Blue) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Occupied</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">hotel</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-tabular-stat text-display-md text-secondary leading-tight">402</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Active Inpatients</span>
+</div>
+</div>
+<!-- Cleaning Beds (Amber) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Cleaning Queue</span>
+<span class="material-symbols-outlined text-on-tertiary-container text-[18px]">sanitizer</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-tabular-stat text-display-md text-on-tertiary-fixed leading-tight">28</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Avg. 18m turn</span>
+</div>
+</div>
+<!-- Maintenance Beds (Slate) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Maintenance</span>
+<span class="material-symbols-outlined text-outline text-[18px]">build</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-tabular-stat text-display-md text-outline leading-tight">12</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">BME Offline</span>
+</div>
+</div>
+<!-- Patients Waiting -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Waitlist Queue</span>
+<span class="material-symbols-outlined text-error text-[18px]">hourglass_top</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-tabular-stat text-display-md text-error leading-tight">24</div>
+<span class="font-body-sm text-body-sm text-error font-medium">11 Critical Priority</span>
+</div>
+</div>
+<!-- Staff & Theatres -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Staff / Theatres</span>
+<span class="material-symbols-outlined text-secondary-container text-[18px]">groups</span>
+</div>
+<div class="mt-space-sm">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-tabular-stat text-headline-lg text-on-surface">86</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/104 RN</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary font-medium">5 OR Slots Next 6h</span>
+</div>
+</div>
+</section>
+<!-- 3. NEEDS ATTENTION (Operational Issues feed provided strictly by backend) -->
+<section class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<div class="w-2.5 h-2.5 rounded-full bg-error animate-pulse"></div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-wide">Needs Immediate Operational Attention (4 Issues)</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Stream: Operational Alert Engine #4</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-sm">
+<!-- Issue 1 -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex flex-col justify-between gap-space-xs">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-error text-[20px] flex-shrink-0 mt-0.5">crisis_alert</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-error uppercase font-bold">Critical Capacity Surge</span>
+<span class="font-headline-sm text-headline-sm text-on-surface leading-tight mt-0.5">Emergency Dept Resus</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">6/6 occupied, 4 inbound ambulances pending arrival.</p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs mt-auto">
+<span class="font-label-sm text-label-sm text-error font-medium">Triage ETA: < 8 min</span>
+<button class="font-label-sm text-label-sm bg-error text-on-error px-space-sm py-0.5 rounded shadow-sm hover:opacity-90">Divert Traffic</button>
+</div>
+</div>
+<!-- Issue 2 -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex flex-col justify-between gap-space-xs">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-on-tertiary-fixed text-[20px] flex-shrink-0 mt-0.5">hourglass_empty</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-tertiary-fixed uppercase font-bold">Unavailable Resource</span>
+<span class="font-headline-sm text-headline-sm text-on-surface leading-tight mt-0.5">Cardiac Telemetry Bed</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Required for P-8821. 0 telemetry units currently free in Cardiology.</p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs mt-auto">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Wait time: 54m</span>
+<button class="font-label-sm text-label-sm bg-primary text-on-primary px-space-sm py-0.5 rounded shadow-sm hover:opacity-90">Auto-Reassign</button>
+</div>
+</div>
+<!-- Issue 3 -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex flex-col justify-between gap-space-xs">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-outline text-[20px] flex-shrink-0 mt-0.5">person_off</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface uppercase font-bold">Staff Ratio Deficit</span>
+<span class="font-headline-sm text-headline-sm text-on-surface leading-tight mt-0.5">Ward 4B Night Shift</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">1 Nurse deficit below mandated acuity ratio for 19:00 shift.</p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs mt-auto">
+<span class="font-label-sm text-label-sm text-outline font-medium">Shift begins 19:00</span>
+<button class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-space-sm py-0.5 rounded hover:bg-surface-container-high">Call Float RN</button>
+</div>
+</div>
+<!-- Issue 4 -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex flex-col justify-between gap-space-xs">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[20px] flex-shrink-0 mt-0.5">event_busy</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-bold">Theatre Schedule Conflict</span>
+<span class="font-headline-sm text-headline-sm text-on-surface leading-tight mt-0.5">Theatre 03 Overrun</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">+35 min orthopedic procedure overrun pushing PACU holding.</p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs mt-auto">
+<span class="font-label-sm text-label-sm text-secondary font-medium">Next case delayed</span>
+<button class="font-label-sm text-label-sm bg-secondary text-on-secondary px-space-sm py-0.5 rounded shadow-sm hover:opacity-90">Reschedule</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. DEPARTMENT CAPACITY (Visual Grid of Department Cards with deterministic backend data) -->
+<section class="w-full flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface">Department Census & Capacity Matrix</h2>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-high px-space-sm py-0.5 rounded">8 Operational Wings</span>
+</div>
+<div class="flex items-center gap-space-sm font-label-sm text-label-sm">
+<span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-error"></span> Critical >92%</span>
+<span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-tertiary-container"></span> High 88-92%</span>
+<span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-primary"></span> Optimal <88%</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Card 1: Emergency & Trauma -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Emergency & Trauma</span>
+<span class="bg-error-container text-on-error-container font-label-sm text-label-sm px-space-sm py-0.5 rounded uppercase font-bold">93.3% CRITICAL</span>
+</div>
+<div class="flex items-baseline justify-between mt-space-xs">
+<span class="font-tabular-stat text-headline-lg text-error">42 <span class="font-body-md text-body-md text-on-surface-variant">/ 45 Beds</span></span>
+<span class="font-label-sm text-label-sm text-outline">ED Bay 1-4</span>
+</div>
+<!-- Mini Capacity Bar -->
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden mt-space-sm">
+<div class="bg-error h-full rounded-full" style="width: 93.3%"></div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-md mt-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary uppercase">Available</span>
+<span class="font-tabular-stat text-headline-sm text-primary">2</span>
+</div>
+<div class="flex flex-col text-center">
+<span class="font-label-sm text-label-sm text-tertiary uppercase">Cleaning</span>
+<span class="font-tabular-stat text-headline-sm text-tertiary">1</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-label-sm text-outline uppercase">Maint</span>
+<span class="font-tabular-stat text-headline-sm text-outline">0</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Intensive Care Unit (ICU) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Intensive Care Unit (ICU)</span>
+<span class="bg-error-container text-on-error-container font-label-sm text-label-sm px-space-sm py-0.5 rounded uppercase font-bold">93.3% CRITICAL</span>
+</div>
+<div class="flex items-baseline justify-between mt-space-xs">
+<span class="font-tabular-stat text-headline-lg text-error">28 <span class="font-body-md text-body-md text-on-surface-variant">/ 30 Beds</span></span>
+<span class="font-label-sm text-label-sm text-outline">ICU Main Pod A/B</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden mt-space-sm">
+<div class="bg-error h-full rounded-full" style="width: 93.3%"></div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-md mt-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary uppercase">Available</span>
+<span class="font-tabular-stat text-headline-sm text-primary">1</span>
+</div>
+<div class="flex flex-col text-center">
+<span class="font-label-sm text-label-sm text-tertiary uppercase">Cleaning</span>
+<span class="font-tabular-stat text-headline-sm text-tertiary">0</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-label-sm text-outline uppercase">Maint</span>
+<span class="font-tabular-stat text-headline-sm text-outline">1</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Cardiology & Telemetry -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Cardiology & Telemetry</span>
+<span class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm px-space-sm py-0.5 rounded uppercase font-bold">90.0% HIGH</span>
+</div>
+<div class="flex items-baseline justify-between mt-space-xs">
+<span class="font-tabular-stat text-headline-lg text-on-tertiary-fixed">54 <span class="font-body-md text-body-md text-on-surface-variant">/ 60 Beds</span></span>
+<span class="font-label-sm text-label-sm text-outline">Tower 3 North</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden mt-space-sm">
+<div class="bg-tertiary-container h-full rounded-full" style="width: 90.0%"></div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-md mt-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary uppercase">Available</span>
+<span class="font-tabular-stat text-headline-sm text-primary">4</span>
+</div>
+<div class="flex flex-col text-center">
+<span class="font-label-sm text-label-sm text-tertiary uppercase">Cleaning</span>
+<span class="font-tabular-stat text-headline-sm text-tertiary">2</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-label-sm text-outline uppercase">Maint</span>
+<span class="font-tabular-stat text-headline-sm text-outline">0</span>
+</div>
+</div>
+</div>
+<!-- Card 4: General Surgery / Post-Op -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">General Surgery / Post-Op</span>
+<span class="bg-surface-container-low text-primary font-label-sm text-label-sm px-space-sm py-0.5 rounded uppercase font-bold">86.4% NORMAL</span>
+</div>
+<div class="flex items-baseline justify-between mt-space-xs">
+<span class="font-tabular-stat text-headline-lg text-primary">76 <span class="font-body-md text-body-md text-on-surface-variant">/ 88 Beds</span></span>
+<span class="font-label-sm text-label-sm text-outline">Wings 4A & 4B</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden mt-space-sm">
+<div class="bg-primary h-full rounded-full" style="width: 86.4%"></div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-md mt-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary uppercase">Available</span>
+<span class="font-tabular-stat text-headline-sm text-primary">9</span>
+</div>
+<div class="flex flex-col text-center">
+<span class="font-label-sm text-label-sm text-tertiary uppercase">Cleaning</span>
+<span class="font-tabular-stat text-headline-sm text-tertiary">3</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-label-sm text-outline uppercase">Maint</span>
+<span class="font-tabular-stat text-headline-sm text-outline">0</span>
+</div>
+</div>
+</div>
+<!-- Card 5: Orthopedics & Trauma -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Orthopedics & Trauma</span>
+<span class="bg-surface-container-low text-primary font-label-sm text-label-sm px-space-sm py-0.5 rounded uppercase font-bold">85.7% NORMAL</span>
+</div>
+<div class="flex items-baseline justify-between mt-space-xs">
+<span class="font-tabular-stat text-headline-lg text-primary">48 <span class="font-body-md text-body-md text-on-surface-variant">/ 56 Beds</span></span>
+<span class="font-label-sm text-label-sm text-outline">West Wing Floor 2</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden mt-space-sm">
+<div class="bg-primary h-full rounded-full" style="width: 85.7%"></div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-md mt-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary uppercase">Available</span>
+<span class="font-tabular-stat text-headline-sm text-primary">6</span>
+</div>
+<div class="flex flex-col text-center">
+<span class="font-label-sm text-label-sm text-tertiary uppercase">Cleaning</span>
+<span class="font-tabular-stat text-headline-sm text-tertiary">2</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-label-sm text-outline uppercase">Maint</span>
+<span class="font-tabular-stat text-headline-sm text-outline">0</span>
+</div>
+</div>
+</div>
+<!-- Card 6: Pediatrics & Neonatal -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Pediatrics & Neonatal</span>
+<span class="bg-surface-container-low text-primary font-label-sm text-label-sm px-space-sm py-0.5 rounded uppercase font-bold">77.3% NORMAL</span>
+</div>
+<div class="flex items-baseline justify-between mt-space-xs">
+<span class="font-tabular-stat text-headline-lg text-primary">34 <span class="font-body-md text-body-md text-on-surface-variant">/ 44 Beds</span></span>
+<span class="font-label-sm text-label-sm text-outline">Children's Pavilion</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden mt-space-sm">
+<div class="bg-primary h-full rounded-full" style="width: 77.3%"></div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-md mt-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary uppercase">Available</span>
+<span class="font-tabular-stat text-headline-sm text-primary">8</span>
+</div>
+<div class="flex flex-col text-center">
+<span class="font-label-sm text-label-sm text-tertiary uppercase">Cleaning</span>
+<span class="font-tabular-stat text-headline-sm text-tertiary">2</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-label-sm text-outline uppercase">Maint</span>
+<span class="font-tabular-stat text-headline-sm text-outline">0</span>
+</div>
+</div>
+</div>
+<!-- Card 7: Oncology & Hematology -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Oncology & Hematology</span>
+<span class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm px-space-sm py-0.5 rounded uppercase font-bold">90.5% HIGH</span>
+</div>
+<div class="flex items-baseline justify-between mt-space-xs">
+<span class="font-tabular-stat text-headline-lg text-on-tertiary-fixed">38 <span class="font-body-md text-body-md text-on-surface-variant">/ 42 Beds</span></span>
+<span class="font-label-sm text-label-sm text-outline">South Pavilion 5</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden mt-space-sm">
+<div class="bg-tertiary-container h-full rounded-full" style="width: 90.5%"></div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-md mt-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary uppercase">Available</span>
+<span class="font-tabular-stat text-headline-sm text-primary">3</span>
+</div>
+<div class="flex flex-col text-center">
+<span class="font-label-sm text-label-sm text-tertiary uppercase">Cleaning</span>
+<span class="font-tabular-stat text-headline-sm text-tertiary">1</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-label-sm text-outline uppercase">Maint</span>
+<span class="font-tabular-stat text-headline-sm text-outline">0</span>
+</div>
+</div>
+</div>
+<!-- Card 8: Maternity & Labor -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Maternity & Labor</span>
+<span class="bg-surface-container-low text-primary font-label-sm text-label-sm px-space-sm py-0.5 rounded uppercase font-bold">62.9% NORMAL</span>
+</div>
+<div class="flex items-baseline justify-between mt-space-xs">
+<span class="font-tabular-stat text-headline-lg text-primary">22 <span class="font-body-md text-body-md text-on-surface-variant">/ 35 Beds</span></span>
+<span class="font-label-sm text-label-sm text-outline">East Wing Floor 3</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden mt-space-sm">
+<div class="bg-primary h-full rounded-full" style="width: 62.9%"></div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-md mt-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary uppercase">Available</span>
+<span class="font-tabular-stat text-headline-sm text-primary">11</span>
+</div>
+<div class="flex flex-col text-center">
+<span class="font-label-sm text-label-sm text-tertiary uppercase">Cleaning</span>
+<span class="font-tabular-stat text-headline-sm text-tertiary">2</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-label-sm text-outline uppercase">Maint</span>
+<span class="font-tabular-stat text-headline-sm text-outline">0</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. TWO-COLUMN LOWER SECTION -->
+<section class="w-full grid grid-cols-1 lg:grid-cols-12 gap-space-md">
+<!-- LEFT: COMPACT WAITING PATIENTS (7 Cols) -->
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">group_add</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Active Waitlist Queue</h3>
+<span class="bg-error-container text-on-error-container font-label-sm text-label-sm px-space-sm py-0.5 rounded font-bold">24 In Queue</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="text-on-surface-variant hover:text-on-surface p-1 rounded hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+</button>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="#">View All Waitlist →</a>
+</div>
+</div>
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-outline font-label-md text-label-md uppercase">
+<th class="py-space-xs px-space-sm">Patient / MRN</th>
+<th class="py-space-xs px-space-sm">Required Resource</th>
+<th class="py-space-xs px-space-sm">Dept</th>
+<th class="py-space-xs px-space-sm text-center">Priority</th>
+<th class="py-space-xs px-space-sm">Waiting Since</th>
+<th class="py-space-xs px-space-sm text-right">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm divide-y-0">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-sm font-medium text-on-surface">
+<div class="font-headline-sm text-headline-sm leading-tight text-on-surface">Elena Rostova</div>
+<div class="font-label-sm text-label-sm text-outline">MRN-9021-44</div>
+</td>
+<td class="py-space-sm px-space-sm text-on-surface-variant font-medium">Telemetry Bed (Lead-II)</td>
+<td class="py-space-sm px-space-sm text-on-surface">Cardiology</td>
+<td class="py-space-sm px-space-sm text-center">
+<span class="bg-error-container text-on-error-container font-label-sm text-label-sm px-space-sm py-0.5 rounded font-bold">P1</span>
+</td>
+<td class="py-space-sm px-space-sm text-on-surface-variant font-mono">13:34 (54m)</td>
+<td class="py-space-sm px-space-sm text-right">
+<span class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm px-space-sm py-0.5 rounded">Awaiting Bed</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-sm font-medium text-on-surface">
+<div class="font-headline-sm text-headline-sm leading-tight text-on-surface">Marcus Vance</div>
+<div class="font-label-sm text-label-sm text-outline">MRN-3319-82</div>
+</td>
+<td class="py-space-sm px-space-sm text-on-surface-variant font-medium">Negative Pressure Bed</td>
+<td class="py-space-sm px-space-sm text-on-surface">ICU Main</td>
+<td class="py-space-sm px-space-sm text-center">
+<span class="bg-error-container text-on-error-container font-label-sm text-label-sm px-space-sm py-0.5 rounded font-bold">P1</span>
+</td>
+<td class="py-space-sm px-space-sm text-on-surface-variant font-mono">13:48 (40m)</td>
+<td class="py-space-sm px-space-sm text-right">
+<span class="bg-error-container text-on-error-container font-label-sm text-label-sm px-space-sm py-0.5 rounded">In Triage</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-sm font-medium text-on-surface">
+<div class="font-headline-sm text-headline-sm leading-tight text-on-surface">Claire Chen</div>
+<div class="font-label-sm text-label-sm text-outline">MRN-8821-10</div>
+</td>
+<td class="py-space-sm px-space-sm text-on-surface-variant font-medium">PACU Phase 1 Bay</td>
+<td class="py-space-sm px-space-sm text-on-surface">General Surgery</td>
+<td class="py-space-sm px-space-sm text-center">
+<span class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm px-space-sm py-0.5 rounded font-bold">P2</span>
+</td>
+<td class="py-space-sm px-space-sm text-on-surface-variant font-mono">14:02 (26m)</td>
+<td class="py-space-sm px-space-sm text-right">
+<span class="bg-surface-container-high text-primary font-label-sm text-label-sm px-space-sm py-0.5 rounded">Theatre Transfer</span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-sm font-medium text-on-surface">
+<div class="font-headline-sm text-headline-sm leading-tight text-on-surface">Robert Kowalski</div>
+<div class="font-label-sm text-label-sm text-outline">MRN-1049-75</div>
+</td>
+<td class="py-space-sm px-space-sm text-on-surface-variant font-medium">Acute Ortho Step-down</td>
+<td class="py-space-sm px-space-sm text-on-surface">Orthopedics</td>
+<td class="py-space-sm px-space-sm text-center">
+<span class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm px-space-sm py-0.5 rounded font-bold">P2</span>
+</td>
+<td class="py-space-sm px-space-sm text-on-surface-variant font-mono">14:11 (17m)</td>
+<td class="py-space-sm px-space-sm text-right">
+<span class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm px-space-sm py-0.5 rounded">Awaiting Bed</span>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-sm font-medium text-on-surface">
+<div class="font-headline-sm text-headline-sm leading-tight text-on-surface">Sophia Morales</div>
+<div class="font-label-sm text-label-sm text-outline">MRN-5520-19</div>
+</td>
+<td class="py-space-sm px-space-sm text-on-surface-variant font-medium">Standard Pediatric Cot</td>
+<td class="py-space-sm px-space-sm text-on-surface">Pediatrics</td>
+<td class="py-space-sm px-space-sm text-center">
+<span class="bg-surface-container-low text-outline font-label-sm text-label-sm px-space-sm py-0.5 rounded font-bold">P3</span>
+</td>
+<td class="py-space-sm px-space-sm text-on-surface-variant font-mono">14:19 (09m)</td>
+<td class="py-space-sm px-space-sm text-right">
+<span class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm px-space-sm py-0.5 rounded">Awaiting Bed</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- RIGHT: RECENT BACKEND ACTIVITY & RESOURCE SUMMARY (5 Cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<!-- Resource Quick Summary Widget -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface">Operational Support Readiness</span>
+<span class="font-label-sm text-label-sm text-primary uppercase">Hospital Core</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<!-- Theatres Mini Panel -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex flex-col">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase">Surgical Theatres</span>
+<span class="material-symbols-outlined text-[16px]">local_hospital</span>
+</div>
+<div class="flex items-baseline gap-space-xs mt-1">
+<span class="font-tabular-stat text-headline-lg text-secondary">7 Active</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/ 10 Total</span>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm pt-space-xs text-on-surface-variant mt-auto">
+<span class="text-primary font-medium">2 Available</span>
+<span class="text-outline">1 Disinfection</span>
+</div>
+</div>
+<!-- Staffing Mini Panel -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex flex-col">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase">Nursing & Staff</span>
+<span class="material-symbols-outlined text-[16px]">badge</span>
+</div>
+<div class="flex items-baseline gap-space-xs mt-1">
+<span class="font-tabular-stat text-headline-lg text-primary">86 On Duty</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/ 104 Shift</span>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm pt-space-xs text-on-surface-variant mt-auto">
+<span class="text-on-surface">12 on break</span>
+<span class="text-secondary font-medium">6 in transit</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Backend Audit Stream -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex-1 flex flex-col">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">stream</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Recent Backend Audit Stream</h4>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">Live Sync</span>
+</div>
+<div class="flex flex-col divide-y divide-surface-container gap-space-xs mt-space-xs">
+<!-- Event 1 -->
+<div class="flex items-start gap-space-sm pt-space-xs">
+<div class="w-2 h-2 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
+<div class="flex flex-col flex-1">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Bed B14 assigned to P-1092 by S. Jenkins RN</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">14:27:12 • Unit: Orthopedics Bay 2</span>
+</div>
+</div>
+<!-- Event 2 -->
+<div class="flex items-start gap-space-sm pt-space-xs">
+<div class="w-2 h-2 rounded-full bg-secondary mt-1.5 flex-shrink-0"></div>
+<div class="flex flex-col flex-1">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Patient P-104 transferred from ED to Cardiology 4A</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">14:24:50 • Dispatcher: K. Patel</span>
+</div>
+</div>
+<!-- Event 3 -->
+<div class="flex items-start gap-space-sm pt-space-xs">
+<div class="w-2 h-2 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
+<div class="flex flex-col flex-1">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Theatre T02 turnaround completed, marked Available</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">14:21:05 • Housekeeping Node #11</span>
+</div>
+</div>
+<!-- Event 4 -->
+<div class="flex items-start gap-space-sm pt-space-xs">
+<div class="w-2 h-2 rounded-full bg-outline mt-1.5 flex-shrink-0"></div>
+<div class="flex flex-col flex-1">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Staff RN M. Vance assigned to ICU Bed 12</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">14:18:32 • Charge Nurse Dispatch</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-surface-container-lowest border-t border-surface-container py-space-md px-space-xl"><div class="w-full flex items-center justify-between"><div class="flex items-center gap-space-md"><span class="font-label-sm text-label-sm text-on-surface-variant">© 2024 FlowCare Clinical Operations System</span><span class="font-label-sm text-label-sm text-outline-variant">•</span><span class="font-label-sm text-label-sm text-on-surface-variant">HIPAA & HITRUST Certified Command Core</span></div><div class="flex items-center gap-space-lg"><span class="font-label-sm text-label-sm text-on-surface-variant">Telemetry Stream: Active (4ms latency)</span><span class="font-label-sm text-label-sm text-on-surface-variant">Hospital Incident Node #04</span></div></div></footer></body></html>

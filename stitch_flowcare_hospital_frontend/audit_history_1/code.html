@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"tertiary-container":"#6c748b","secondary-container":"#316bf3","on-error":"#ffffff","secondary-fixed-dim":"#b4c5ff","outline-variant":"#bfc7d2","on-primary-fixed-variant":"#004b73","on-secondary-fixed":"#00174b","secondary-fixed":"#dbe1ff","error":"#ba1a1a","inverse-on-surface":"#eaf1ff","on-tertiary-fixed-variant":"#3f465c","tertiary":"#545c72","surface":"#f8f9ff","inverse-primary":"#93ccff","on-tertiary":"#ffffff","surface-bright":"#f8f9ff","surface-container-high":"#dce9ff","surface-container-lowest":"#ffffff","error-container":"#ffdad6","surface-container-low":"#eff4ff","on-secondary-container":"#fefcff","secondary":"#0051d5","outline":"#707881","on-secondary":"#ffffff","surface-dim":"#cbdbf5","primary":"#006194","inverse-surface":"#213145","on-primary-container":"#fdfcff","primary-fixed-dim":"#93ccff","on-background":"#0b1c30","surface-variant":"#d3e4fe","surface-container":"#e5eeff","tertiary-fixed-dim":"#bec6e0","on-surface":"#0b1c30","on-primary":"#ffffff","surface-tint":"#006398","on-tertiary-fixed":"#131b2e","primary-container":"#007bb9","on-surface-variant":"#3f4850","surface-container-highest":"#d3e4fe","background":"#f8f9ff","on-error-container":"#93000a","tertiary-fixed":"#dae2fd","on-secondary-fixed-variant":"#003ea8","on-tertiary-container":"#fefcff","primary-fixed":"#cce5ff","on-primary-fixed":"#001d31"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-xl":"1.5rem","space-md":"0.75rem","space-lg":"1rem","margin":"1.5rem","space-xs":"0.25rem","gutter-wall":"1.5rem","space-sm":"0.5rem","margin-mobile":"1rem","gutter":"1rem"},"fontFamily":{"label-md":["Inter"],"label-sm":["Inter"],"label-lg":["Inter"],"headline-sm":["Inter"],"body-md":["Inter"],"tabular-stat":["Inter"],"body-lg":["Inter"],"display-md":["Inter"],"display-lg":["Inter"],"headline-md":["Inter"],"body-sm":["Inter"],"headline-lg":["Inter"]},"fontSize":{"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"500"}],"headline-sm":["16px",{"lineHeight":"22px","letterSpacing":"-0.005em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"tabular-stat":["24px",{"lineHeight":"28px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-lg":["15px",{"lineHeight":"22px","fontWeight":"400"}],"display-md":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"600"}],"display-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-md":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-sm":["13px",{"lineHeight":"18px","fontWeight":"400"}],"headline-lg":["22px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"600"}]}}}};</script></head><body class="bg-surface text-on-surface font-body-md text-body-md"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-28 w-full px-space-xl flex flex-col justify-between py-space-xs"><div class="flex items-center justify-between w-full h-14 border-b border-surface-container"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><img alt="FlowCare Clinical Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Wx4P6PAYpp5mdNFOnTdMLoqA61V2RjuY6mz7XKgcX2YDhSLD_c9OzDs1vkFtm9ajFk09Fef0Xevs7LLE828qx8uL3qp87Ktsgp5A0o08KOO1LEn7IA-ggNMsYNbDCmgHcUOPlagTDOzii9k8M6a2TzQx9uGGxhtqVJcARZb_a7Lc792d3q3zxocvZiEQZdgMdPx9mhUGdrqQ5VeLiwTGRMkTVRfKIqPg1Lf29QLhFevYxNYgt1NLV4aR4"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface leading-none tracking-tight">FlowCare</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Clinical Ops</span></div></div><div class="h-6 w-px bg-surface-container-high"></div><div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-space-xs rounded-lg"><span class="material-symbols-outlined text-primary text-[18px]">domain</span><span class="font-label-lg text-label-lg text-on-surface font-semibold">St. Jude Central Campus - All Wings</span><span class="material-symbols-outlined text-on-surface-variant text-[16px]">expand_more</span></div><div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-space-xs rounded-lg"><span class="material-symbols-outlined text-secondary text-[16px]">schedule</span><span class="font-label-sm text-label-sm text-on-surface">Day Shift • 07:00 - 19:00</span></div><div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-space-xs rounded-lg font-mono"><span class="material-symbols-outlined text-tertiary text-[16px]">alarm</span><span class="font-label-sm text-label-sm text-on-surface-variant">14:28:40 UTC</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-space-xs rounded-full" title="WebSocket Capacity Channel: ws://127.0.0.1:8000/ws/capacity"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-container opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span></span><span class="font-label-sm text-label-sm font-bold text-secondary">LIVE</span><span class="font-label-sm text-label-sm text-outline">ws://.../ws/capacity</span></div><div class="h-6 w-px bg-surface-container-high"></div><div class="flex items-center gap-space-md"><div class="text-right"><div class="font-label-md text-label-md text-on-surface">Sarah Jenkins, RN</div><div class="font-label-sm text-label-sm text-on-surface-variant">Ops Coordinator</div></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div><div class="flex items-center justify-between w-full h-12"><nav class="flex items-center gap-space-sm" data-active-classes="bg-primary text-on-primary font-bold rounded-lg shadow-sm"><a class="px-space-md py-space-xs rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="capacity-overview" href="#">Capacity Overview</a><a class="px-space-md py-space-xs rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="resources" href="#">Resources (Beds, Theatres, Staff)</a><a class="px-space-md py-space-xs rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="patient-flow" href="#">Patient Flow (Patients, Waitlist)</a><a aria-current="page" class="px-space-md py-space-xs transition-colors bg-primary text-on-primary font-bold rounded-lg shadow-sm" data-path="audit-history" href="#">Audit History</a></nav><div class="flex items-center gap-space-lg bg-surface-container-low px-space-lg py-space-xs rounded-lg border border-surface-container-high"><div class="flex items-baseline gap-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Occupancy:</span><span class="font-tabular-stat text-headline-sm text-primary font-bold">84.2%</span></div><div class="h-4 w-px bg-outline-variant"></div><div class="flex items-baseline gap-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Waiting:</span><span class="font-tabular-stat text-headline-sm text-error font-bold">14</span></div><div class="h-4 w-px bg-outline-variant"></div><div class="flex items-baseline gap-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Theatres:</span><span class="font-tabular-stat text-headline-sm text-secondary font-bold">3 Free</span></div></div></div></div></header><main class="w-full pt-28 bg-surface px-space-xl min-h-[calc(100vh-4rem)]"><div class="flex flex-col w-full">
+<div class="flex flex-col gap-space-lg mb-space-xl">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Regulatory Traceability Ledger</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">ISO 27799 / HIPAA § 164.312(b)</span>
+</div>
+<h1 class="font-display-md text-display-md text-on-surface leading-tight">Audit History & System Traceability</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+          Complete chronological record of all hospital bed allocations, patient movements, resource status transitions, and staff assignments.
+        </p>
+</div>
+<div class="flex items-center gap-space-sm self-start lg:self-auto">
+<button class="h-9 px-space-md rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface flex items-center gap-space-xs font-label-lg text-label-lg transition-colors shadow-sm" id="syncBtn" onclick="triggerManualSync()">
+<span class="material-symbols-outlined text-primary text-[18px]" id="syncIcon">sync</span>
+<span>Manual Sync</span>
+</button>
+<div class="relative inline-block text-left" id="exportDropdownContainer">
+<button class="h-9 px-space-lg rounded-lg bg-primary hover:bg-primary-container text-on-primary flex items-center gap-space-xs font-label-lg text-label-lg transition-colors shadow-sm" onclick="toggleExportMenu()">
+<span class="material-symbols-outlined text-on-primary text-[18px]">download</span>
+<span>Export Audit Log</span>
+<span class="material-symbols-outlined text-on-primary text-[16px]">expand_more</span>
+</button>
+<div class="hidden absolute right-0 mt-space-xs w-48 rounded-lg bg-surface-container-lowest shadow-xl py-space-xs z-50" id="exportMenu">
+<button class="w-full text-left px-space-md py-space-xs font-label-md text-label-md text-on-surface hover:bg-surface-container-low flex items-center gap-space-sm" onclick="exportAudit('csv')">
+<span class="material-symbols-outlined text-outline text-[16px]">csv</span> Export as CSV (.csv)
+            </button>
+<button class="w-full text-left px-space-md py-space-xs font-label-md text-label-md text-on-surface hover:bg-surface-container-low flex items-center gap-space-sm" onclick="exportAudit('json')">
+<span class="material-symbols-outlined text-outline text-[16px]">data_object</span> Export Signed Ledger (.json)
+            </button>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-lowest px-space-lg py-space-sm rounded-lg shadow-sm">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary"></span>
+</span>
+<span class="font-label-sm text-label-sm font-bold text-secondary tracking-wide">STREAM SYNCHRONIZED</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">ws://127.0.0.1:8000/ws/capacity</span>
+</div>
+<div class="flex items-center gap-space-lg">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[16px]">receipt_long</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">1,429</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">System Events Logged Today</span>
+</div>
+<div class="h-3 w-px bg-surface-container-high"></div>
+<div class="flex items-center gap-space-xs font-mono">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Root Hash:</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">0x7f81a49c...e09b</span>
+<span class="material-symbols-outlined text-primary text-[14px]">verified</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md mb-space-xl">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-md text-label-md uppercase tracking-wider">Total Transitions (12h)</span>
+<span class="material-symbols-outlined text-primary text-[20px]">swap_horiz</span>
+</div>
+<div class="flex items-baseline justify-between mt-space-sm">
+<span class="font-tabular-stat text-display-md text-on-surface">184</span>
+<span class="inline-flex items-center gap-0.5 px-space-xs py-0.5 rounded bg-surface-container-low text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> +8.2%
+        </span>
+</div>
+<div class="mt-space-xs w-full bg-surface-container-high h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 78%;"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-md text-label-md uppercase tracking-wider">Avg Bed Turnaround</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">timer</span>
+</div>
+<div class="flex items-baseline justify-between mt-space-sm">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-tabular-stat text-display-md text-on-surface">19.4</span>
+<span class="font-label-md text-label-md text-on-surface-variant">mins</span>
+</div>
+<span class="inline-flex items-center gap-0.5 px-space-xs py-0.5 rounded bg-surface-container-low text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[12px]">arrow_downward</span> -2.1m
+        </span>
+</div>
+<div class="mt-space-xs w-full bg-surface-container-high h-1 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 86%;"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-md text-label-md uppercase tracking-wider">Transfers Executed</span>
+<span class="material-symbols-outlined text-tertiary text-[20px]">transfer_within_a_station</span>
+</div>
+<div class="flex items-baseline justify-between mt-space-sm">
+<span class="font-tabular-stat text-display-md text-on-surface">42</span>
+<span class="inline-flex items-center gap-0.5 px-space-xs py-0.5 rounded bg-surface-container-low text-tertiary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[12px]">check_circle</span> Target: <50
+        </span>
+</div>
+<div class="mt-space-xs w-full bg-surface-container-high h-1 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 62%;"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-md text-label-md uppercase tracking-wider">Discharges Confirmed</span>
+<span class="material-symbols-outlined text-primary-container text-[20px]">logout</span>
+</div>
+<div class="flex items-baseline justify-between mt-space-sm">
+<span class="font-tabular-stat text-display-md text-on-surface">29</span>
+<span class="inline-flex items-center gap-0.5 px-space-xs py-0.5 rounded bg-surface-container-low text-primary-container font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[12px]">done_all</span> 100% Signed
+        </span>
+</div>
+<div class="mt-space-xs w-full bg-surface-container-high h-1 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 94%;"></div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md mb-space-lg">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-sm items-center">
+<div class="lg:col-span-3 relative">
+<span class="material-symbols-outlined absolute left-space-sm top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full h-9 pl-9 pr-space-md rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary placeholder:text-outline" id="filterPatient" oninput="applyFilters()" placeholder="Search Patient name or MRN (e.g., 882104)..." type="text"/>
+</div>
+<div class="lg:col-span-2">
+<div class="relative">
+<select class="w-full h-9 px-space-sm pr-8 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer" id="filterActor" onchange="applyFilters()">
+<option value="all">Actor: All Personnel & Systems</option>
+<option value="jenkins">S. Jenkins, RN (Ops Coord)</option>
+<option value="bell">Dr. Katherine Bell</option>
+<option value="system">System Rules Engine</option>
+<option value="env">Environmental Services</option>
+</select>
+<span class="material-symbols-outlined absolute right-space-xs top-1/2 -translate-y-1/2 pointer-events-none text-outline text-[16px]">expand_more</span>
+</div>
+</div>
+<div class="lg:col-span-2">
+<div class="relative">
+<select class="w-full h-9 px-space-sm pr-8 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer" id="filterDepartment" onchange="applyFilters()">
+<option value="all">Dept: All Wings & Units</option>
+<option value="cardio">Cardiology Ward 3B</option>
+<option value="icu">ICU Critical Care</option>
+<option value="er">Emergency Department</option>
+<option value="theatre">Operating Theatres</option>
+</select>
+<span class="material-symbols-outlined absolute right-space-xs top-1/2 -translate-y-1/2 pointer-events-none text-outline text-[16px]">expand_more</span>
+</div>
+</div>
+<div class="lg:col-span-2">
+<div class="relative">
+<select class="w-full h-9 px-space-sm pr-8 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer" id="filterEvent" onchange="applyFilters()">
+<option value="all">Event: All Action Types</option>
+<option value="BED_ASSIGNMENT">BED_ASSIGNMENT</option>
+<option value="TRANSFER_INITIATED">TRANSFER_INITIATED</option>
+<option value="CLEANING_COMPLETED">CLEANING_COMPLETED</option>
+<option value="THEATRE_SLOT_RELEASED">THEATRE_SLOT_RELEASED</option>
+<option value="CAPACITY_SURGE_TRIGGERED">CAPACITY_SURGE_TRIGGERED</option>
+<option value="PATIENT_DISCHARGED">PATIENT_DISCHARGED</option>
+</select>
+<span class="material-symbols-outlined absolute right-space-xs top-1/2 -translate-y-1/2 pointer-events-none text-outline text-[16px]">expand_more</span>
+</div>
+</div>
+<div class="lg:col-span-2">
+<div class="relative">
+<select class="w-full h-9 px-space-sm pr-8 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer" id="filterShift">
+<option>Today - Day Shift (07:00 - 19:00)</option>
+<option>Today - Night Shift (19:00 - 07:00)</option>
+<option>Previous 24 Hours</option>
+<option>Previous 7 Days (Archived)</option>
+</select>
+<span class="material-symbols-outlined absolute right-space-xs top-1/2 -translate-y-1/2 pointer-events-none text-outline text-[16px]">calendar_today</span>
+</div>
+</div>
+<div class="lg:col-span-1 flex justify-end">
+<button class="h-9 w-full rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high flex items-center justify-center gap-1 font-label-sm text-label-sm transition-colors" onclick="resetFilters()" title="Reset all filters">
+<span class="material-symbols-outlined text-[16px]">restart_alt</span>
+<span>Reset</span>
+</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-xl">
+<div class="lg:col-span-8 flex flex-col">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="px-space-md py-space-sm bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">history</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Deterministic Event Ledger</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono" id="rowCountIndicator">Showing 6 of 1,429 recorded events</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-md text-label-md uppercase">
+<th class="py-space-sm px-space-md">Time</th>
+<th class="py-space-sm px-space-md">Actor</th>
+<th class="py-space-sm px-space-md">Patient</th>
+<th class="py-space-sm px-space-md text-center">Action</th>
+<th class="py-space-sm px-space-md">Resource</th>
+<th class="py-space-sm px-space-md">Transition (From → To)</th>
+<th class="py-space-sm px-space-md">Rule / Reason</th>
+<th class="py-space-sm px-space-xs text-center">Inspect</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container font-body-sm text-body-sm text-on-surface" id="auditTableBody">
+<tr class="audit-row hover:bg-surface-container-low transition-colors cursor-pointer" data-id="aud_98214" onclick="selectAuditRow('aud_98214')">
+<td class="py-space-sm px-space-md font-mono text-primary font-semibold whitespace-nowrap">14:26:18.412</td>
+<td class="py-space-sm px-space-md whitespace-nowrap">
+<div class="font-label-md text-label-md text-on-surface">Sarah Jenkins, RN</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Ops Coordinator</div>
+</td>
+<td class="py-space-sm px-space-md whitespace-nowrap">
+<div class="font-label-md text-label-md text-on-surface">Marcus Brody</div>
+<div class="font-label-sm text-label-sm text-primary font-mono">MRN-882104</div>
+</td>
+<td class="py-space-sm px-space-md text-center whitespace-nowrap">
+<span class="inline-block px-space-sm py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm font-bold">BED_ASSIGNMENT</span>
+</td>
+<td class="py-space-sm px-space-md whitespace-nowrap font-label-md text-label-md text-on-surface">
+                  Bed C-302 <span class="text-on-surface-variant font-normal">(Cardio)</span>
+</td>
+<td class="py-space-sm px-space-md whitespace-nowrap">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Available</span>
+<span class="material-symbols-outlined text-outline text-[14px]">arrow_forward</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold">Occupied (P-882104)</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-on-surface-variant max-w-xs truncate" title="Deterministic match criteria met: Telemetry Bed, Priority 1">
+                  Deterministic match criteria met: Telemetry Bed, Priority 1
+                </td>
+<td class="py-space-sm px-space-xs text-center">
+<button class="p-1 text-primary hover:bg-surface-container rounded" title="View Payload"><span class="material-symbols-outlined text-[18px]">data_object</span></button>
+</td>
+</tr>
+<tr class="audit-row hover:bg-surface-container-low transition-colors cursor-pointer" data-id="aud_98213" onclick="selectAuditRow('aud_98213')">
+<td class="py-space-sm px-space-md font-mono text-primary font-semibold whitespace-nowrap">14:21:05.109</td>
+<td class="py-space-sm px-space-md whitespace-nowrap">
+<div class="font-label-md text-label-md text-on-surface">Dr. Katherine Bell</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Attending Cardiologist</div>
+</td>
+<td class="py-space-sm px-space-md whitespace-nowrap">
+<div class="font-label-md text-label-md text-on-surface">Elena Rostova</div>
+<div class="font-label-sm text-label-sm text-primary font-mono">MRN-84729</div>
+</td>
+<td class="py-space-sm px-space-md text-center whitespace-nowrap">
+<span class="inline-block px-space-sm py-0.5 rounded bg-surface-container-high text-secondary font-label-sm text-label-sm font-bold">TRANSFER_INITIATED</span>
+</td>
+<td class="py-space-sm px-space-md whitespace-nowrap font-label-md text-label-md text-on-surface">
+                  Bed ICU-04 <span class="text-on-surface-variant font-normal">(Step-down)</span>
+</td>
+<td class="py-space-sm px-space-md whitespace-nowrap">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-high text-secondary font-label-sm text-label-sm">Emergency Bay 04</span>
+<span class="material-symbols-outlined text-outline text-[14px]">arrow_forward</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold">Cardiology Ward 3B</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-on-surface-variant max-w-xs truncate" title="Cardiology step-down physician order #4812">
+                  Cardiology step-down physician order #4812
+                </td>
+<td class="py-space-sm px-space-xs text-center">
+<button class="p-1 text-primary hover:bg-surface-container rounded" title="View Payload"><span class="material-symbols-outlined text-[18px]">data_object</span></button>
+</td>
+</tr>
+<tr class="audit-row hover:bg-surface-container-low transition-colors cursor-pointer" data-id="aud_98212" onclick="selectAuditRow('aud_98212')">
+<td class="py-space-sm px-space-md font-mono text-primary font-semibold whitespace-nowrap">14:14:40.887</td>
+<td class="py-space-sm px-space-md whitespace-nowrap">
+<div class="font-label-md text-label-md text-on-surface">Marcus Cole</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Environmental Services</div>
+</td>
+<td class="py-space-sm px-space-md whitespace-nowrap">
+<span class="text-outline font-label-sm text-label-sm">N/A (Turnaround)</span>
+</td>
+<td class="py-space-sm px-space-md text-center whitespace-nowrap">
+<span class="inline-block px-space-sm py-0.5 rounded bg-surface-container-low text-on-surface font-label-sm text-label-sm font-bold">CLEANING_COMPLETED</span>
+</td>
+<td class="py-space-sm px-space-md whitespace-nowrap font-label-md text-label-md text-on-surface">
+                  Bay ER-02
+                </td>
+<td class="py-space-sm px-space-md whitespace-nowrap">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-tertiary font-label-sm text-label-sm">Cleaning / Sanitizing</span>
+<span class="material-symbols-outlined text-outline text-[14px]">arrow_forward</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-low text-primary font-label-sm text-label-sm font-semibold">Available / Ready</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-on-surface-variant max-w-xs truncate" title="Terminal clean certified by Environmental Services">
+                  Terminal clean certified by Environmental Services
+                </td>
+<td class="py-space-sm px-space-xs text-center">
+<button class="p-1 text-primary hover:bg-surface-container rounded" title="View Payload"><span class="material-symbols-outlined text-[18px]">data_object</span></button>
+</td>
+</tr>
+<tr class="audit-row hover:bg-surface-container-low transition-colors cursor-pointer" data-id="aud_98211" onclick="selectAuditRow('aud_98211')">
+<td class="py-space-sm px-space-md font-mono text-primary font-semibold whitespace-nowrap">14:02:11.004</td>
+<td class="py-space-sm px-space-md whitespace-nowrap">
+<div class="font-label-md text-label-md text-on-surface">System Rule Engine</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant font-mono">auto_daemon:theatre_rel</div>
+</td>
+<td class="py-space-sm px-space-md whitespace-nowrap">
+<div class="font-label-md text-label-md text-on-surface">David Miller</div>
+<div class="font-label-sm text-label-sm text-primary font-mono">MRN-90214</div>
+</td>
+<td class="py-space-sm px-space-md text-center whitespace-nowrap">
+<span class="inline-block px-space-sm py-0.5 rounded bg-surface-container-high text-secondary font-label-sm text-label-sm font-bold">THEATRE_SLOT_RELEASED</span>
+</td>
+<td class="py-space-sm px-space-md whitespace-nowrap font-label-md text-label-md text-on-surface">
+                  Theatre OR-02
+                </td>
+<td class="py-space-sm px-space-md whitespace-nowrap">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Occupied / Under Proc</span>
+<span class="material-symbols-outlined text-outline text-[14px]">arrow_forward</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold">Available</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-on-surface-variant max-w-xs truncate" title="Surgical closure confirmed, room vacated">
+                  Surgical closure confirmed, room vacated
+                </td>
+<td class="py-space-sm px-space-xs text-center">
+<button class="p-1 text-primary hover:bg-surface-container rounded" title="View Payload"><span class="material-symbols-outlined text-[18px]">data_object</span></button>
+</td>
+</tr>
+<tr class="audit-row hover:bg-surface-container-low transition-colors cursor-pointer" data-id="aud_98210" onclick="selectAuditRow('aud_98210')">
+<td class="py-space-sm px-space-md font-mono text-error font-semibold whitespace-nowrap">13:58:30.912</td>
+<td class="py-space-sm px-space-md whitespace-nowrap">
+<div class="font-label-md text-label-md text-on-surface">System Rule Engine</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant font-mono">daemon:surge_detector</div>
+</td>
+<td class="py-space-sm px-space-md whitespace-nowrap">
+<span class="text-outline font-label-sm text-label-sm">Campus Global</span>
+</td>
+<td class="py-space-sm px-space-md text-center whitespace-nowrap">
+<span class="inline-block px-space-sm py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-bold">CAPACITY_SURGE_TRIGGERED</span>
+</td>
+<td class="py-space-sm px-space-md whitespace-nowrap font-label-md text-label-md text-on-surface">
+                  Emergency Department
+                </td>
+<td class="py-space-sm px-space-md whitespace-nowrap">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Normal Ops (78%)</span>
+<span class="material-symbols-outlined text-outline text-[14px]">arrow_forward</span>
+<span class="px-space-xs py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">Surge Phase 1 (>85%)</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-on-surface-variant max-w-xs truncate" title="Waitlist threshold exceeded: 14 patients pending admission">
+                  Waitlist threshold exceeded: 14 patients pending admission
+                </td>
+<td class="py-space-sm px-space-xs text-center">
+<button class="p-1 text-primary hover:bg-surface-container rounded" title="View Payload"><span class="material-symbols-outlined text-[18px]">data_object</span></button>
+</td>
+</tr>
+<tr class="audit-row hover:bg-surface-container-low transition-colors cursor-pointer" data-id="aud_98209" onclick="selectAuditRow('aud_98209')">
+<td class="py-space-sm px-space-md font-mono text-primary font-semibold whitespace-nowrap">13:42:01.321</td>
+<td class="py-space-sm px-space-md whitespace-nowrap">
+<div class="font-label-md text-label-md text-on-surface">Sarah Jenkins, RN</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Ops Coordinator</div>
+</td>
+<td class="py-space-sm px-space-md whitespace-nowrap">
+<div class="font-label-md text-label-md text-on-surface">Hanna Sorensen</div>
+<div class="font-label-sm text-label-sm text-primary font-mono">MRN-781903</div>
+</td>
+<td class="py-space-sm px-space-md text-center whitespace-nowrap">
+<span class="inline-block px-space-sm py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm font-bold">PATIENT_DISCHARGED</span>
+</td>
+<td class="py-space-sm px-space-md whitespace-nowrap font-label-md text-label-md text-on-surface">
+                  Bed C-301 <span class="text-on-surface-variant font-normal">(Cardio)</span>
+</td>
+<td class="py-space-sm px-space-md whitespace-nowrap">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm">Occupied</span>
+<span class="material-symbols-outlined text-outline text-[14px]">arrow_forward</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-tertiary font-label-sm text-label-sm font-semibold">Dirty / Evacuated</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-on-surface-variant max-w-xs truncate" title="Full discharge criteria met and signed by attending Dr. Reynolds">
+                  Full discharge criteria met and signed by attending Dr. Reynolds
+                </td>
+<td class="py-space-sm px-space-xs text-center">
+<button class="p-1 text-primary hover:bg-surface-container rounded" title="View Payload"><span class="material-symbols-outlined text-[18px]">data_object</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-space-sm bg-surface-container-low flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">Page 1 of 48 (Cryptographically chained blocks #4102-4149)</span>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1 bg-surface-container hover:bg-surface-container-high rounded text-on-surface font-label-sm text-label-sm disabled:opacity-50" disabled="">Previous</button>
+<button class="px-space-sm py-1 bg-primary text-on-primary rounded font-label-sm text-label-sm">1</button>
+<button class="px-space-sm py-1 bg-surface-container hover:bg-surface-container-high rounded text-on-surface font-label-sm text-label-sm">2</button>
+<button class="px-space-sm py-1 bg-surface-container hover:bg-surface-container-high rounded text-on-surface font-label-sm text-label-sm">3</button>
+<button class="px-space-sm py-1 bg-surface-container hover:bg-surface-container-high rounded text-on-surface font-label-sm text-label-sm">Next</button>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-4 flex flex-col">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col sticky top-32">
+<div class="px-space-md py-space-sm bg-inverse-surface text-inverse-on-surface flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-inverse-primary">fingerprint</span>
+<span class="font-headline-sm text-headline-sm tracking-tight text-inverse-on-surface">Event Detail Inspector</span>
+</div>
+<span class="font-mono text-label-sm font-bold bg-primary-container px-space-xs py-0.5 rounded text-on-primary-container" id="inspectorBadge">#AUD-98214</span>
+</div>
+<div class="p-space-md flex flex-col gap-space-md">
+<div class="flex flex-col gap-space-xs bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Signature Verification</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm font-bold text-primary">
+<span class="material-symbols-outlined text-[14px]">verified</span> VALID
+              </span>
+</div>
+<div class="font-mono text-label-sm text-on-surface truncate" id="hashDisplay">
+              backend_hash: sha256:7f81a49c9514e82b704e9
+            </div>
+<div class="text-on-surface-variant font-label-sm text-label-sm flex items-center justify-between">
+<span>Node Receipt: #04 (Central Core)</span>
+<span class="font-mono">Latency: 3.8ms</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant font-semibold">Immutable JSON Payload</span>
+<button class="flex items-center gap-0.5 text-primary hover:text-primary-container font-label-sm text-label-sm" onclick="copyPayload()">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+<span id="copyText">Copy RAW</span>
+</button>
+</div>
+<pre class="bg-inverse-surface text-inverse-on-surface p-space-md rounded-lg font-mono text-label-sm overflow-x-auto leading-relaxed max-h-[380px] shadow-inner select-all whitespace-pre" id="jsonViewer">{
+  "event_id": "aud_98214",
+  "sequence_number": 1429810,
+  "timestamp": "2025-02-23T14:26:18.412Z",
+  "actor": {
+    "user_id": "usr_rn_jenkins",
+    "name": "Sarah Jenkins, RN",
+    "role": "Ops Coordinator",
+    "auth_method": "OAUTH2_CAC_CARD"
+  },
+  "patient": {
+    "mrn": "MRN-882104",
+    "name": "Marcus Brody",
+    "acuity_level": "ESI-2"
+  },
+  "action": "BED_ASSIGNMENT",
+  "resource_id": "bed_c302",
+  "department": "Cardiology Ward 3B",
+  "old_state": "AVAILABLE",
+  "new_state": "OCCUPIED",
+  "deterministic_rule": "CARDIO_TELEMETRY_MATCH_P1",
+  "reason": "Deterministic match criteria met: Telemetry Bed, Priority 1",
+  "backend_hash": "sha256:7f81a49c9514e82b704e9a039ff012bb83",
+  "audit_version": "v2.4.1"
+}</pre>
+</div>
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant font-semibold">System Provenance Chain</span>
+<div class="flex items-center gap-space-xs font-mono text-label-sm bg-surface-container-low p-space-xs rounded">
+<span class="material-symbols-outlined text-outline text-[16px]">link</span>
+<span class="text-on-surface-variant">Prev Hash:</span>
+<span class="text-on-surface truncate">sha256:bc31010a29...8a1</span>
+</div>
+<div class="flex items-center gap-space-xs font-mono text-label-sm bg-surface-container-low p-space-xs rounded">
+<span class="material-symbols-outlined text-outline text-[16px]">link</span>
+<span class="text-on-surface-variant">Next Hash:</span>
+<span class="text-on-surface truncate">sha256:49aa01844b...ff2</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  const auditDatabase = {
+    "aud_98214": {
+      "event_id": "aud_98214",
+      "sequence_number": 1429810,
+      "timestamp": "2025-02-23T14:26:18.412Z",
+      "actor": {
+        "user_id": "usr_rn_jenkins",
+        "name": "Sarah Jenkins, RN",
+        "role": "Ops Coordinator",
+        "auth_method": "OAUTH2_CAC_CARD"
+      },
+      "patient": {
+        "mrn": "MRN-882104",
+        "name": "Marcus Brody",
+        "acuity_level": "ESI-2"
+      },
+      "action": "BED_ASSIGNMENT",
+      "resource_id": "bed_c302",
+      "department": "Cardiology Ward 3B",
+      "old_state": "AVAILABLE",
+      "new_state": "OCCUPIED",
+      "deterministic_rule": "CARDIO_TELEMETRY_MATCH_P1",
+      "reason": "Deterministic match criteria met: Telemetry Bed, Priority 1",
+      "backend_hash": "sha256:7f81a49c9514e82b704e9a039ff012bb83",
+      "audit_version": "v2.4.1"
+    },
+    "aud_98213": {
+      "event_id": "aud_98213",
+      "sequence_number": 1429809,
+      "timestamp": "2025-02-23T14:21:05.109Z",
+      "actor": {
+        "user_id": "usr_dr_bell",
+        "name": "Dr. Katherine Bell",
+        "role": "Attending Cardiologist",
+        "auth_method": "BIOMETRIC_PASSKEY"
+      },
+      "patient": {
+        "mrn": "MRN-84729",
+        "name": "Elena Rostova",
+        "acuity_level": "ESI-3"
+      },
+      "action": "TRANSFER_INITIATED",
+      "resource_id": "bed_icu04",
+      "department": "ICU Step-down",
+      "old_state": "EMERGENCY_BAY_04",
+      "new_state": "CARDIOLOGY_WARD_3B",
+      "deterministic_rule": "PHYSICIAN_DIRECT_ORDER",
+      "reason": "Cardiology step-down physician order #4812",
+      "backend_hash": "sha256:3a91bb40f8902129eacbc2001844bbff21",
+      "audit_version": "v2.4.1"
+    },
+    "aud_98212": {
+      "event_id": "aud_98212",
+      "sequence_number": 1429808,
+      "timestamp": "2025-02-23T14:14:40.887Z",
+      "actor": {
+        "user_id": "usr_env_mcole",
+        "name": "Marcus Cole",
+        "role": "Environmental Services",
+        "auth_method": "RFID_BADGE"
+      },
+      "patient": null,
+      "action": "CLEANING_COMPLETED",
+      "resource_id": "bay_er02",
+      "department": "Emergency Department",
+      "old_state": "CLEANING_SANITIZING",
+      "new_state": "AVAILABLE_READY",
+      "deterministic_rule": "HOUSEKEEPING_CERTIFICATION_V4",
+      "reason": "Terminal clean certified by Environmental Services",
+      "backend_hash": "sha256:923fae1208940bbd001248a883901237ef",
+      "audit_version": "v2.4.1"
+    },
+    "aud_98211": {
+      "event_id": "aud_98211",
+      "sequence_number": 1429807,
+      "timestamp": "2025-02-23T14:02:11.004Z",
+      "actor": {
+        "user_id": "sys_daemon_theatre",
+        "name": "System Rule Engine",
+        "role": "Automatic Daemon",
+        "auth_method": "MUTUAL_TLS_SERVICE_ACCOUNT"
+      },
+      "patient": {
+        "mrn": "MRN-90214",
+        "name": "David Miller",
+        "acuity_level": "SURGICAL_POST_OP"
+      },
+      "action": "THEATRE_SLOT_RELEASED",
+      "resource_id": "theatre_or02",
+      "department": "Operating Theatres",
+      "old_state": "OCCUPIED_PROCEDURE",
+      "new_state": "AVAILABLE",
+      "deterministic_rule": "SURGICAL_PACU_TRANSIT_AUTO",
+      "reason": "Surgical closure confirmed, room vacated",
+      "backend_hash": "sha256:ee04189acbe3104928b991048834910244",
+      "audit_version": "v2.4.1"
+    },
+    "aud_98210": {
+      "event_id": "aud_98210",
+      "sequence_number": 1429806,
+      "timestamp": "2025-02-23T13:58:30.912Z",
+      "actor": {
+        "user_id": "sys_daemon_surge",
+        "name": "System Rule Engine",
+        "role": "Capacity Surge Watcher",
+        "auth_method": "INTERNAL_SCHEDULER"
+      },
+      "patient": null,
+      "action": "CAPACITY_SURGE_TRIGGERED",
+      "resource_id": "unit_emergency",
+      "department": "Emergency Department",
+      "old_state": "NORMAL_OPS_78",
+      "new_state": "SURGE_PHASE_1_OVER_85",
+      "deterministic_rule": "CAPACITY_BURST_NOTIFICATION",
+      "reason": "Waitlist threshold exceeded: 14 patients pending admission",
+      "backend_hash": "sha256:d8948bbca992100843210499210a48bb92",
+      "audit_version": "v2.4.1"
+    },
+    "aud_98209": {
+      "event_id": "aud_98209",
+      "sequence_number": 1429805,
+      "timestamp": "2025-02-23T13:42:01.321Z",
+      "actor": {
+        "user_id": "usr_rn_jenkins",
+        "name": "Sarah Jenkins, RN",
+        "role": "Ops Coordinator",
+        "auth_method": "OAUTH2_CAC_CARD"
+      },
+      "patient": {
+        "mrn": "MRN-781903",
+        "name": "Hanna Sorensen",
+        "acuity_level": "DISCHARGE_READY"
+      },
+      "action": "PATIENT_DISCHARGED",
+      "resource_id": "bed_c301",
+      "department": "Cardiology Ward 3B",
+      "old_state": "OCCUPIED",
+      "new_state": "DIRTY_EVACUATED",
+      "deterministic_rule": "DISCHARGE_SIGN_OFF_VERIFIED",
+      "reason": "Full discharge criteria met and signed by attending Dr. Reynolds",
+      "backend_hash": "sha256:4981ca99201fba41908234ea7790119283",
+      "audit_version": "v2.4.1"
+    }
+  };
+
+  function selectAuditRow(eventId) {
+    const data = auditDatabase[eventId];
+    if (!data) return;
+    
+    document.querySelectorAll('.audit-row').forEach(row => {
+      row.classList.remove('bg-surface-container-high');
+    });
+    
+    const selected = document.querySelector(`.audit-row[data-id="${eventId}"]`);
+    if (selected) {
+      selected.classList.add('bg-surface-container-high');
+    }
+
+    document.getElementById('inspectorBadge').textContent = `#AUD-${eventId.split('_')[1]}`;
+    document.getElementById('hashDisplay').textContent = `backend_hash: ${data.backend_hash.substring(0, 24)}...`;
+    document.getElementById('jsonViewer').textContent = JSON.stringify(data, null, 2);
+  }
+
+  function toggleExportMenu() {
+    const menu = document.getElementById('exportMenu');
+    menu.classList.toggle('hidden');
+  }
+
+  function exportAudit(format) {
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(Object.values(auditDatabase), null, 2));
+    const downloadAnchor = document.createElement('a');
+    downloadAnchor.setAttribute("href", dataStr);
+    downloadAnchor.setAttribute("download", `flowcare_audit_log_${new Date().toISOString().slice(0,10)}.${format}`);
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+    document.getElementById('exportMenu').classList.add('hidden');
+  }
+
+  function triggerManualSync() {
+    const icon = document.getElementById('syncIcon');
+    icon.classList.add('animate-spin');
+    setTimeout(() => {
+      icon.classList.remove('animate-spin');
+      alert("Ledger synchronized with backend node #04. 0 new missing hash transactions.");
+    }, 600);
+  }
+
+  function copyPayload() {
+    const text = document.getElementById('jsonViewer').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const copyLabel = document.getElementById('copyText');
+      copyLabel.textContent = "COPIED!";
+      setTimeout(() => {
+        copyLabel.textContent = "Copy RAW";
+      }, 1800);
+    });
+  }
+
+  function applyFilters() {
+    const patientQuery = document.getElementById('filterPatient').value.toLowerCase();
+    const actorQuery = document.getElementById('filterActor').value;
+    const eventQuery = document.getElementById('filterEvent').value;
+    const rows = document.querySelectorAll('#auditTableBody tr');
+    let visibleCount = 0;
+
+    rows.forEach(row => {
+      const text = row.innerText.toLowerCase();
+      let matchPatient = true;
+      let matchActor = true;
+      let matchEvent = true;
+
+      if (patientQuery) {
+        matchPatient = text.includes(patientQuery);
+      }
+      if (actorQuery !== 'all') {
+        if (actorQuery === 'jenkins' && !text.includes('sarah jenkins')) matchActor = false;
+        if (actorQuery === 'bell' && !text.includes('katherine bell')) matchActor = false;
+        if (actorQuery === 'system' && !text.includes('system rule engine')) matchActor = false;
+        if (actorQuery === 'env' && !text.includes('marcus cole')) matchActor = false;
+      }
+      if (eventQuery !== 'all') {
+        if (!text.includes(eventQuery.toLowerCase())) matchEvent = false;
+      }
+
+      if (matchPatient && matchActor && matchEvent) {
+        row.classList.remove('hidden');
+        visibleCount++;
+      } else {
+        row.classList.add('hidden');
+      }
+    });
+
+    document.getElementById('rowCountIndicator').textContent = `Showing ${visibleCount} of 1,429 recorded events`;
+  }
+
+  function resetFilters() {
+    document.getElementById('filterPatient').value = '';
+    document.getElementById('filterActor').value = 'all';
+    document.getElementById('filterDepartment').value = 'all';
+    document.getElementById('filterEvent').value = 'all';
+    applyFilters();
+  }
+
+  window.addEventListener('click', function(e) {
+    const container = document.getElementById('exportDropdownContainer');
+    if (container && !container.contains(e.target)) {
+      document.getElementById('exportMenu').classList.add('hidden');
+    }
+  });
+
+  // Default selection
+  selectAuditRow('aud_98214');
+</script></main><footer class="w-full bg-surface-container-lowest border-t border-surface-container py-space-md px-space-xl"><div class="w-full flex items-center justify-between"><div class="flex items-center gap-space-md"><span class="font-label-sm text-label-sm text-on-surface-variant">© 2024 FlowCare Clinical Operations System</span><span class="font-label-sm text-label-sm text-outline-variant">•</span><span class="font-label-sm text-label-sm text-on-surface-variant">HIPAA & HITRUST Certified Command Core</span></div><div class="flex items-center gap-space-lg"><span class="font-label-sm text-label-sm text-on-surface-variant">Telemetry Stream: Active (4ms latency)</span><span class="font-label-sm text-label-sm text-on-surface-variant">Hospital Incident Node #04</span></div></div></footer></body></html>

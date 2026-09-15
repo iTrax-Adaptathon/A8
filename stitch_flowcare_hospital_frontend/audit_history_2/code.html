@@ -1,0 +1,899 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>FlowCare - Audit History &amp; Traceability</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#006194",
+            "primary-container": "#007bb9",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#fdfcff",
+            "secondary": "#0051d5",
+            "secondary-container": "#316bf3",
+            "on-secondary": "#ffffff",
+            "tertiary": "#545c72",
+            "surface": "#f8f9ff",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#3f4850",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#eff4ff",
+            "surface-container": "#e5eeff",
+            "surface-container-high": "#dce9ff",
+            "surface-container-highest": "#d3e4fe",
+            "outline": "#707881",
+            "outline-variant": "#bfc7d2",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a",
+            "emerald-clinical": "#027a48",
+            "emerald-clinical-bg": "#ecfdf3"
+          },
+          borderRadius: {
+            "DEFAULT": "0.125rem",
+            "lg": "0.375rem",
+            "xl": "0.5rem",
+            "2xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "0.75rem",
+            "space-lg": "1rem",
+            "space-xl": "1.5rem",
+            "space-2xl": "2rem"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface text-on-surface text-[14px] leading-normal antialiased selection:bg-primary-container/20">
+<!-- HEADER & NAVIGATION -->
+<header class="fixed top-0 w-full z-50 bg-surface-container-lowest border-b border-surface-container shadow-xs">
+<div class="h-28 w-full px-6 flex flex-col justify-between py-2">
+<!-- Top Utility Bar -->
+<div class="flex items-center justify-between w-full h-14 border-b border-surface-container/70">
+<div class="flex items-center gap-4">
+<!-- Logo -->
+<div class="flex items-center gap-2.5">
+<img alt="FlowCare Clinical Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Wx4P6PAYpp5mdNFOnTdMLoqA61V2RjuY6mz7XKgcX2YDhSLD_c9OzDs1vkFtm9ajFk09Fef0Xevs7LLE828qx8uL3qp87Ktsgp5A0o08KOO1LEn7IA-ggNMsYNbDCmgHcUOPlagTDOzii9k8M6a2TzQx9uGGxhtqVJcARZb_a7Lc792d3q3zxocvZiEQZdgMdPx9mhUGdrqQ5VeLiwTGRMkTVRfKIqPg1Lf29QLhFevYxNYgt1NLV4aR4">
+<div class="flex flex-col">
+<span class="font-bold text-[17px] text-on-surface tracking-tight leading-tight">FlowCare</span>
+<span class="text-[11px] font-semibold text-on-surface-variant uppercase tracking-wider">Clinical Ops</span>
+</div>
+</div>
+<div class="h-5 w-px bg-outline-variant/60"></div>
+<!-- Campus Selector -->
+<div class="flex items-center gap-2 bg-surface-container-low px-3 py-1.5 rounded-lg text-[13px] font-medium text-on-surface cursor-pointer hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-primary text-[18px]">domain</span>
+<span class="">St. Jude Central Campus - All Wings</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">expand_more</span>
+</div>
+<!-- Shift Status -->
+<div class="flex items-center gap-2 bg-surface-container-low px-3 py-1.5 rounded-lg text-[13px] text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[16px]">schedule</span>
+<span class="">Day Shift • 07:00 - 19:00</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-low px-2.5 py-1.5 rounded-lg text-[12px] font-mono text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary text-[16px]">alarm</span>
+<span class="">14:28:40 UTC</span>
+</div>
+</div>
+<!-- Right User & Live Status -->
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200/60" title="Connected to Hospital Backend"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span></span><span class="text-[12px] font-semibold text-emerald-700">Live Updates</span></div>
+<div class="h-5 w-px bg-outline-variant/60"></div>
+<div class="flex items-center gap-2.5">
+<div class="text-right">
+<div class="text-[13px] font-semibold text-on-surface leading-tight">Sarah Jenkins, RN</div>
+<div class="text-[11px] text-on-surface-variant">Ops Coordinator</div>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-medium shadow-xs">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Navigation Tabs & Live Stats Strip -->
+<div class="flex items-center justify-between w-full h-12">
+<nav class="flex items-center gap-1.5">
+<a class="px-3.5 py-1.5 rounded-lg text-[13px] font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#">Capacity Overview</a>
+<a class="px-3.5 py-1.5 rounded-lg text-[13px] font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#">Resources (Beds, Theatres, Staff)</a>
+<a class="px-3.5 py-1.5 rounded-lg text-[13px] font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#">Patient Flow (Patients, Waitlist)</a>
+<a aria-current="page" class="px-3.5 py-1.5 bg-primary text-on-primary font-semibold text-[13px] rounded-lg shadow-xs transition-colors" href="#">Audit History</a>
+</nav>
+<div class="flex items-center gap-4 bg-surface-container-low px-4 py-1.5 rounded-lg border border-surface-container">
+<div class="flex items-baseline gap-1.5">
+<span class="text-[11px] font-semibold text-on-surface-variant uppercase tracking-wider">Occupancy</span>
+<span class="text-[15px] font-bold text-primary">84.2%</span>
+</div>
+<div class="h-3.5 w-px bg-outline-variant/60"></div>
+<div class="flex items-baseline gap-1.5">
+<span class="text-[11px] font-semibold text-on-surface-variant uppercase tracking-wider">Waiting</span>
+<span class="text-[15px] font-bold text-error">14</span>
+</div>
+<div class="h-3.5 w-px bg-outline-variant/60"></div>
+<div class="flex items-baseline gap-1.5">
+<span class="text-[11px] font-semibold text-on-surface-variant uppercase tracking-wider">Theatres</span>
+<span class="text-[15px] font-bold text-secondary">3 Free</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- MAIN CONTENT AREA -->
+<main class="w-full pt-32 pb-16 px-6 min-h-screen bg-surface">
+<div class="max-w-[1720px] mx-auto flex flex-col gap-5">
+<!-- Title & Action Bar -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-clinical-bg text-emerald-clinical text-[12px] font-semibold"><span class="w-1.5 h-1.5 rounded-full bg-emerald-clinical"></span>System Synchronized • Auditing Active</span>
+</div>
+<h1 class="text-[26px] font-bold text-on-surface tracking-tight leading-tight">Audit History &amp; Traceability</h1>
+<p class="text-[14px] text-on-surface-variant mt-0.5">
+            Complete chronological log of bed allocations, transfers, status changes, and staff assignments.
+          </p>
+</div>
+<!-- Header Actions -->
+<div class="flex items-center gap-2.5 self-start md:self-auto">
+<button class="h-9 px-3.5 rounded-lg bg-surface-container-lowest border border-outline-variant/50 hover:bg-surface-container-low text-on-surface flex items-center gap-2 text-[13px] font-medium transition-colors shadow-xs" id="refreshBtn" onclick="triggerRefresh()">
+<span class="material-symbols-outlined text-primary text-[18px]" id="refreshIcon">refresh</span>
+<span class="">Manual Refresh</span>
+</button>
+<div class="relative inline-block text-left" id="exportContainer">
+<button class="h-9 px-3.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary flex items-center gap-2 text-[13px] font-medium transition-colors shadow-xs" onclick="toggleExportMenu()">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span class="">Export Audit Log</span>
+<span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+<div class="hidden absolute right-0 mt-1.5 w-52 rounded-xl bg-surface-container-lowest border border-surface-container shadow-lg py-1.5 z-50 text-[13px]" id="exportMenu">
+<button class="w-full text-left px-3.5 py-2 text-on-surface hover:bg-surface-container-low flex items-center gap-2 transition-colors" onclick="exportLog('csv')">
+<span class="material-symbols-outlined text-outline text-[16px]">table_chart</span>
+                Export as CSV (.csv)
+              </button>
+<button class="w-full text-left px-3.5 py-2 text-on-surface hover:bg-surface-container-low flex items-center gap-2 transition-colors" onclick="exportLog('json')">
+<span class="material-symbols-outlined text-outline text-[16px]">description</span>
+                Export Compliance Record (.json)
+              </button>
+</div>
+</div>
+</div>
+</div>
+<!-- SUMMARY STATS (Clean 4-card metric strip) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Metric 1 -->
+<div class="bg-surface-container-lowest border border-surface-container rounded-xl p-4 shadow-xs flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-[12px] font-semibold text-on-surface-variant uppercase tracking-wider">Total Transitions (12h)</span>
+<div class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">swap_horiz</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between mt-3">
+<span class="text-[28px] font-bold text-on-surface tracking-tight">184</span>
+<span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 text-[12px] font-semibold">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +8.2%
+            </span>
+</div>
+<div class="text-[12px] text-on-surface-variant mt-1.5 flex items-center gap-1">
+<span class="">Compared to previous 12h shift</span>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-container-lowest border border-surface-container rounded-xl p-4 shadow-xs flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-[12px] font-semibold text-on-surface-variant uppercase tracking-wider">Avg Bed Turnaround</span>
+<div class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">timer</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between mt-3">
+<div class="flex items-baseline gap-1">
+<span class="text-[28px] font-bold text-on-surface tracking-tight">19.4</span>
+<span class="text-[13px] font-medium text-on-surface-variant">mins</span>
+</div>
+<span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 text-[12px] font-semibold">
+<span class="material-symbols-outlined text-[14px]">arrow_downward</span> -2.1m
+            </span>
+</div>
+<div class="text-[12px] text-on-surface-variant mt-1.5">Cleaning &amp; sanitization to ready</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-container-lowest border border-surface-container rounded-xl p-4 shadow-xs flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-[12px] font-semibold text-on-surface-variant uppercase tracking-wider">Transfers Completed</span>
+<div class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">move_up</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between mt-3">
+<span class="text-[28px] font-bold text-on-surface tracking-tight">42</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-surface-container-low text-primary text-[12px] font-semibold">
+              Target: &lt;50m
+            </span>
+</div>
+<div class="text-[12px] text-on-surface-variant mt-1.5">Intra-hospital floor movements</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-surface-container-lowest border border-surface-container rounded-xl p-4 shadow-xs flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-[12px] font-semibold text-on-surface-variant uppercase tracking-wider">Discharges Verified</span>
+<div class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-emerald-600">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+</div>
+<div class="flex items-baseline justify-between mt-3">
+<span class="text-[28px] font-bold text-on-surface tracking-tight">29</span>
+<span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 text-[12px] font-semibold">
+<span class="material-symbols-outlined text-[14px]">done_all</span> 100% Signed
+            </span>
+</div>
+<div class="text-[12px] text-on-surface-variant mt-1.5">All attending physician orders cleared</div>
+</div>
+</div>
+<!-- FILTER BAR -->
+<div class="bg-surface-container-lowest border border-surface-container rounded-xl p-3 shadow-xs">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3 items-center">
+<!-- Search input -->
+<div class="lg:col-span-4 relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full h-9 pl-9 pr-3 rounded-lg bg-surface-container-low border border-transparent focus:border-primary focus:bg-surface-container-lowest text-on-surface placeholder:text-outline text-[13px] transition-colors focus:outline-none" id="filterSearch" oninput="filterLedger()" placeholder="Search patient name, MRN, or event..." type="text">
+</div>
+<!-- Actor filter -->
+<div class="lg:col-span-2 relative">
+<select class="w-full h-9 px-3 pr-8 rounded-lg bg-surface-container-low border border-transparent focus:border-primary text-[13px] text-on-surface cursor-pointer appearance-none focus:outline-none" id="filterActor" onchange="filterLedger()">
+<option value="all">All Personnel &amp; System</option>
+<option value="sarah">Sarah Jenkins, RN</option>
+<option value="bell">Dr. Katherine Bell</option>
+<option value="cole">Marcus Cole</option>
+<option value="system">System</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-outline text-[16px] pointer-events-none">expand_more</span>
+</div>
+<!-- Department filter -->
+<div class="lg:col-span-2 relative">
+<select class="w-full h-9 px-3 pr-8 rounded-lg bg-surface-container-low border border-transparent focus:border-primary text-[13px] text-on-surface cursor-pointer appearance-none focus:outline-none" id="filterDept" onchange="filterLedger()">
+<option value="all">All Wings &amp; Units</option>
+<option value="cardio">Cardiology Ward 3B</option>
+<option value="icu">ICU Critical Care</option>
+<option value="er">Emergency Department</option>
+<option value="theatre">Operating Theatres</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-outline text-[16px] pointer-events-none">expand_more</span>
+</div>
+<!-- Event Type filter -->
+<div class="lg:col-span-2 relative">
+<select class="w-full h-9 px-3 pr-8 rounded-lg bg-surface-container-low border border-transparent focus:border-primary text-[13px] text-on-surface cursor-pointer appearance-none focus:outline-none" id="filterEventType" onchange="filterLedger()">
+<option value="all">All Events</option>
+<option value="Bed Assignment">Bed Assignment</option>
+<option value="Transfer Initiated">Transfer Initiated</option>
+<option value="Cleaning Completed">Cleaning Completed</option>
+<option value="Theatre Slot Released">Theatre Slot Released</option>
+<option value="Capacity Alert">Capacity Alert</option>
+<option value="Patient Discharged">Patient Discharged</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-outline text-[16px] pointer-events-none">expand_more</span>
+</div>
+<!-- Time Window filter -->
+<div class="lg:col-span-1 relative">
+<select class="w-full h-9 px-2.5 pr-6 rounded-lg bg-surface-container-low border border-transparent focus:border-primary text-[12px] font-medium text-on-surface cursor-pointer appearance-none focus:outline-none" id="filterTimeWindow">
+<option>Today - Day Shift</option>
+<option>Today - Night Shift</option>
+<option>Past 24 Hours</option>
+</select>
+<span class="material-symbols-outlined absolute right-1.5 top-1/2 -translate-y-1/2 text-outline text-[14px] pointer-events-none">expand_more</span>
+</div>
+<!-- Reset button -->
+<div class="lg:col-span-1 flex justify-end">
+<button class="w-full h-9 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface flex items-center justify-center gap-1 text-[12px] font-medium transition-colors" onclick="resetFilters()" title="Reset all filters">
+<span class="material-symbols-outlined text-[15px]">restart_alt</span>
+<span class="">Reset</span>
+</button>
+</div>
+</div>
+</div>
+<!-- MAIN AUDIT LEDGER & EVENT INSPECTOR LAYOUT -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+<!-- LEFT: AUDIT LEDGER TABLE -->
+<div class="lg:col-span-8 flex flex-col">
+<div class="bg-surface-container-lowest border border-surface-container rounded-xl shadow-xs overflow-hidden">
+<!-- Table Header Bar -->
+<div class="px-4 py-3 bg-surface-container-low/60 border-b border-surface-container flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">view_timeline</span>
+<span class="font-semibold text-[14px] text-on-surface">Activity Ledger</span>
+</div>
+<span class="text-[12px] font-mono text-on-surface-variant" id="activeCount">Showing 6 recorded events</span>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/40 border-b border-surface-container text-on-surface-variant text-[11px] font-semibold uppercase tracking-wider">
+<th class="py-2.5 px-4">Time</th>
+<th class="py-2.5 px-4">Actor</th>
+<th class="py-2.5 px-4">Patient</th>
+<th class="py-2.5 px-4">Event / Action</th>
+<th class="py-2.5 px-4">Resource</th>
+<th class="py-2.5 px-4">Details / Change</th>
+<th class="py-2.5 px-3 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container text-[13px]" id="auditRowsContainer">
+<!-- ROW 1 -->
+<tr class="audit-table-row hover:bg-surface-container-low transition-colors cursor-pointer bg-surface-container-high/40" data-id="AUD-98214" onclick="inspectEvent('AUD-98214')"><td class="py-3.5 px-4 font-mono text-primary whitespace-nowrap font-medium">14:26:18</td><td class="py-3.5 px-4 whitespace-nowrap"><div class="font-medium text-on-surface">Sarah Jenkins, RN</div><div class="text-[11px] text-on-surface-variant">Ops Coordinator</div></td><td class="py-3.5 px-4 whitespace-nowrap"><div class="font-medium text-on-surface">Marcus Brody</div><div class="text-[11px] font-mono text-primary font-medium">MRN-882104</div></td><td class="py-3.5 px-4 whitespace-nowrap"><span class="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-semibold bg-primary-container/15 text-primary border border-primary/20">Bed Assignment</span></td><td class="py-3.5 px-4 whitespace-nowrap font-medium text-on-surface">Bed C-302 <span class="font-normal text-on-surface-variant text-[12px]">(Cardio)</span></td><td class="py-3.5 px-4 text-on-surface-variant text-[12px] max-w-[210px] truncate" title="Assigned from ED Resus Bay 04">Assigned from ED Resus Bay 04</td><td class="py-3.5 px-3 text-right whitespace-nowrap"><button class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-primary font-medium text-[12px] transition-colors inline-flex items-center gap-1">Inspect</button></td></tr>
+<!-- ROW 2 -->
+<tr class="audit-table-row hover:bg-surface-container-low transition-colors cursor-pointer" data-id="AUD-98213" onclick="inspectEvent('AUD-98213')">
+<td class="py-3 px-4 font-mono font-medium text-primary whitespace-nowrap">14:21:05</td>
+<td class="py-3 px-4 whitespace-nowrap">
+<div class="font-medium text-on-surface">Dr. Katherine Bell</div>
+<div class="text-[11px] text-on-surface-variant">Attending Cardiologist</div>
+</td>
+<td class="py-3 px-4 whitespace-nowrap">
+<div class="font-medium text-on-surface">Elena Rostova</div>
+<div class="text-[11px] font-mono text-primary font-medium">MRN-84729</div>
+</td>
+<td class="py-3 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-semibold bg-secondary/10 text-secondary border border-secondary/20">
+                        Transfer Initiated
+                      </span>
+</td>
+<td class="py-3 px-4 whitespace-nowrap font-medium text-on-surface">
+                      Bed ICU-04 <span class="font-normal text-on-surface-variant text-[12px]">(Step-down)</span>
+</td>
+<td class="py-3 px-4 text-on-surface-variant text-[12px] max-w-[210px] truncate" title="Cardiology to ICU transfer order">
+                      Cardiology to ICU transfer order
+                    </td>
+<td class="py-3 px-3 text-right whitespace-nowrap">
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-primary font-medium text-[12px] transition-colors inline-flex items-center gap-1">
+                        Inspect
+                      </button>
+</td>
+</tr>
+<!-- ROW 3 -->
+<tr class="audit-table-row hover:bg-surface-container-low transition-colors cursor-pointer" data-id="AUD-98212" onclick="inspectEvent('AUD-98212')">
+<td class="py-3 px-4 font-mono font-medium text-primary whitespace-nowrap">14:14:40</td>
+<td class="py-3 px-4 whitespace-nowrap">
+<div class="font-medium text-on-surface">Marcus Cole</div>
+<div class="text-[11px] text-on-surface-variant">Environmental Services</div>
+</td>
+<td class="py-3 px-4 whitespace-nowrap">
+<span class="text-outline text-[12px] italic">— (Turnaround)</span>
+</td>
+<td class="py-3 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        Cleaning Completed
+                      </span>
+</td>
+<td class="py-3 px-4 whitespace-nowrap font-medium text-on-surface">
+                      Bay ER-02
+                    </td>
+<td class="py-3 px-4 text-on-surface-variant text-[12px] max-w-[210px] truncate" title="Sanitized and inspected ready">
+                      Sanitized and inspected ready
+                    </td>
+<td class="py-3 px-3 text-right whitespace-nowrap">
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-primary font-medium text-[12px] transition-colors inline-flex items-center gap-1">
+                        Inspect
+                      </button>
+</td>
+</tr>
+<!-- ROW 4 -->
+<tr class="audit-table-row hover:bg-surface-container-low transition-colors cursor-pointer" data-id="AUD-98211" onclick="inspectEvent('AUD-98211')">
+<td class="py-3 px-4 font-mono font-medium text-primary whitespace-nowrap">14:02:11</td>
+<td class="py-3 px-4 whitespace-nowrap">
+<div class="font-medium text-on-surface">System</div>
+<div class="text-[11px] text-on-surface-variant">Automated Scheduler</div>
+</td>
+<td class="py-3 px-4 whitespace-nowrap">
+<div class="font-medium text-on-surface">David Miller</div>
+<div class="text-[11px] font-mono text-primary font-medium">MRN-90214</div>
+</td>
+<td class="py-3 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-semibold bg-surface-container-high text-tertiary border border-outline-variant/60">
+                        Theatre Slot Released
+                      </span>
+</td>
+<td class="py-3 px-4 whitespace-nowrap font-medium text-on-surface">
+                      Theatre OR-02
+                    </td>
+<td class="py-3 px-4 text-on-surface-variant text-[12px] max-w-[210px] truncate" title="Orthopedic procedure concluded">
+                      Orthopedic procedure concluded
+                    </td>
+<td class="py-3 px-3 text-right whitespace-nowrap">
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-primary font-medium text-[12px] transition-colors inline-flex items-center gap-1">
+                        Inspect
+                      </button>
+</td>
+</tr>
+<!-- ROW 5 -->
+<tr class="audit-table-row hover:bg-surface-container-low transition-colors cursor-pointer" data-id="AUD-98210" onclick="inspectEvent('AUD-98210')">
+<td class="py-3 px-4 font-mono font-medium text-error whitespace-nowrap">13:58:30</td>
+<td class="py-3 px-4 whitespace-nowrap">
+<div class="font-medium text-on-surface">System</div>
+<div class="text-[11px] text-on-surface-variant">Capacity Watcher</div>
+</td>
+<td class="py-3 px-4 whitespace-nowrap">
+<span class="text-on-surface font-medium text-[13px]">Hospital Campus</span>
+</td>
+<td class="py-3 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-semibold bg-error-container text-on-error-container border border-error/20">
+                        Capacity Alert
+                      </span>
+</td>
+<td class="py-3 px-4 whitespace-nowrap font-medium text-on-surface">
+                      Emergency Dept
+                    </td>
+<td class="py-3 px-4 text-error text-[12px] font-medium max-w-[210px] truncate" title="Acute capacity reached 92%">
+                      Acute capacity reached 92%
+                    </td>
+<td class="py-3 px-3 text-right whitespace-nowrap">
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-primary font-medium text-[12px] transition-colors inline-flex items-center gap-1">
+                        Inspect
+                      </button>
+</td>
+</tr>
+<!-- ROW 6 -->
+<tr class="audit-table-row hover:bg-surface-container-low transition-colors cursor-pointer" data-id="AUD-98209" onclick="inspectEvent('AUD-98209')">
+<td class="py-3 px-4 font-mono font-medium text-primary whitespace-nowrap">13:42:01</td>
+<td class="py-3 px-4 whitespace-nowrap">
+<div class="font-medium text-on-surface">Sarah Jenkins, RN</div>
+<div class="text-[11px] text-on-surface-variant">Ops Coordinator</div>
+</td>
+<td class="py-3 px-4 whitespace-nowrap">
+<div class="font-medium text-on-surface">Hanna Sorensen</div>
+<div class="text-[11px] font-mono text-primary font-medium">MRN-781903</div>
+</td>
+<td class="py-3 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-semibold bg-primary-container/15 text-primary border border-primary/20">
+                        Patient Discharged
+                      </span>
+</td>
+<td class="py-3 px-4 whitespace-nowrap font-medium text-on-surface">
+                      Bed C-301 <span class="font-normal text-on-surface-variant text-[12px]">(Cardio)</span>
+</td>
+<td class="py-3 px-4 text-on-surface-variant text-[12px] max-w-[210px] truncate" title="Discharge summary complete &amp; signed">
+                      Discharge summary complete &amp; signed
+                    </td>
+<td class="py-3 px-3 text-right whitespace-nowrap">
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-primary font-medium text-[12px] transition-colors inline-flex items-center gap-1">
+                        Inspect
+                      </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Clean Clinical Pagination -->
+<div class="p-3 bg-surface-container-low/40 border-t border-surface-container flex flex-col sm:flex-row items-center justify-between gap-3 text-[13px]">
+<span class="text-on-surface-variant">Page 1 of 48</span>
+<div class="flex items-center gap-1.5">
+<button class="px-3 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-[12px] font-medium disabled:opacity-40 transition-colors" disabled="">Previous</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-on-primary font-semibold text-[12px] flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-[12px] font-medium transition-colors flex items-center justify-center">2</button>
+<button class="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-[12px] font-medium transition-colors flex items-center justify-center">3</button>
+<button class="px-3 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-[12px] font-medium transition-colors">Next</button>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT: EVENT DETAIL INSPECTOR -->
+<div class="lg:col-span-4 flex flex-col">
+<div class="bg-surface-container-lowest border border-surface-container rounded-xl shadow-xs overflow-hidden sticky top-32">
+<!-- Inspector Header -->
+<div class="px-4 py-3 bg-surface-container-low border-b border-surface-container flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">assignment</span>
+<span class="font-bold text-[15px] text-on-surface" id="inspectorTitle">Event Detail: AUD-98214</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-semibold border border-emerald-200">
+<span class="material-symbols-outlined text-[13px]">check_circle</span>
+                Recorded &amp; Verified
+              </span>
+</div>
+<!-- Content Body -->
+<div class="p-4 flex flex-col gap-4">
+<!-- Event Summary Banner -->
+<div class="bg-surface-container-low/80 border border-surface-container rounded-lg p-3">
+<div class="text-[11px] uppercase font-semibold tracking-wider text-on-surface-variant mb-1">Clinical Activity Summary</div>
+<div class="text-[13px] font-medium text-on-surface leading-snug" id="inspectorSummary">Bed C-302 assigned to patient Marcus Brody by Sarah Jenkins, RN</div>
+</div>
+<!-- Details Grid -->
+<div class="grid grid-cols-1 gap-2.5 text-[13px]">
+<div class="flex items-start justify-between py-1.5 border-b border-surface-container/60">
+<span class="text-on-surface-variant text-[12px]">Timestamp</span>
+<span class="font-mono text-on-surface text-[12px] font-medium" id="detTimestamp">2025-02-23 14:26:18.412 UTC</span>
+</div>
+<div class="flex items-start justify-between py-1.5 border-b border-surface-container/60">
+<span class="text-on-surface-variant text-[12px]">Actor</span>
+<div class="text-right">
+<span class="font-medium text-on-surface" id="detActor">Sarah Jenkins, RN</span>
+<div class="text-[11px] text-on-surface-variant" id="detActorSub">Ops Coordinator · usr_rn_jenkins</div>
+</div>
+</div>
+<div class="flex items-start justify-between py-1.5 border-b border-surface-container/60">
+<span class="text-on-surface-variant text-[12px]">Authentication</span>
+<span class="inline-flex items-center gap-1 text-on-surface font-medium text-[12px]">
+<span class="material-symbols-outlined text-[15px] text-primary">badge</span>
+<span id="detAuth" class="">Badge Tap / OAuth2 Verified</span>
+</span>
+</div>
+<div class="flex items-start justify-between py-1.5 border-b border-surface-container/60">
+<span class="text-on-surface-variant text-[12px]">Patient</span>
+<div class="text-right">
+<span class="font-medium text-on-surface" id="detPatient">Marcus Brody</span>
+<div class="text-[11px] font-mono text-primary font-medium" id="detPatientSub">MRN-882104 · Acuity: ESI-2</div>
+</div>
+</div>
+<div class="flex items-start justify-between py-1.5 border-b border-surface-container/60">
+<span class="text-on-surface-variant text-[12px]">Resource Changed</span>
+<span class="font-medium text-on-surface text-right" id="detResource">Bed C-302 (Cardiology Ward 3B)</span>
+</div>
+<div class="flex items-start justify-between py-1.5">
+<span class="text-on-surface-variant text-[12px]">State Change</span>
+<div class="flex items-center gap-1.5 font-medium text-[12px]" id="detStateChange">
+        <span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-mono text-[11px]">AVAILABLE</span>
+        <span class="material-symbols-outlined text-outline text-[14px]">arrow_forward</span>
+        <span class="px-2 py-0.5 rounded bg-primary-container/20 text-primary font-mono text-[11px] font-semibold">OCCUPIED</span>
+      </div>
+</div>
+</div>
+<!-- Collapsible Technical Verification Accordion -->
+<div class="border border-surface-container rounded-lg overflow-hidden mt-1">
+<button class="w-full px-3 py-2.5 bg-surface-container-low hover:bg-surface-container text-left flex items-center justify-between text-[12px] font-semibold text-on-surface transition-colors" onclick="toggleTechnicalDetails()">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]">verified_user</span>
+                    Technical Verification &amp; Compliance Details
+                  </span>
+<span class="material-symbols-outlined text-outline text-[16px] transition-transform duration-200" id="techAccordionChevron">expand_more</span>
+</button>
+<div class="hidden p-3 bg-surface-container-lowest border-t border-surface-container flex flex-col gap-3" id="techDetailsContent">
+<div class="flex items-center justify-between text-[12px] text-on-surface-variant bg-surface-container-low p-2 rounded"><div class="flex items-center gap-1.5 text-emerald-700 font-semibold"><span class="material-symbols-outlined text-[15px]">verified</span><span class="">Audit Integrity Verified</span></div><span class="font-mono text-[11px] text-on-surface-variant">SHA-256 · Tamper-evident</span></div>
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-semibold text-on-surface-variant uppercase tracking-wider">Structured JSON</span>
+<button class="text-primary hover:text-primary-container text-[11px] font-semibold flex items-center gap-1" onclick="copyInspectorJSON()">
+<span class="material-symbols-outlined text-[13px]">content_copy</span>
+<span id="copyBtnLabel" class="">Copy Record</span>
+</button>
+</div>
+<pre class="bg-surface-container-high/40 text-on-surface p-2.5 rounded-md font-mono text-[11px] leading-relaxed overflow-x-auto max-h-48 border border-surface-container select-all" id="rawJsonBox">{
+  "event_id": "AUD-98214",
+  "timestamp": "2025-02-23T14:26:18.412Z",
+  "actor": "Sarah Jenkins, RN (usr_rn_jenkins)",
+  "patient_mrn": "MRN-882104",
+  "patient_name": "Marcus Brody",
+  "action": "BED_ASSIGNMENT",
+  "resource": "Bed C-302",
+  "department": "Cardiology Ward 3B",
+  "state_change": "AVAILABLE -&gt; OCCUPIED"
+}</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FOOTER -->
+<footer class="w-full bg-surface-container-lowest border-t border-surface-container py-3 px-6 text-on-surface-variant text-[12px]">
+<div class="max-w-[1720px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="font-medium text-on-surface">FlowCare Clinical Operations</span>
+<span class="">•</span>
+<span class="">HIPAA Compliant System Traceability Ledger</span>
+</div>
+<div class="flex items-center gap-3"><span class="flex items-center gap-1.5 font-medium text-emerald-700"><span class="w-2 h-2 rounded-full bg-emerald-500"></span>System Connected</span><span class="">•</span><span class="">Compliance Standard: 21 CFR Part 11</span></div>
+</div>
+</footer>
+<!-- DATA & INTERACTION SCRIPT -->
+<script>
+    const eventsData = {
+      "AUD-98214": {
+        id: "AUD-98214",
+        time: "14:26:18",
+        timestamp: "2025-02-23 14:26:18.412 UTC",
+        summary: "Bed C-302 assigned to patient Marcus Brody by Sarah Jenkins, RN",
+        actor: "Sarah Jenkins, RN",
+        actorSub: "Ops Coordinator · usr_rn_jenkins",
+        auth: "Badge Tap / OAuth2 Verified",
+        patient: "Marcus Brody",
+        patientSub: "MRN-882104 · Acuity: ESI-2",
+        resource: "Bed C-302 (Cardiology Ward 3B)",
+        fromState: "AVAILABLE",
+        toState: "OCCUPIED",
+        details: "Assigned from ED Resus Bay 04",
+        json: {
+          "event_id": "AUD-98214",
+          "timestamp": "2025-02-23T14:26:18.412Z",
+          "actor": "Sarah Jenkins, RN (usr_rn_jenkins)",
+          "patient_mrn": "MRN-882104",
+          "patient_name": "Marcus Brody",
+          "action": "BED_ASSIGNMENT",
+          "resource": "Bed C-302",
+          "department": "Cardiology Ward 3B",
+          "state_change": "AVAILABLE -> OCCUPIED"
+        }
+      },
+      "AUD-98213": {
+        id: "AUD-98213",
+        time: "14:21:05",
+        timestamp: "2025-02-23 14:21:05.109 UTC",
+        summary: "Patient Elena Rostova transfer order initiated to Bed ICU-04 by Dr. Katherine Bell",
+        actor: "Dr. Katherine Bell",
+        actorSub: "Attending Cardiologist · usr_dr_bell",
+        auth: "Passkey / Smartcard Verified",
+        patient: "Elena Rostova",
+        patientSub: "MRN-84729 · Acuity: ESI-3",
+        resource: "Bed ICU-04 (ICU Step-down)",
+        fromState: "EMERGENCY_BAY_04",
+        toState: "CARDIOLOGY_3B",
+        details: "Cardiology to ICU transfer order",
+        json: {
+          "event_id": "AUD-98213",
+          "timestamp": "2025-02-23T14:21:05.109Z",
+          "actor": "Dr. Katherine Bell (usr_dr_bell)",
+          "patient_mrn": "MRN-84729",
+          "action": "TRANSFER_INITIATED",
+          "destination_bed": "Bed ICU-04",
+          "clinical_order": "Cardiology to ICU step-down transfer"
+        }
+      },
+      "AUD-98212": {
+        id: "AUD-98212",
+        time: "14:14:40",
+        timestamp: "2025-02-23 14:14:40.887 UTC",
+        summary: "Terminal cleaning completed and certified for Bay ER-02 by Marcus Cole",
+        actor: "Marcus Cole",
+        actorSub: "Environmental Services · usr_mcole",
+        auth: "RFID Badge Certified",
+        patient: "— (Turnaround)",
+        patientSub: "N/A · Room Sanitization",
+        resource: "Bay ER-02 (Emergency Dept)",
+        fromState: "CLEANING_IN_PROGRESS",
+        toState: "AVAILABLE_READY",
+        details: "Sanitized and inspected ready",
+        json: {
+          "event_id": "AUD-98212",
+          "timestamp": "2025-02-23T14:14:40.887Z",
+          "actor": "Marcus Cole (usr_mcole)",
+          "action": "CLEANING_COMPLETED",
+          "resource": "Bay ER-02",
+          "status": "SANITIZED_AND_READY"
+        }
+      },
+      "AUD-98211": {
+        id: "AUD-98211",
+        time: "14:02:11",
+        timestamp: "2025-02-23 14:02:11.004 UTC",
+        summary: "Theatre OR-02 released following completion of surgical procedure for David Miller",
+        actor: "System",
+        actorSub: "Theatre Automated Scheduler",
+        auth: "Internal Service Account",
+        patient: "David Miller",
+        patientSub: "MRN-90214 · Post-Op Recovery",
+        resource: "Theatre OR-02 (Surgical Suite)",
+        fromState: "OCCUPIED_PROCEDURE",
+        toState: "AVAILABLE",
+        details: "Orthopedic procedure concluded",
+        json: {
+          "event_id": "AUD-98211",
+          "timestamp": "2025-02-23T14:02:11.004Z",
+          "actor": "System Scheduler",
+          "patient_mrn": "MRN-90214",
+          "action": "THEATRE_SLOT_RELEASED",
+          "resource": "Theatre OR-02",
+          "surgical_status": "CONCLUDED"
+        }
+      },
+      "AUD-98210": {
+        id: "AUD-98210",
+        time: "13:58:30",
+        timestamp: "2025-02-23 13:58:30.912 UTC",
+        summary: "Capacity alert recorded: Emergency Department acute occupancy exceeded 92%",
+        actor: "System",
+        actorSub: "Capacity Watcher Service",
+        auth: "Automated Rule Trigger",
+        patient: "Hospital Campus",
+        patientSub: "Global Department Notification",
+        resource: "Emergency Department",
+        fromState: "NORMAL_OPS (78%)",
+        toState: "CAPACITY_SURGE (92%)",
+        details: "Acute capacity reached 92%",
+        json: {
+          "event_id": "AUD-98210",
+          "timestamp": "2025-02-23T13:58:30.912Z",
+          "actor": "Capacity Watcher",
+          "action": "CAPACITY_ALERT",
+          "department": "Emergency Dept",
+          "occupancy": "92%",
+          "threshold_flag": "HIGH"
+        }
+      },
+      "AUD-98209": {
+        id: "AUD-98209",
+        time: "13:42:01",
+        timestamp: "2025-02-23 13:42:01.321 UTC",
+        summary: "Discharge confirmed and Bed C-301 cleared for patient Hanna Sorensen",
+        actor: "Sarah Jenkins, RN",
+        actorSub: "Ops Coordinator · usr_rn_jenkins",
+        auth: "Badge Tap / OAuth2 Verified",
+        patient: "Hanna Sorensen",
+        patientSub: "MRN-781903 · Discharge Cleared",
+        resource: "Bed C-301 (Cardiology Ward 3B)",
+        fromState: "OCCUPIED",
+        toState: "DIRTY_EVACUATED",
+        details: "Discharge summary complete & signed",
+        json: {
+          "event_id": "AUD-98209",
+          "timestamp": "2025-02-23T13:42:01.321Z",
+          "actor": "Sarah Jenkins, RN",
+          "patient_mrn": "MRN-781903",
+          "action": "PATIENT_DISCHARGED",
+          "resource": "Bed C-301",
+          "physician_signoff": "VERIFIED"
+        }
+      }
+    };
+
+    function inspectEvent(id) {
+      const item = eventsData[id];
+      if (!item) return;
+
+      // Update table row styling
+      document.querySelectorAll('.audit-table-row').forEach(r => {
+        r.classList.remove('bg-surface-container-high/40');
+      });
+      const selectedRow = document.querySelector(`.audit-table-row[data-id="${id}"]`);
+      if (selectedRow) selectedRow.classList.add('bg-surface-container-high/40');
+
+      // Update inspector details
+      document.getElementById('inspectorTitle').textContent = `Event Detail: ${item.id}`;
+      document.getElementById('inspectorSummary').textContent = item.summary;
+      document.getElementById('detTimestamp').textContent = item.timestamp;
+      document.getElementById('detActor').textContent = item.actor;
+      document.getElementById('detActorSub').textContent = item.actorSub;
+      document.getElementById('detAuth').textContent = item.auth;
+      document.getElementById('detPatient').textContent = item.patient;
+      document.getElementById('detPatientSub').textContent = item.patientSub;
+      document.getElementById('detResource').textContent = item.resource;
+      document.getElementById('rawJsonBox').textContent = JSON.stringify(item.json, null, 2);
+
+      // State pill
+      document.getElementById('detStateChange').innerHTML = `
+        <span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-mono text-[11px]">${item.fromState}</span>
+        <span class="material-symbols-outlined text-outline text-[14px]">arrow_forward</span>
+        <span class="px-2 py-0.5 rounded bg-primary-container/20 text-primary font-mono text-[11px] font-semibold">${item.toState}</span>
+      `;
+    }
+
+    function toggleTechnicalDetails() {
+      const content = document.getElementById('techDetailsContent');
+      const chevron = document.getElementById('techAccordionChevron');
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        chevron.textContent = 'expand_less';
+      } else {
+        content.classList.add('hidden');
+        chevron.textContent = 'expand_more';
+      }
+    }
+
+    function copyInspectorJSON() {
+      const text = document.getElementById('rawJsonBox').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const label = document.getElementById('copyBtnLabel');
+        label.textContent = "Copied!";
+        setTimeout(() => { label.textContent = "Copy Record"; }, 1600);
+      });
+    }
+
+    function toggleExportMenu() {
+      document.getElementById('exportMenu').classList.toggle('hidden');
+    }
+
+    function exportLog(fmt) {
+      document.getElementById('exportMenu').classList.add('hidden');
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(eventsData, null, 2));
+      const a = document.createElement('a');
+      a.setAttribute("href", dataStr);
+      a.setAttribute("download", `flowcare_audit_${fmt}_${new Date().toISOString().slice(0,10)}.${fmt}`);
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+
+    function triggerRefresh() {
+      const icon = document.getElementById('refreshIcon');
+      icon.classList.add('animate-spin');
+      setTimeout(() => {
+        icon.classList.remove('animate-spin');
+      }, 500);
+    }
+
+    function filterLedger() {
+      const query = document.getElementById('filterSearch').value.toLowerCase();
+      const actorFilter = document.getElementById('filterActor').value;
+      const deptFilter = document.getElementById('filterDept').value;
+      const eventFilter = document.getElementById('filterEventType').value;
+      const rows = document.querySelectorAll('.audit-table-row');
+      let count = 0;
+
+      rows.forEach(r => {
+        const text = r.innerText.toLowerCase();
+        let match = true;
+
+        if (query && !text.includes(query)) match = false;
+
+        if (actorFilter !== 'all') {
+          if (actorFilter === 'sarah' && !text.includes('sarah jenkins')) match = false;
+          if (actorFilter === 'bell' && !text.includes('katherine bell')) match = false;
+          if (actorFilter === 'cole' && !text.includes('marcus cole')) match = false;
+          if (actorFilter === 'system' && !text.includes('system')) match = false;
+        }
+
+        if (deptFilter !== 'all') {
+          if (deptFilter === 'cardio' && !text.includes('cardio')) match = false;
+          if (deptFilter === 'icu' && !text.includes('icu')) match = false;
+          if (deptFilter === 'er' && !text.includes('er') && !text.includes('emergency')) match = false;
+          if (deptFilter === 'theatre' && !text.includes('theatre') && !text.includes('or-02')) match = false;
+        }
+
+        if (eventFilter !== 'all') {
+          if (!text.includes(eventFilter.toLowerCase())) match = false;
+        }
+
+        if (match) {
+          r.classList.remove('hidden');
+          count++;
+        } else {
+          r.classList.add('hidden');
+        }
+      });
+
+      document.getElementById('activeCount').textContent = `Showing ${count} recorded events`;
+    }
+
+    function resetFilters() {
+      document.getElementById('filterSearch').value = '';
+      document.getElementById('filterActor').value = 'all';
+      document.getElementById('filterDept').value = 'all';
+      document.getElementById('filterEventType').value = 'all';
+      filterLedger();
+    }
+
+    // Close export dropdown on outside click
+    window.addEventListener('click', (e) => {
+      const exportContainer = document.getElementById('exportContainer');
+      if (exportContainer && !exportContainer.contains(e.target)) {
+        document.getElementById('exportMenu').classList.add('hidden');
+      }
+    });
+
+    // Default selection
+    inspectEvent('AUD-98214');
+  </script>
+
+
+
+
+</body></html>

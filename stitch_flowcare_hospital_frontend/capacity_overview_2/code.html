@@ -1,0 +1,675 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-primary-fixed": "#001d31",
+            "on-background": "#0b1c30",
+            "inverse-primary": "#93ccff",
+            "tertiary": "#545c72",
+            "on-tertiary-fixed": "#131b2e",
+            "tertiary-container": "#6c748b",
+            "secondary-fixed-dim": "#b4c5ff",
+            "tertiary-fixed-dim": "#bec6e0",
+            "surface-variant": "#d3e4fe",
+            "on-primary": "#ffffff",
+            "tertiary-fixed": "#dae2fd",
+            "surface-container-lowest": "#ffffff",
+            "surface-tint": "#006398",
+            "on-error": "#ffffff",
+            "inverse-surface": "#213145",
+            "on-secondary-fixed-variant": "#003ea8",
+            "on-tertiary-fixed-variant": "#3f465c",
+            "primary-container": "#007bb9",
+            "error": "#ba1a1a",
+            "on-primary-container": "#fdfcff",
+            "surface-container-low": "#eff4ff",
+            "primary-fixed-dim": "#93ccff",
+            "on-primary-fixed-variant": "#004b73",
+            "surface": "#f8f9ff",
+            "on-surface": "#0b1c30",
+            "secondary-fixed": "#dbe1ff",
+            "on-secondary-container": "#fefcff",
+            "surface-container": "#e5eeff",
+            "outline-variant": "#bfc7d2",
+            "on-tertiary-container": "#fefcff",
+            "on-tertiary": "#ffffff",
+            "inverse-on-surface": "#eaf1ff",
+            "surface-bright": "#f8f9ff",
+            "surface-dim": "#cbdbf5",
+            "outline": "#707881",
+            "on-secondary": "#ffffff",
+            "secondary": "#0051d5",
+            "error-container": "#ffdad6",
+            "primary": "#006194",
+            "on-surface-variant": "#3f4850",
+            "primary-fixed": "#cce5ff",
+            "surface-container-highest": "#d3e4fe",
+            "secondary-container": "#316bf3",
+            "on-error-container": "#93000a",
+            "surface-container-high": "#dce9ff",
+            "on-secondary-fixed": "#00174b",
+            "background": "#f8f9ff"
+          },
+          borderRadius: {
+            "DEFAULT": "0.125rem",
+            "lg": "0.375rem",
+            "xl": "0.625rem",
+            "full": "9999px"
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface text-on-surface font-sans antialiased">
+<!-- 1. HEADER & TOP NAV -->
+<header class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-surface-container">
+<div class="w-full px-6 lg:px-8">
+<!-- Upper Utility Bar -->
+<div class="flex items-center justify-between h-16 border-b border-surface-container/60">
+<div class="flex items-center gap-5">
+<!-- FlowCare Logo Identity -->
+<div class="flex items-center gap-3">
+<img alt="FlowCare Clinical Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Wx4P6PAYpp5mdNFOnTdMLoqA61V2RjuY6mz7XKgcX2YDhSLD_c9OzDs1vkFtm9ajFk09Fef0Xevs7LLE828qx8uL3qp87Ktsgp5A0o08KOO1LEn7IA-ggNMsYNbDCmgHcUOPlagTDOzii9k8M6a2TzQx9uGGxhtqVJcARZb_a7Lc792d3q3zxocvZiEQZdgMdPx9mhUGdrqQ5VeLiwTGRMkTVRfKIqPg1Lf29QLhFevYxNYgt1NLV4aR4">
+<div class="flex flex-col">
+<span class="text-base font-bold tracking-tight text-on-surface leading-tight">FlowCare</span>
+<span class="text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider">Clinical Ops</span>
+</div>
+</div>
+<div class="h-5 w-px bg-outline-variant/50 hidden sm:block"></div>
+<!-- Hospital Selector -->
+<button class="hidden sm:flex items-center gap-2 bg-surface-container-low hover:bg-surface-container transition-colors px-3 py-1.5 rounded-lg border border-surface-container text-left">
+<span class="material-symbols-outlined text-primary text-[18px]">domain</span>
+<span class="text-sm font-semibold text-on-surface">St. Jude Central Campus - All Wings</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">expand_more</span>
+</button>
+<!-- Shift & Time Indicator -->
+<div class="hidden md:flex items-center gap-2 text-xs font-medium text-on-surface-variant bg-surface-container-low px-3 py-1.5 rounded-lg border border-surface-container">
+<span class="material-symbols-outlined text-secondary text-[16px]">schedule</span>
+<span class="">Day Shift · 07:00 – 19:00</span>
+</div>
+</div>
+<!-- Right: Status and User Profile -->
+<div class="flex items-center gap-5">
+<!-- Clean subtle live indicator -->
+<div class="flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200/80"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="">Live Updates</span></div>
+<div class="h-5 w-px bg-outline-variant/50"></div>
+<!-- User Profile -->
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<div class="text-sm font-semibold text-on-surface leading-tight">Sarah Jenkins, RN</div>
+<div class="text-xs text-on-surface-variant">Ops Coordinator</div>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-semibold text-xs shadow-sm">
+              SJ
+            </div>
+</div>
+</div>
+</div>
+<!-- Main Navigation Tabs (Clean, noise-free) -->
+<div class="flex items-center justify-between h-12">
+<nav class="flex items-center gap-2">
+<a class="px-4 py-1.5 rounded-lg text-xs md:text-sm font-semibold bg-primary text-white shadow-sm transition-all" href="#">
+            Capacity Overview
+          </a>
+<a class="px-4 py-1.5 rounded-lg text-xs md:text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#">
+            Resources
+          </a>
+<a class="px-4 py-1.5 rounded-lg text-xs md:text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#">
+            Patient Flow
+          </a>
+<a class="px-4 py-1.5 rounded-lg text-xs md:text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#">
+            Audit History
+          </a>
+</nav>
+</div>
+</div>
+</header>
+<!-- MAIN VIEW CONTAINER -->
+<main class="w-full pt-32 pb-16 px-6 lg:px-8 max-w-[1600px] mx-auto min-h-screen flex flex-col gap-6">
+<!-- 2. OVERALL HOSPITAL STATUS BANNER -->
+<section class="w-full bg-white rounded-xl border border-red-200/70 p-4 sm:p-5 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4"><div class="flex items-start sm:items-center gap-4">
+  <div class="w-12 h-12 rounded-xl bg-red-50 border border-red-200 flex items-center justify-center text-error flex-shrink-0 shadow-xs">
+    <span class="material-symbols-outlined text-[24px]">warning</span>
+  </div>
+  <div class="flex flex-col gap-1">
+    <div class="flex items-center gap-2.5 flex-wrap">
+      <span class="text-base sm:text-lg font-bold text-on-surface tracking-tight">
+        Hospital Status: <span class="text-error">High Utilization (88.4%)</span>
+      </span>
+    </div>
+    <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+      Acute Care &amp; ICU at 92% combined capacity. Clean turnaround queue running at average 18 mins. Rapid triage in effect.
+    </p>
+  </div>
+</div>
+<div class="flex items-center self-end sm:self-center flex-shrink-0">
+  <button class="px-5 py-2.5 bg-error hover:bg-red-700 text-white font-semibold text-xs sm:text-sm rounded-lg shadow-sm transition-colors flex items-center gap-2">
+    <span class="material-symbols-outlined text-[18px]">announcement</span>
+    <span class="">Escalate Protocol</span>
+  </button>
+</div></section>
+<!-- 3. KEY CAPACITY NUMBERS (5 Primary prominent metric cards) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4"><!-- 1. Occupancy -->
+<div class="bg-white rounded-xl p-5 border border-surface-container shadow-sm flex flex-col justify-between">
+  <div class="flex items-center justify-between">
+    <span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Hospital Occupancy</span>
+    <span class="material-symbols-outlined text-primary text-[20px]">donut_large</span>
+  </div>
+  <div class="mt-5">
+    <div class="text-3xl font-bold text-on-surface tracking-tight">88.4%</div>
+    <div class="flex items-center gap-1.5 mt-2 text-xs text-on-surface-variant">
+      <span class="font-semibold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">+2.1%</span>
+      <span class="">vs 08:00 shift start</span>
+    </div>
+  </div>
+</div>
+<!-- 2. Available Beds -->
+<div class="bg-white rounded-xl p-5 border border-surface-container shadow-sm flex flex-col justify-between">
+  <div class="flex items-center justify-between">
+    <span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Available Beds</span>
+    <span class="material-symbols-outlined text-emerald-600 text-[20px]">single_bed</span>
+  </div>
+  <div class="mt-5">
+    <div class="text-3xl font-bold text-emerald-700 tracking-tight">38</div>
+    <div class="text-xs text-on-surface-variant mt-2 font-medium">
+      442 occupied of 480 total beds
+    </div>
+  </div>
+</div>
+<!-- 3. Theatre Slots -->
+<div class="bg-white rounded-xl p-5 border border-surface-container shadow-sm flex flex-col justify-between">
+  <div class="flex items-center justify-between">
+    <span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Theatre Slots</span>
+    <span class="material-symbols-outlined text-secondary text-[20px]">medical_services</span>
+  </div>
+  <div class="mt-5">
+    <div class="text-3xl font-bold text-on-surface tracking-tight">3 Free</div>
+    <div class="text-xs text-on-surface-variant mt-2 font-medium">
+      7 active of 10 total ORs
+    </div>
+  </div>
+</div>
+<!-- 4. Available Staff -->
+<div class="bg-white rounded-xl p-5 border border-surface-container shadow-sm flex flex-col justify-between">
+  <div class="flex items-center justify-between">
+    <span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Available Staff</span>
+    <span class="material-symbols-outlined text-primary text-[20px]">groups</span>
+  </div>
+  <div class="mt-5">
+    <div class="text-3xl font-bold text-on-surface tracking-tight">86 On Duty</div>
+    <div class="text-xs text-on-surface-variant mt-2 font-medium">
+      104 rostered on shift
+    </div>
+  </div>
+</div>
+<!-- 5. Patients Waiting -->
+<div class="bg-white rounded-xl p-5 border border-surface-container shadow-sm flex flex-col justify-between">
+  <div class="flex items-center justify-between">
+    <span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Patients Waiting</span>
+    <span class="material-symbols-outlined text-error text-[20px]">hourglass_empty</span>
+  </div>
+  <div class="mt-5">
+    <div class="text-3xl font-bold text-error tracking-tight">24</div>
+    <div class="flex items-center gap-1.5 mt-2 text-xs text-on-surface-variant">
+      <span class="font-semibold text-red-700 bg-red-50 px-1.5 py-0.5 rounded border border-red-200">11 Priority 1</span>
+      <span class="">in triage &amp; intake</span>
+    </div>
+  </div>
+</div></section>
+<!-- 4. NEEDS OPERATIONAL ATTENTION (Restrained, focused issues section) -->
+<section class="bg-white rounded-xl p-5 border border-surface-container shadow-sm flex flex-col gap-4"><div class="flex items-center justify-between">
+  <div class="flex items-center gap-2.5">
+    <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+    <h2 class="text-sm font-bold text-on-surface tracking-tight uppercase">Needs Operational Attention (4 Issues)</h2>
+  </div>
+  <span class="text-xs text-on-surface-variant font-medium">Updated 2m ago</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+  <!-- Issue 1 -->
+  <div class="bg-surface-container-low/70 border border-surface-container rounded-xl p-4 flex flex-col justify-between gap-3 shadow-xs">
+    <div>
+      <div class="flex items-center justify-between gap-2">
+        <span class="text-xs font-bold text-error uppercase tracking-wide">Surge Alert</span>
+        <span class="text-[11px] text-on-surface-variant font-medium">ETA &lt; 8m</span>
+      </div>
+      <div class="text-sm font-semibold text-on-surface mt-1.5">Emergency Department</div>
+      <p class="text-xs text-on-surface-variant mt-1.5 leading-relaxed">
+        6 of 6 resuscitation bays occupied. 4 inbound ambulances en route.
+      </p>
+    </div>
+    <div class="pt-2.5 border-t border-surface-container flex items-center justify-end">
+      <button class="text-xs font-semibold text-white bg-error hover:bg-red-700 px-3.5 py-1.5 rounded-lg transition-colors shadow-xs">
+        Divert Inbound
+      </button>
+    </div>
+  </div>
+  <!-- Issue 2 -->
+  <div class="bg-surface-container-low/70 border border-surface-container rounded-xl p-4 flex flex-col justify-between gap-3 shadow-xs">
+    <div>
+      <div class="flex items-center justify-between gap-2">
+        <span class="text-xs font-bold text-amber-700 uppercase tracking-wide">Resource Deficit</span>
+        <span class="text-[11px] text-on-surface-variant font-medium">54m wait</span>
+      </div>
+      <div class="text-sm font-semibold text-on-surface mt-1.5">Cardiology Unit</div>
+      <p class="text-xs text-on-surface-variant mt-1.5 leading-relaxed">
+        Priority bed required for intake. Zero monitored beds currently available.
+      </p>
+    </div>
+    <div class="pt-2.5 border-t border-surface-container flex items-center justify-end">
+      <button class="text-xs font-semibold text-white bg-primary hover:bg-primary-container px-3.5 py-1.5 rounded-lg transition-colors shadow-xs">
+        Reassign Bed
+      </button>
+    </div>
+  </div>
+  <!-- Issue 3 -->
+  <div class="bg-surface-container-low/70 border border-surface-container rounded-xl p-4 flex flex-col justify-between gap-3 shadow-xs">
+    <div>
+      <div class="flex items-center justify-between gap-2">
+        <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wide">Staffing Ratio</span>
+        <span class="text-[11px] text-on-surface-variant font-medium">Starts 19:00</span>
+      </div>
+      <div class="text-sm font-semibold text-on-surface mt-1.5">Ward 4B Night Shift</div>
+      <p class="text-xs text-on-surface-variant mt-1.5 leading-relaxed">
+        1 nurse deficit below mandated patient acuity ratio for 19:00 shift.
+      </p>
+    </div>
+    <div class="pt-2.5 border-t border-surface-container flex items-center justify-end">
+      <button class="text-xs font-semibold text-on-surface bg-surface-container-highest hover:bg-surface-container-high px-3.5 py-1.5 rounded-lg transition-colors">
+        Call Float RN
+      </button>
+    </div>
+  </div>
+  <!-- Issue 4 -->
+  <div class="bg-surface-container-low/70 border border-surface-container rounded-xl p-4 flex flex-col justify-between gap-3 shadow-xs">
+    <div>
+      <div class="flex items-center justify-between gap-2">
+        <span class="text-xs font-bold text-secondary uppercase tracking-wide">Schedule Delay</span>
+        <span class="text-[11px] text-on-surface-variant font-medium">+35m Overrun</span>
+      </div>
+      <div class="text-sm font-semibold text-on-surface mt-1.5">Operating Room 03</div>
+      <p class="text-xs text-on-surface-variant mt-1.5 leading-relaxed">
+        Orthopedic procedure running over schedule; holding post-op recovery bays.
+      </p>
+    </div>
+    <div class="pt-2.5 border-t border-surface-container flex items-center justify-end">
+      <button class="text-xs font-semibold text-white bg-secondary hover:bg-blue-700 px-3.5 py-1.5 rounded-lg transition-colors shadow-xs">
+        Reschedule Next
+      </button>
+    </div>
+  </div>
+</div></section>
+<!-- 5. DEPARTMENT CAPACITY (8 Clean Cards with glanceable layout) -->
+<section class="flex flex-col gap-3.5"><div class="flex items-center justify-between flex-wrap gap-2">
+  <div class="flex items-center gap-3">
+    <h2 class="text-base font-bold text-on-surface">Department Census &amp; Capacity Matrix</h2>
+    <span class="text-xs font-medium text-on-surface-variant bg-surface-container px-2.5 py-0.5 rounded">8 Operational Wings</span>
+  </div>
+  <div class="flex items-center gap-4 text-xs font-medium text-on-surface-variant">
+    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-red-600"></span> Critical (&gt;92%)</span>
+    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-500"></span> High (88–92%)</span>
+    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-600"></span> Normal (&lt;88%)</span>
+  </div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+  <!-- 1: Emergency & Trauma -->
+  <div class="bg-white rounded-xl p-5 border border-surface-container shadow-sm flex flex-col justify-between gap-3">
+    <div>
+      <div class="flex items-center justify-between gap-2">
+        <span class="text-sm font-bold text-on-surface truncate">Emergency &amp; Trauma</span>
+        <span class="text-[11px] font-semibold text-red-700 bg-red-50 border border-red-200 px-2 py-0.5 rounded">Critical</span>
+      </div>
+      <div class="flex items-baseline justify-between mt-3">
+        <span class="text-lg font-bold text-on-surface">42 / 45 Beds</span>
+        <span class="text-sm font-bold text-error">93.3%</span>
+      </div>
+      <div class="w-full bg-surface-container h-2 rounded-full overflow-hidden mt-2.5">
+        <div class="bg-red-600 h-full rounded-full" style="width: 93.3%"></div>
+      </div>
+    </div>
+    <div class="pt-2.5 border-t border-surface-container flex items-center justify-between text-xs text-on-surface-variant font-medium">
+      <span class="">2 Available Beds</span>
+      <span class="">1 In Cleaning</span>
+    </div>
+  </div>
+  <!-- 2: Intensive Care Unit (ICU) -->
+  <div class="bg-white rounded-xl p-5 border border-surface-container shadow-sm flex flex-col justify-between gap-3">
+    <div>
+      <div class="flex items-center justify-between gap-2">
+        <span class="text-sm font-bold text-on-surface truncate">Intensive Care Unit (ICU)</span>
+        <span class="text-[11px] font-semibold text-red-700 bg-red-50 border border-red-200 px-2 py-0.5 rounded">Critical</span>
+      </div>
+      <div class="flex items-baseline justify-between mt-3">
+        <span class="text-lg font-bold text-on-surface">28 / 30 Beds</span>
+        <span class="text-sm font-bold text-error">93.3%</span>
+      </div>
+      <div class="w-full bg-surface-container h-2 rounded-full overflow-hidden mt-2.5">
+        <div class="bg-red-600 h-full rounded-full" style="width: 93.3%"></div>
+      </div>
+    </div>
+    <div class="pt-2.5 border-t border-surface-container flex items-center justify-between text-xs text-on-surface-variant font-medium">
+      <span class="">1 Available Bed</span>
+      <span class="">1 Maintenance</span>
+    </div>
+  </div>
+  <!-- 3: Cardiology & Telemetry -->
+  <div class="bg-white rounded-xl p-5 border border-surface-container shadow-sm flex flex-col justify-between gap-3">
+    <div>
+      <div class="flex items-center justify-between gap-2">
+        <span class="text-sm font-bold text-on-surface truncate">Cardiology &amp; Monitored</span>
+        <span class="text-[11px] font-semibold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">High</span>
+      </div>
+      <div class="flex items-baseline justify-between mt-3">
+        <span class="text-lg font-bold text-on-surface">54 / 60 Beds</span>
+        <span class="text-sm font-bold text-amber-700">90.0%</span>
+      </div>
+      <div class="w-full bg-surface-container h-2 rounded-full overflow-hidden mt-2.5">
+        <div class="bg-amber-500 h-full rounded-full" style="width: 90.0%"></div>
+      </div>
+    </div>
+    <div class="pt-2.5 border-t border-surface-container flex items-center justify-between text-xs text-on-surface-variant font-medium">
+      <span class="">4 Available Beds</span>
+      <span class="">2 In Cleaning</span>
+    </div>
+  </div>
+  <!-- 4: General Surgery -->
+  <div class="bg-white rounded-xl p-5 border border-surface-container shadow-sm flex flex-col justify-between gap-3">
+    <div>
+      <div class="flex items-center justify-between gap-2">
+        <span class="text-sm font-bold text-on-surface truncate">General Surgery</span>
+        <span class="text-[11px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">Normal</span>
+      </div>
+      <div class="flex items-baseline justify-between mt-3">
+        <span class="text-lg font-bold text-on-surface">76 / 88 Beds</span>
+        <span class="text-sm font-bold text-emerald-700">86.4%</span>
+      </div>
+      <div class="w-full bg-surface-container h-2 rounded-full overflow-hidden mt-2.5">
+        <div class="bg-emerald-600 h-full rounded-full" style="width: 86.4%"></div>
+      </div>
+    </div>
+    <div class="pt-2.5 border-t border-surface-container flex items-center justify-between text-xs text-on-surface-variant font-medium">
+      <span class="">9 Available Beds</span>
+      <span class="">3 In Cleaning</span>
+    </div>
+  </div>
+  <!-- 5: Orthopedics & Trauma -->
+  <div class="bg-white rounded-xl p-5 border border-surface-container shadow-sm flex flex-col justify-between gap-3">
+    <div>
+      <div class="flex items-center justify-between gap-2">
+        <span class="text-sm font-bold text-on-surface truncate">Orthopedics &amp; Trauma</span>
+        <span class="text-[11px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">Normal</span>
+      </div>
+      <div class="flex items-baseline justify-between mt-3">
+        <span class="text-lg font-bold text-on-surface">48 / 56 Beds</span>
+        <span class="text-sm font-bold text-emerald-700">85.7%</span>
+      </div>
+      <div class="w-full bg-surface-container h-2 rounded-full overflow-hidden mt-2.5">
+        <div class="bg-emerald-600 h-full rounded-full" style="width: 85.7%"></div>
+      </div>
+    </div>
+    <div class="pt-2.5 border-t border-surface-container flex items-center justify-between text-xs text-on-surface-variant font-medium">
+      <span class="">6 Available Beds</span>
+      <span class="">2 In Cleaning</span>
+    </div>
+  </div>
+  <!-- 6: Pediatrics & Neonatal -->
+  <div class="bg-white rounded-xl p-5 border border-surface-container shadow-sm flex flex-col justify-between gap-3">
+    <div>
+      <div class="flex items-center justify-between gap-2">
+        <span class="text-sm font-bold text-on-surface truncate">Pediatrics &amp; Neonatal</span>
+        <span class="text-[11px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">Normal</span>
+      </div>
+      <div class="flex items-baseline justify-between mt-3">
+        <span class="text-lg font-bold text-on-surface">34 / 44 Beds</span>
+        <span class="text-sm font-bold text-emerald-700">77.3%</span>
+      </div>
+      <div class="w-full bg-surface-container h-2 rounded-full overflow-hidden mt-2.5">
+        <div class="bg-emerald-600 h-full rounded-full" style="width: 77.3%"></div>
+      </div>
+    </div>
+    <div class="pt-2.5 border-t border-surface-container flex items-center justify-between text-xs text-on-surface-variant font-medium">
+      <span class="">8 Available Beds</span>
+      <span class="">2 In Cleaning</span>
+    </div>
+  </div>
+  <!-- 7: Oncology & Hematology -->
+  <div class="bg-white rounded-xl p-5 border border-surface-container shadow-sm flex flex-col justify-between gap-3">
+    <div>
+      <div class="flex items-center justify-between gap-2">
+        <span class="text-sm font-bold text-on-surface truncate">Oncology &amp; Hematology</span>
+        <span class="text-[11px] font-semibold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">High</span>
+      </div>
+      <div class="flex items-baseline justify-between mt-3">
+        <span class="text-lg font-bold text-on-surface">38 / 42 Beds</span>
+        <span class="text-sm font-bold text-amber-700">90.5%</span>
+      </div>
+      <div class="w-full bg-surface-container h-2 rounded-full overflow-hidden mt-2.5">
+        <div class="bg-amber-500 h-full rounded-full" style="width: 90.5%"></div>
+      </div>
+    </div>
+    <div class="pt-2.5 border-t border-surface-container flex items-center justify-between text-xs text-on-surface-variant font-medium">
+      <span class="">3 Available Beds</span>
+      <span class="">1 In Cleaning</span>
+    </div>
+  </div>
+  <!-- 8: Maternity & Labor -->
+  <div class="bg-white rounded-xl p-5 border border-surface-container shadow-sm flex flex-col justify-between gap-3">
+    <div>
+      <div class="flex items-center justify-between gap-2">
+        <span class="text-sm font-bold text-on-surface truncate">Maternity &amp; Labor</span>
+        <span class="text-[11px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">Normal</span>
+      </div>
+      <div class="flex items-baseline justify-between mt-3">
+        <span class="text-lg font-bold text-on-surface">22 / 35 Beds</span>
+        <span class="text-sm font-bold text-emerald-700">62.9%</span>
+      </div>
+      <div class="w-full bg-surface-container h-2 rounded-full overflow-hidden mt-2.5">
+        <div class="bg-emerald-600 h-full rounded-full" style="width: 62.9%"></div>
+      </div>
+    </div>
+    <div class="pt-2.5 border-t border-surface-container flex items-center justify-between text-xs text-on-surface-variant font-medium">
+      <span class="">11 Available Beds</span>
+      <span class="">2 In Cleaning</span>
+    </div>
+  </div>
+</div></section>
+<!-- 6. ACTIVE WAITLIST & RECENT ACTIVITY (2-Column Lower Layout) -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-6"><!-- Left Column: Waitlist Table (7 cols) -->
+<div class="lg:col-span-7 bg-white rounded-xl p-5 border border-surface-container shadow-sm flex flex-col justify-between">
+  <div>
+    <div class="flex items-center justify-between pb-3 border-b border-surface-container">
+      <div class="flex items-center gap-2.5">
+        <span class="material-symbols-outlined text-primary text-[20px]">group</span>
+        <h3 class="text-sm font-bold text-on-surface uppercase tracking-tight">Active Waitlist Queue</h3>
+        <span class="text-xs font-semibold text-error bg-red-50 border border-red-200 px-2 py-0.5 rounded">24 In Queue</span>
+      </div>
+      <a class="text-xs font-semibold text-primary hover:text-primary-container flex items-center gap-1 transition-colors" href="#">
+        View All Waitlist <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+      </a>
+    </div>
+    <div class="w-full overflow-x-auto mt-2">
+      <table class="w-full text-left text-xs">
+        <thead>
+          <tr class="text-on-surface-variant uppercase font-semibold border-b border-surface-container text-[11px]">
+            <th class="py-3 px-2.5">Patient / MRN</th>
+            <th class="py-3 px-2.5">Required Resource</th>
+            <th class="py-3 px-2.5">Department</th>
+            <th class="py-3 px-2.5 text-center">Priority</th>
+            <th class="py-3 px-2.5">Wait Time</th>
+            <th class="py-3 px-2.5 text-right">Status</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-surface-container/60">
+          <!-- Row 1 -->
+          <tr class="hover:bg-surface-container-low/60 transition-colors">
+            <td class="py-3 px-2.5">
+              <div class="font-semibold text-on-surface">Elena Rostova</div>
+              <div class="text-[11px] text-on-surface-variant font-mono">MRN-9021-44</div>
+            </td>
+            <td class="py-3 px-2.5 text-on-surface-variant font-medium">Monitored Telemetry Bed</td>
+            <td class="py-3 px-2.5 text-on-surface font-medium">Cardiology</td>
+            <td class="py-3 px-2.5 text-center">
+              <span class="bg-red-50 text-red-700 border border-red-200 font-bold px-2 py-0.5 rounded text-[11px]">P1</span>
+            </td>
+            <td class="py-3 px-2.5 text-on-surface-variant font-medium">54 min</td>
+            <td class="py-3 px-2.5 text-right">
+              <span class="bg-surface-container text-on-surface-variant font-medium px-2.5 py-1 rounded text-[11px]">Awaiting Bed</span>
+            </td>
+          </tr>
+          <!-- Row 2 -->
+          <tr class="hover:bg-surface-container-low/60 transition-colors">
+            <td class="py-3 px-2.5">
+              <div class="font-semibold text-on-surface">Marcus Vance</div>
+              <div class="text-[11px] text-on-surface-variant font-mono">MRN-3319-82</div>
+            </td>
+            <td class="py-3 px-2.5 text-on-surface-variant font-medium">Isolation Pressure Bed</td>
+            <td class="py-3 px-2.5 text-on-surface font-medium">ICU Main</td>
+            <td class="py-3 px-2.5 text-center">
+              <span class="bg-red-50 text-red-700 border border-red-200 font-bold px-2 py-0.5 rounded text-[11px]">P1</span>
+            </td>
+            <td class="py-3 px-2.5 text-on-surface-variant font-medium">40 min</td>
+            <td class="py-3 px-2.5 text-right">
+              <span class="bg-red-50 text-red-700 border border-red-200 font-medium px-2.5 py-1 rounded text-[11px]">In Triage</span>
+            </td>
+          </tr>
+          <!-- Row 3 -->
+          <tr class="hover:bg-surface-container-low/60 transition-colors">
+            <td class="py-3 px-2.5">
+              <div class="font-semibold text-on-surface">Claire Chen</div>
+              <div class="text-[11px] text-on-surface-variant font-mono">MRN-8821-10</div>
+            </td>
+            <td class="py-3 px-2.5 text-on-surface-variant font-medium">Post-Op Recovery Bay</td>
+            <td class="py-3 px-2.5 text-on-surface font-medium">General Surgery</td>
+            <td class="py-3 px-2.5 text-center">
+              <span class="bg-amber-50 text-amber-800 border border-amber-200 font-bold px-2 py-0.5 rounded text-[11px]">P2</span>
+            </td>
+            <td class="py-3 px-2.5 text-on-surface-variant font-medium">26 min</td>
+            <td class="py-3 px-2.5 text-right">
+              <span class="bg-blue-50 text-primary border border-blue-200 font-medium px-2.5 py-1 rounded text-[11px]">Theatre Transfer</span>
+            </td>
+          </tr>
+          <!-- Row 4 -->
+          <tr class="hover:bg-surface-container-low/60 transition-colors">
+            <td class="py-3 px-2.5">
+              <div class="font-semibold text-on-surface">Robert Kowalski</div>
+              <div class="text-[11px] text-on-surface-variant font-mono">MRN-1049-75</div>
+            </td>
+            <td class="py-3 px-2.5 text-on-surface-variant font-medium">Orthopedic Step-down</td>
+            <td class="py-3 px-2.5 text-on-surface font-medium">Orthopedics</td>
+            <td class="py-3 px-2.5 text-center">
+              <span class="bg-amber-50 text-amber-800 border border-amber-200 font-bold px-2 py-0.5 rounded text-[11px]">P2</span>
+            </td>
+            <td class="py-3 px-2.5 text-on-surface-variant font-medium">17 min</td>
+            <td class="py-3 px-2.5 text-right">
+              <span class="bg-surface-container text-on-surface-variant font-medium px-2.5 py-1 rounded text-[11px]">Awaiting Bed</span>
+            </td>
+          </tr>
+          <!-- Row 5 -->
+          <tr class="hover:bg-surface-container-low/60 transition-colors">
+            <td class="py-3 px-2.5">
+              <div class="font-semibold text-on-surface">Sophia Morales</div>
+              <div class="text-[11px] text-on-surface-variant font-mono">MRN-5520-19</div>
+            </td>
+            <td class="py-3 px-2.5 text-on-surface-variant font-medium">Standard Pediatric Cot</td>
+            <td class="py-3 px-2.5 text-on-surface font-medium">Pediatrics</td>
+            <td class="py-3 px-2.5 text-center">
+              <span class="bg-surface-container text-on-surface-variant font-bold px-2 py-0.5 rounded text-[11px]">P3</span>
+            </td>
+            <td class="py-3 px-2.5 text-on-surface-variant font-medium">09 min</td>
+            <td class="py-3 px-2.5 text-right">
+              <span class="bg-surface-container text-on-surface-variant font-medium px-2.5 py-1 rounded text-[11px]">Awaiting Bed</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- Right Column: Recent Operational Activity (5 cols) -->
+<div class="lg:col-span-5 bg-white rounded-xl p-5 border border-surface-container shadow-sm flex flex-col justify-between">
+  <div>
+    <div class="flex items-center justify-between pb-3 border-b border-surface-container">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-[20px]">history</span>
+        <h3 class="text-sm font-bold text-on-surface uppercase tracking-tight">Recent Activity Feed</h3>
+      </div>
+      <span class="text-xs text-on-surface-variant font-medium">Live Feed</span>
+    </div>
+    <div class="flex flex-col divide-y divide-surface-container mt-2">
+      <!-- Event 1 -->
+      <div class="py-3.5 flex items-start gap-3">
+        <div class="w-2.5 h-2.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
+        <div class="flex flex-col">
+          <span class="text-xs font-semibold text-on-surface">Bed B14 assigned to Marcus Brody</span>
+          <span class="text-[11px] text-on-surface-variant mt-0.5">14:27 · Unit: Orthopedics Bay 2</span>
+        </div>
+      </div>
+      <!-- Event 2 -->
+      <div class="py-3.5 flex items-start gap-3">
+        <div class="w-2.5 h-2.5 rounded-full bg-secondary mt-1.5 flex-shrink-0"></div>
+        <div class="flex flex-col">
+          <span class="text-xs font-semibold text-on-surface">Patient P-104 transferred from ED to Cardiology 4A</span>
+          <span class="text-[11px] text-on-surface-variant mt-0.5">14:24 · Completed intake transfer</span>
+        </div>
+      </div>
+      <!-- Event 3 -->
+      <div class="py-3.5 flex items-start gap-3">
+        <div class="w-2.5 h-2.5 rounded-full bg-emerald-600 mt-1.5 flex-shrink-0"></div>
+        <div class="flex flex-col">
+          <span class="text-xs font-semibold text-on-surface">Theatre 02 turnaround completed</span>
+          <span class="text-[11px] text-on-surface-variant mt-0.5">14:21 · Room prepped &amp; ready for next case</span>
+        </div>
+      </div>
+      <!-- Event 4 -->
+      <div class="py-3.5 flex items-start gap-3">
+        <div class="w-2.5 h-2.5 rounded-full bg-on-surface-variant mt-1.5 flex-shrink-0"></div>
+        <div class="flex flex-col">
+          <span class="text-xs font-semibold text-on-surface">Nurse M. Vance assigned to ICU Bed 12</span>
+          <span class="text-[11px] text-on-surface-variant mt-0.5">14:18 · Shift floor balance adjustment</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pt-3.5 border-t border-surface-container flex items-center justify-between text-xs text-on-surface-variant">
+    <span class="">End of current 1h audit window</span>
+    <a class="font-semibold text-primary hover:underline" href="#">View Full Activity Log →</a>
+  </div>
+</div></section>
+</main>
+<!-- Clean Minimalist Footer -->
+<footer class="w-full bg-white border-t border-surface-container py-4 px-6 lg:px-8">
+<div class="max-w-[1600px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-on-surface-variant">
+<div class="flex items-center gap-3">
+<span class="">© 2024 FlowCare Clinical Operations System</span>
+<span class="">·</span>
+<span class="">St. Jude Central Campus</span>
+</div>
+<div>
+<span class="">System Status: Healthy</span>
+</div>
+</div>
+</footer>
+
+
+</body></html>

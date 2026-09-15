@@ -1,0 +1,703 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#006194",
+            "primary-container": "#007bb9",
+            "on-primary": "#ffffff",
+            "primary-fixed": "#cce5ff",
+            "secondary": "#0051d5",
+            "secondary-container": "#e0ebff",
+            "on-secondary-container": "#002b78",
+            "surface": "#f8f9ff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f2f5fc",
+            "surface-container": "#e6ecf8",
+            "surface-container-high": "#dbe3f3",
+            "surface-container-highest": "#d1ddf0",
+            "on-surface": "#0f1c2e",
+            "on-surface-variant": "#495666",
+            "outline": "#788596",
+            "outline-variant": "#cbd5e1",
+            "error": "#b91c1c",
+            "error-container": "#fee2e2",
+            "on-error": "#ffffff",
+            "on-error-container": "#7f1d1d",
+            "warning": "#b45309",
+            "warning-container": "#fef3c7",
+            "on-warning-container": "#78350f",
+            "success": "#15803d",
+            "success-container": "#dcfce7",
+            "on-success-container": "#14532d",
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"],
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface text-on-surface font-sans antialiased text-[13px] leading-normal min-h-screen flex flex-col">
+<!-- TOP APP HEADER & NAVIGATION -->
+<header class="fixed top-0 w-full z-50 bg-surface-container-lowest border-b border-surface-container shadow-sm">
+<!-- Brand & Facility Bar -->
+<div class="h-14 px-6 flex items-center justify-between border-b border-surface-container/60">
+<div class="flex items-center gap-6">
+<!-- FlowCare Logo -->
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary shadow-sm font-bold text-base">
+<span class="material-symbols-outlined text-[20px]">local_hospital</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-on-surface tracking-tight leading-none">FlowCare</span>
+<span class="text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider mt-0.5">Clinical Operations</span>
+</div>
+</div>
+<div class="h-5 w-px bg-outline-variant"></div>
+<!-- Campus Selector -->
+<div class="flex items-center gap-2 bg-surface-container-low px-3 py-1 rounded-md text-xs font-medium text-on-surface border border-surface-container">
+<span class="material-symbols-outlined text-primary text-[16px]">domain</span>
+<span class="">St. Jude Central Campus — All Wings</span>
+<span class="material-symbols-outlined text-outline text-[14px]">expand_more</span>
+</div>
+<!-- Shift & Time -->
+<div class="hidden md:flex items-center gap-2 text-xs text-on-surface-variant bg-surface-container-low px-2.5 py-1 rounded-md border border-surface-container">
+<span class="material-symbols-outlined text-secondary text-[15px]">schedule</span>
+<span class="">Day Shift • 07:00 – 19:00</span>
+<span class="text-outline-variant mx-1">•</span>
+<span class="font-mono text-on-surface font-medium">14:28 UTC</span>
+</div>
+</div>
+<!-- Right Meta & Profile -->
+<div class="flex items-center gap-5">
+<div class="flex items-center gap-1.5 bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 rounded-full text-[11px] font-semibold text-emerald-800"><span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span><span class="">Live Updates</span></div>
+<div class="h-5 w-px bg-outline-variant"></div>
+<div class="flex items-center gap-2.5">
+<div class="text-right">
+<div class="text-xs font-semibold text-on-surface leading-snug">Sarah Jenkins, RN</div>
+<div class="text-[11px] text-on-surface-variant">Operations Coordinator</div>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 text-primary flex items-center justify-center font-medium">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Navigation & Quick Hospital Stats -->
+<div class="h-12 px-6 flex items-center justify-between">
+<nav class="flex items-center gap-1.5">
+<a class="px-3.5 py-1.5 rounded-md text-xs font-medium text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" href="#">
+          Capacity Overview
+        </a>
+<a class="px-3.5 py-1.5 rounded-md text-xs font-medium text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" href="#">
+          Resources (Beds, Theatres, Staff)
+        </a>
+<a aria-current="page" class="px-3.5 py-1.5 rounded-md text-xs font-semibold bg-primary text-on-primary shadow-sm" href="#">
+          Patient Flow (Patients, Waitlist)
+        </a>
+<a class="px-3.5 py-1.5 rounded-md text-xs font-medium text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" href="#">
+          Audit History
+        </a>
+</nav>
+<div class="flex items-center gap-5 text-xs">
+<div class="flex items-center gap-1.5">
+<span class="text-on-surface-variant">Occupancy:</span>
+<span class="font-semibold text-on-surface">84.2%</span>
+</div>
+<div class="h-3.5 w-px bg-outline-variant"></div>
+<div class="flex items-center gap-1.5">
+<span class="text-on-surface-variant">Waiting for Bed:</span>
+<span class="font-bold text-error">14</span>
+</div>
+<div class="h-3.5 w-px bg-outline-variant"></div>
+<div class="flex items-center gap-1.5">
+<span class="text-on-surface-variant">Clean Beds:</span>
+<span class="font-semibold text-success">6 Available</span>
+</div>
+</div>
+</div>
+</header>
+<!-- MAIN VIEW CONTAINER -->
+<main class="w-full pt-[116px] px-6 pb-8 max-w-[1720px] mx-auto flex-1">
+<!-- PAGE TITLE & CONTEXT BAR -->
+<div class="pt-4 pb-4 flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-surface-container/70 mb-5">
+<div>
+<h1 class="text-xl font-bold text-on-surface tracking-tight">Patient Flow</h1>
+<p class="text-xs text-on-surface-variant mt-0.5">Hospital-wide census, waitlist coordination, and bed transfer management.</p>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-2.5">
+<button class="inline-flex items-center gap-1.5 bg-surface-container-lowest border border-outline-variant text-on-surface px-3 py-1.5 rounded-md text-xs font-medium hover:bg-surface-container-low transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">sync</span>
+<span class="">Re-evaluate Queue</span>
+</button>
+</div>
+</div>
+<!-- TABS & SEARCH / FILTER BAR -->
+<div class="bg-surface-container-lowest rounded-lg border border-surface-container p-2.5 mb-5 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+<!-- Primary Tabs -->
+<div class="inline-flex p-0.5 bg-surface-container-low rounded-md border border-surface-container">
+<button class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded text-xs font-semibold bg-primary text-on-primary shadow-xs transition-all" id="tab-census">
+<span class="material-symbols-outlined text-[16px]">groups</span>
+<span class="">Patient Census</span>
+<span class="bg-white/20 text-white text-[11px] font-bold px-1.5 py-0.2 rounded-full">218</span>
+</button>
+<button class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded text-xs font-medium text-on-surface-variant hover:text-on-surface transition-all" id="tab-waitlist">
+<span class="material-symbols-outlined text-[16px]">list_alt</span>
+<span class="">Waitlist Queue</span>
+<span class="bg-error-container text-on-error-container text-[11px] font-bold px-1.5 py-0.2 rounded-full">14</span>
+</button>
+</div>
+<!-- Quick Search & Dropdown Filters -->
+<div class="flex flex-wrap items-center gap-2 flex-1 lg:justify-end">
+<!-- Search Input -->
+<div class="relative min-w-[240px] max-w-xs flex-1">
+<span class="material-symbols-outlined absolute left-2.5 top-2 text-outline text-[16px]">search</span>
+<input class="w-full pl-8 pr-3 py-1.5 text-xs bg-surface-container-low border border-surface-container rounded-md text-on-surface focus:bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="Search patient name or MRN..." type="text" value="Marcus Brody">
+</div>
+<!-- Dept Filter -->
+<div class="flex items-center gap-1.5 bg-surface-container-low border border-surface-container rounded-md px-2.5 py-1">
+<span class="text-[11px] font-semibold text-on-surface-variant uppercase tracking-wider">Dept:</span>
+<select class="bg-transparent text-xs font-medium text-on-surface focus:outline-none cursor-pointer pr-1">
+<option>All Wings</option>
+<option selected="">Cardiology</option>
+<option>Emergency (ED)</option>
+<option>ICU / Critical Care</option>
+<option>General Surgery</option>
+</select>
+</div>
+<!-- Status Filter -->
+<div class="flex items-center gap-1.5 bg-surface-container-low border border-surface-container rounded-md px-2.5 py-1">
+<span class="text-[11px] font-semibold text-on-surface-variant uppercase tracking-wider">Status:</span>
+<select class="bg-transparent text-xs font-medium text-on-surface focus:outline-none cursor-pointer pr-1">
+<option>All Statuses</option>
+<option selected="">Pending Transfer</option>
+<option>Admitted</option>
+<option>Awaiting Bed</option>
+<option>Discharge Scheduled</option>
+<option>In Transit</option>
+</select>
+</div>
+<!-- Triage / Priority Filter -->
+<div class="flex items-center gap-1.5 bg-surface-container-low border border-surface-container rounded-md px-2.5 py-1">
+<span class="text-[11px] font-semibold text-on-surface-variant uppercase tracking-wider">Triage:</span>
+<select class="bg-transparent text-xs font-medium text-on-surface focus:outline-none cursor-pointer pr-1">
+<option selected="">All Triages</option>
+<option>P1 - Critical</option>
+<option>P2 - High</option>
+<option>P3 - Routine</option>
+</select>
+</div>
+</div>
+</div>
+<!-- MAIN TWO-COLUMN WORKSPACE -->
+<div class="grid grid-cols-12 gap-5 items-start">
+<!-- LEFT COLUMN: Patient Census Table & Operations Mini-Summary (7 Cols) -->
+<div class="col-span-12 lg:col-span-7 flex flex-col gap-4">
+<div class="bg-surface-container-lowest rounded-lg border border-surface-container shadow-sm overflow-hidden">
+<!-- Cohort Meta Header -->
+<div class="px-4 py-2.5 bg-surface-container-low/80 border-b border-surface-container flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-xs font-semibold text-on-surface">Filtered Patients</span>
+<span class="text-[11px] text-on-surface-variant font-medium">(6 matching criteria)</span>
+</div>
+<span class="text-[11px] text-outline">Sort: Clinical Priority (Desc)</span>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse text-xs">
+<thead>
+<tr class="bg-surface-container-high/30 border-b border-surface-container text-on-surface-variant font-semibold text-[11px] uppercase tracking-wider">
+<th class="py-2.5 px-4 font-semibold">Patient &amp; MRN</th>
+<th class="py-2.5 px-3 font-semibold">Location / Bed</th>
+<th class="py-2.5 px-3 font-semibold">Status</th>
+<th class="py-2.5 px-3 font-semibold">Attending Physician</th>
+<th class="py-2.5 px-3 font-semibold text-center">Priority</th>
+<th class="py-2.5 px-4 font-semibold text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1: Marcus Brody (Selected / Focused) -->
+<tr class="bg-primary/5 hover:bg-primary/10 transition-colors"><td class="py-3.5 px-4"><div class="flex items-center gap-2"><div class="w-1.5 h-6 bg-primary rounded-full"></div><div><div class="font-bold text-primary text-[13px]">Marcus Brody</div><div class="font-mono text-[11px] text-on-surface-variant">52M • MRN-882104</div></div></div></td><td class="py-3.5 px-3"><div class="font-medium text-on-surface">Emergency Dept</div><div class="text-[11px] text-outline font-mono">Resus Bay 04</div></td><td class="py-3.5 px-3"><span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-900 border border-amber-200"><span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>Pending Transfer</span></td><td class="py-3.5 px-3"><div class="font-medium text-on-surface">Dr. K. Bell</div><div class="text-[11px] text-on-surface-variant">ED Attending</div></td><td class="py-3.5 px-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-[11px] font-bold bg-error-container text-on-error-container border border-error/20">P1 - Critical</span></td><td class="py-3.5 px-4 text-right"><span class="inline-flex items-center gap-1 bg-primary text-on-primary px-3 py-1 rounded text-xs font-semibold shadow-xs">Active<span class="material-symbols-outlined text-[13px]">arrow_forward</span></span></td></tr>
+<!-- Row 2: Robert Chen -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-4">
+<div class="font-semibold text-on-surface">Robert Chen</div>
+<div class="font-mono text-[11px] text-on-surface-variant">64M • MRN-784910</div>
+</td>
+<td class="py-3 px-3">
+<div class="font-medium text-on-surface">Cardiology</div>
+<div class="text-[11px] text-outline font-mono">Bed C-304</div>
+</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-slate-100 text-slate-700 border border-slate-200">
+                      Admitted
+                    </span>
+</td>
+<td class="py-3 px-3">
+<div class="font-medium text-on-surface">Dr. Aris Thorne</div>
+<div class="text-[11px] text-on-surface-variant">Cardiology</div>
+</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-block px-2 py-0.5 rounded text-[11px] font-semibold bg-surface-container-high text-on-surface-variant">
+                      P3 - Routine
+                    </span>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="bg-surface-container-low hover:bg-surface-container-high text-on-surface border border-surface-container px-2.5 py-1 rounded text-xs font-medium transition-colors">
+                      View
+                    </button>
+</td>
+</tr>
+<!-- Row 3: Clara Vanderbilt -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-4">
+<div class="font-semibold text-on-surface">Clara Vanderbilt</div>
+<div class="font-mono text-[11px] text-on-surface-variant">71F • MRN-419082</div>
+</td>
+<td class="py-3 px-3">
+<div class="font-medium text-on-surface">ICU Step-Down</div>
+<div class="text-[11px] text-outline font-mono">Bed ICU-02</div>
+</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-slate-100 text-slate-700 border border-slate-200">
+                      Admitted
+                    </span>
+</td>
+<td class="py-3 px-3">
+<div class="font-medium text-on-surface">Dr. Maya Patel</div>
+<div class="text-[11px] text-on-surface-variant">Intensivist</div>
+</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-block px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-100 text-amber-900 border border-amber-200">
+                      P2 - High
+                    </span>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="bg-surface-container-low hover:bg-surface-container-high text-on-surface border border-surface-container px-2.5 py-1 rounded text-xs font-medium transition-colors">
+                      View
+                    </button>
+</td>
+</tr>
+<!-- Row 4: Mateo Alvarez -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-4">
+<div class="font-semibold text-on-surface">Mateo Alvarez</div>
+<div class="font-mono text-[11px] text-on-surface-variant">38M • MRN-902315</div>
+</td>
+<td class="py-3 px-3">
+<div class="font-medium text-on-surface">PACU Recovery</div>
+<div class="text-[11px] text-outline font-mono">Bed PACU-06</div>
+</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-900 border border-amber-200">
+                      Awaiting Bed
+                    </span>
+</td>
+<td class="py-3 px-3">
+<div class="font-medium text-on-surface">Dr. S. Sterling</div>
+<div class="text-[11px] text-on-surface-variant">Orthopedic Surgery</div>
+</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-block px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-100 text-amber-900 border border-amber-200">
+                      P2 - High
+                    </span>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="bg-surface-container-low hover:bg-surface-container-high text-on-surface border border-surface-container px-2.5 py-1 rounded text-xs font-medium transition-colors">
+                      View
+                    </button>
+</td>
+</tr>
+<!-- Row 5: Eileen O'Connor -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-4">
+<div class="font-semibold text-on-surface">Eileen O'Connor</div>
+<div class="font-mono text-[11px] text-on-surface-variant">82F • MRN-331094</div>
+</td>
+<td class="py-3 px-3">
+<div class="font-medium text-on-surface">General Medicine</div>
+<div class="text-[11px] text-outline font-mono">Bed GM-112</div>
+</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-800 border border-emerald-200">
+                      Discharge Scheduled
+                    </span>
+</td>
+<td class="py-3 px-3">
+<div class="font-medium text-on-surface">Dr. James Hall</div>
+<div class="text-[11px] text-on-surface-variant">Internal Medicine</div>
+</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-block px-2 py-0.5 rounded text-[11px] font-semibold bg-surface-container-high text-on-surface-variant">
+                      P3 - Routine
+                    </span>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="bg-surface-container-low hover:bg-surface-container-high text-on-surface border border-surface-container px-2.5 py-1 rounded text-xs font-medium transition-colors">
+                      View
+                    </button>
+</td>
+</tr>
+<!-- Row 6: Henrik Kowalski -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-4">
+<div class="font-semibold text-on-surface">Henrik Kowalski</div>
+<div class="font-mono text-[11px] text-on-surface-variant">45M • MRN-672199</div>
+</td>
+<td class="py-3 px-3">
+<div class="font-medium text-on-surface">Emergency Dept</div>
+<div class="text-[11px] text-outline font-mono">Hallway Stretcher 2</div>
+</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-blue-50 text-blue-800 border border-blue-200">
+                      In Transit
+                    </span>
+</td>
+<td class="py-3 px-3">
+<div class="font-medium text-on-surface">Dr. K. Bell</div>
+<div class="text-[11px] text-on-surface-variant">ED Attending</div>
+</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-block px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-100 text-amber-900 border border-amber-200">
+                      P2 - High
+                    </span>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="bg-surface-container-low hover:bg-surface-container-high text-on-surface border border-surface-container px-2.5 py-1 rounded text-xs font-medium transition-colors">
+                      View
+                    </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer Pagination -->
+<div class="px-4 py-2.5 bg-surface-container-low/40 border-t border-surface-container flex items-center justify-between text-xs text-on-surface-variant">
+<span class="">Showing 6 of 218 active patients</span>
+<div class="flex items-center gap-1">
+<button class="px-2 py-1 bg-surface-container-lowest border border-surface-container rounded text-on-surface-variant opacity-60 cursor-not-allowed">Previous</button>
+<span class="px-2 font-mono text-[11px]">Page 1 of 37</span>
+<button class="px-2 py-1 bg-surface-container-lowest border border-surface-container rounded text-on-surface hover:bg-surface-container-low">Next</button>
+</div>
+</div>
+</div>
+<!-- SUMMARY STRIP / DISPATCH SNAPSHOT -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+<div class="bg-surface-container-lowest border border-surface-container rounded-lg p-3 shadow-sm flex items-center gap-3">
+<div class="w-9 h-9 rounded-md bg-secondary/10 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">transfer_within_a_station</span>
+</div>
+<div>
+<div class="text-[11px] uppercase tracking-wider text-on-surface-variant font-semibold">Orderly Pool</div>
+<div class="text-base font-bold text-on-surface leading-tight">8 / 11 <span class="text-xs font-normal text-on-surface-variant">Active</span></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-surface-container rounded-lg p-3 shadow-sm flex items-center gap-3">
+<div class="w-9 h-9 rounded-md bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">hourglass_top</span>
+</div>
+<div>
+<div class="text-[11px] uppercase tracking-wider text-on-surface-variant font-semibold">Avg Transfer Wait</div>
+<div class="text-base font-bold text-on-surface leading-tight">24.5 min <span class="text-xs font-normal text-success font-semibold">(Target &lt; 30m)</span></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-surface-container rounded-lg p-3 shadow-sm flex items-center gap-3">
+<div class="w-9 h-9 rounded-md bg-emerald-50 text-success flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">bed</span>
+</div>
+<div>
+<div class="text-[11px] uppercase tracking-wider text-on-surface-variant font-semibold">Clean Beds</div>
+<div class="text-base font-bold text-on-surface leading-tight">6 Available <span class="text-xs font-normal text-outline">(4 In Sanitization)</span></div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Patient Detail & Transfer Dispatcher (5 Cols) -->
+<div class="col-span-12 lg:col-span-5 flex flex-col gap-4">
+<div class="bg-surface-container-lowest rounded-lg border border-surface-container p-4 shadow-sm flex flex-col gap-4">
+<!-- Patient Summary Header -->
+<div class="flex items-start justify-between border-b border-surface-container/80 pb-3">
+<div>
+<div class="flex items-center gap-2">
+<h2 class="text-lg font-bold text-on-surface">Marcus Brody</h2>
+<span class="font-mono text-xs font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded">MRN-882104</span>
+</div>
+<p class="text-xs text-on-surface-variant mt-1">52y · Male · O-POS · NHS: 492 882 1011</p>
+</div>
+<span class="inline-flex items-center gap-1 bg-error-container text-on-error-container px-2.5 py-1 rounded text-xs font-bold uppercase tracking-wide border border-error/20">
+<span class="material-symbols-outlined text-[15px] text-error">priority_high</span>
+              P1 - Critical
+            </span>
+</div>
+<!-- Current Location & Destination -->
+<div class="grid grid-cols-2 gap-3 bg-surface-container-low p-3 rounded-md border border-surface-container">
+<div>
+<div class="text-[11px] uppercase font-semibold text-on-surface-variant">Current Location</div>
+<div class="text-xs font-bold text-on-surface mt-0.5 flex items-center gap-1 text-error">
+<span class="material-symbols-outlined text-[16px]">emergency</span>
+                Emergency Resus Bay 04
+              </div>
+<div class="text-[11px] text-outline mt-0.5">Admitted 08:15 UTC (6h in ED)</div>
+</div>
+<div>
+<div class="text-[11px] uppercase font-semibold text-on-surface-variant">Destination Target</div>
+<div class="text-xs font-bold text-primary mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">bed</span>
+                Cardiology Telemetry Bed
+              </div>
+<div class="text-[11px] text-outline mt-0.5">Ward 3B · Monitored Unit</div>
+</div>
+</div>
+<!-- Reason for Transfer / Clinical Indication -->
+<div class="bg-surface-container-low/60 border border-surface-container p-3 rounded-md">
+<div class="text-[11px] font-semibold text-on-surface uppercase tracking-wide flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]">medical_services</span>
+<span class="">Reason for Transfer</span>
+</div>
+<p class="text-xs text-on-surface-variant mt-1 leading-relaxed">
+              Requires continuous cardiac telemetry following acute non-STEMI event. Patient stabilized post-heparin protocol.
+            </p>
+</div>
+<!-- CLINICAL TIMELINE -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Clinical Timeline</span>
+<span class="text-[11px] text-outline font-medium">Authoritative Chart Events</span>
+</div>
+<div class="relative pl-5 space-y-3.5 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-surface-container-high">
+<!-- Timeline Event 1: Transfer Request -->
+<div class="relative">
+<span class="absolute -left-5 top-1 w-2.5 h-2.5 rounded-full bg-error ring-4 ring-surface-container-lowest"></span>
+<div class="flex items-baseline justify-between">
+<span class="text-xs font-bold text-on-surface">Transfer Requested</span>
+<span class="text-[11px] font-mono font-medium text-on-surface-variant">14:15 UTC</span>
+</div>
+<p class="text-xs text-on-surface mt-0.5">
+                  Requested by <strong class="font-semibold">Dr. K. Bell</strong> (Target: Cardiology Telemetry).
+                </p>
+</div>
+<!-- Timeline Event 2: Diagnostics -->
+<div class="relative">
+<span class="absolute -left-5 top-1 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-surface-container-lowest"></span>
+<div class="flex items-baseline justify-between">
+<span class="text-xs font-semibold text-on-surface">Diagnostic Troponin I Panel</span>
+<span class="text-[11px] font-mono font-medium text-on-surface-variant">12:30 UTC</span>
+</div>
+<p class="text-xs text-on-surface-variant mt-0.5">
+                  Troponin I panel resulted elevated (0.42 ng/mL). 12-lead ECG completed.
+                </p>
+</div>
+<!-- Timeline Event 3: Medication -->
+<div class="relative">
+<span class="absolute -left-5 top-1 w-2.5 h-2.5 rounded-full bg-secondary ring-4 ring-surface-container-lowest"></span>
+<div class="flex items-baseline justify-between">
+<span class="text-xs font-semibold text-on-surface">Medication Administered</span>
+<span class="text-[11px] font-mono font-medium text-on-surface-variant">10:05 UTC</span>
+</div>
+<p class="text-xs text-on-surface-variant mt-0.5">
+                  IV Metoprolol administered by S. Jenkins, RN. Heart rate reduced from 118 to 78 bpm.
+                </p>
+</div>
+<!-- Timeline Event 4: EMS Admission -->
+<div class="relative">
+<span class="absolute -left-5 top-1 w-2.5 h-2.5 rounded-full bg-slate-400 ring-4 ring-surface-container-lowest"></span>
+<div class="flex items-baseline justify-between">
+<span class="text-xs font-semibold text-on-surface">Emergency Admission</span>
+<span class="text-[11px] font-mono font-medium text-on-surface-variant">08:15 UTC</span>
+</div>
+<p class="text-xs text-on-surface-variant mt-0.5">
+                  Admitted via EMS to Emergency Bay 04 with acute retrosternal chest discomfort.
+                </p>
+</div>
+</div>
+</div>
+<!-- BED TRANSFER DISPATCHER FORM -->
+<div class="bg-surface-container-low border border-surface-container rounded-lg p-3.5 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">swap_horiz</span>
+<span class="text-xs font-bold text-on-surface">Bed Transfer Dispatcher</span>
+</div>
+<span class="text-[11px] font-medium text-primary bg-primary/10 px-2 py-0.5 rounded">Connected</span>
+</div>
+<form class="space-y-3" onsubmit="handleTransferSubmit(event)">
+<div class="p-2.5 bg-surface-container-low border border-surface-container rounded-md text-xs text-on-surface-variant leading-relaxed"><span class="font-semibold text-on-surface">Authoritative Transfer:</span> Submits bed transfer order directly to central hospital dispatch.</div>
+<!-- Dispatch Button & Feedback -->
+<div class="pt-1 flex items-center justify-between">
+<div class="text-xs font-medium text-secondary hidden" id="transfer-feedback">
+<span class="">Submitting transfer order...</span>
+</div>
+<button class="ml-auto bg-primary hover:bg-primary-container text-on-primary px-4 py-2 rounded text-xs font-bold shadow transition-colors inline-flex items-center gap-1.5" type="submit">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="">Submit Transfer Order</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+<!-- BOTTOM SECTION: SUGGESTED MATCH CARDS (Plain Operational Queue Matches) -->
+<div class="mt-5 bg-surface-container-lowest rounded-lg border border-surface-container p-4 shadow-sm">
+<div class="flex items-center justify-between pb-3 mb-3 border-b border-surface-container">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">sync_alt</span>
+<div>
+<h3 class="text-xs font-bold uppercase tracking-wider text-on-surface">Suggested Queue Matches</h3>
+<p class="text-[11px] text-on-surface-variant">Current automated matches ready for coordinator dispatch approval.</p>
+</div>
+</div>
+<span class="text-xs font-semibold text-primary bg-primary/10 px-2.5 py-0.5 rounded-full">3 Matches Pending</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+<!-- Match Card 1: Marcus Brody -->
+<div class="bg-surface-container-low border border-surface-container rounded-md p-3 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-error-container text-on-error-container border border-error/20">
+                P1 - Critical
+              </span>
+<span class="text-[11px] font-semibold text-success flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check</span> Ready
+              </span>
+</div>
+<div class="mt-2">
+<div class="text-sm font-bold text-on-surface">Marcus Brody</div>
+<div class="text-xs font-semibold text-primary mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                Matched to: Bed C-302 (Cardiology)
+              </div>
+</div>
+<p class="text-xs text-on-surface-variant mt-2 leading-relaxed">
+              Telemetry hardware compatible; ED boarding &gt; 6 hrs. Immediate transfer recommended.
+            </p>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container flex items-center justify-between text-xs">
+<span class="text-on-surface-variant font-medium">Action:</span>
+<span class="font-semibold text-primary">Transfer Ready</span>
+</div>
+</div>
+<!-- Match Card 2: Mateo Alvarez -->
+<div class="bg-surface-container-low border border-surface-container rounded-md p-3 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-200">
+                P2 - High
+              </span>
+<span class="text-[11px] font-semibold text-amber-800 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> Bed Cleaning
+              </span>
+</div>
+<div class="mt-2">
+<div class="text-sm font-bold text-on-surface">Mateo Alvarez</div>
+<div class="text-xs font-semibold text-secondary mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                Matched to: Bed ORT-204 (Ortho Ward)
+              </div>
+</div>
+<p class="text-xs text-on-surface-variant mt-2 leading-relaxed">
+              PACU discharge clearance received; bed cleaning ETA 6m. Orderly scheduled for dispatch.
+            </p>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container flex items-center justify-between text-xs">
+<span class="text-on-surface-variant font-medium">Action:</span>
+<span class="font-semibold text-amber-800">Awaiting Clean Bed</span>
+</div>
+</div>
+<!-- Match Card 3: Henrik Kowalski -->
+<div class="bg-surface-container-low border border-surface-container rounded-md p-3 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-200">
+                P2 - High
+              </span>
+<span class="text-[11px] font-semibold text-blue-800 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">directions_walk</span> In Transit
+              </span>
+</div>
+<div class="mt-2">
+<div class="text-sm font-bold text-on-surface">Henrik Kowalski</div>
+<div class="text-xs font-semibold text-on-surface-variant mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                Queued for: Med-Surg Ward 4A
+              </div>
+</div>
+<p class="text-xs text-on-surface-variant mt-2 leading-relaxed">
+              Pending discharge execution of GM-112 to free regional buffer bed. Patient currently in hallway transit.
+            </p>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container flex items-center justify-between text-xs">
+<span class="text-on-surface-variant font-medium">Action:</span>
+<span class="font-semibold text-blue-700">In Transit</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FOOTER -->
+<footer class="w-full bg-surface-container-lowest border-t border-surface-container py-3 px-6 text-xs text-on-surface-variant">
+<div class="max-w-[1720px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="font-semibold text-on-surface">FlowCare Operations Core</span>
+<span class="text-outline-variant">•</span>
+<span class="">HIPAA &amp; HITRUST Certified Platform</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="">Connected</span>
+<span class="text-outline-variant">•</span>
+<span class="">Secure Clinical Audit Enabled</span>
+</div>
+</div>
+</footer>
+<!-- SIMPLE TAB & DISPATCH SCRIPTS -->
+<script>
+    function handleTransferSubmit(event) {
+      event.preventDefault();
+      const feedback = document.getElementById('transfer-feedback');
+      feedback.classList.remove('hidden');
+      feedback.innerHTML = '<span class="text-primary font-medium">Transmitting transfer order...</span>';
+      
+      setTimeout(() => {
+        feedback.innerHTML = '<span class="text-success font-semibold">✓ Transfer Order Submitted to Orderly Unit 3</span>';
+        setTimeout(() => {
+          feedback.classList.add('hidden');
+        }, 4000);
+      }, 900);
+    }
+
+    const tabCensus = document.getElementById('tab-census');
+    const tabWaitlist = document.getElementById('tab-waitlist');
+
+    tabCensus.addEventListener('click', () => {
+      tabCensus.className = "inline-flex items-center gap-2 px-3.5 py-1.5 rounded text-xs font-semibold bg-primary text-on-primary shadow-xs transition-all";
+      tabWaitlist.className = "inline-flex items-center gap-2 px-3.5 py-1.5 rounded text-xs font-medium text-on-surface-variant hover:text-on-surface transition-all";
+    });
+
+    tabWaitlist.addEventListener('click', () => {
+      tabWaitlist.className = "inline-flex items-center gap-2 px-3.5 py-1.5 rounded text-xs font-semibold bg-primary text-on-primary shadow-xs transition-all";
+      tabCensus.className = "inline-flex items-center gap-2 px-3.5 py-1.5 rounded text-xs font-medium text-on-surface-variant hover:text-on-surface transition-all";
+    });
+  </script>
+
+
+
+
+</body></html>
